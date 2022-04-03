@@ -1,0 +1,32 @@
+.btnWrap {
+  display: flex;
+  justify-content: space-between;
+}
+.cancelBtn,
+.acceptBtn {
+  border-radius: 20px;
+  padding: 13px 20px;
+  box-sizing: border-box;
+}
+.cancelBtn {
+  background: #24cca7;
+  border: none;
+  color: white;
+}
+.acceptBtn {
+  display: block;
+  background: #ffffff;
+  border: 1px solid #4a56e2;
+  color: #4a56e2;
+}
+.cancelBtn:hover,
+.cancelBtn:active,
+.acceptBtn:hover,
+.acceptBtn:active {
+  cursor: pointer;
+}
+@media screen and (min-width: 350px) {
+  .btnWrap {
+    justify-content: space-around;
+  }
+}

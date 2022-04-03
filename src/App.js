@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -6,6 +6,10 @@ import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
+import Modal from 'components/modal/Modal'; //модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
+import ExitModalBtn from 'components/exitModalBtn/ExitModalBtn'; //это кнопка конкретно для выхода из приложения, ви в свои модалки вставляйте вместо нее свой компонент кнопки
+import ExitModal from 'components/exitModal/ExitModal'; //содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
+import Loader from 'components/loader/Loader';
 //
 //
 const HomeView = lazy(() => import('./pages/HomeView'));
@@ -27,7 +31,7 @@ export default function App() {
         <h1>Hi world</h1>
       ) : (
         <>
-          <Suspense fallback={<h1>Крутим спинер</h1>}>
+          <Suspense fallback={<Loader />}>
             <Routes>
               <Route
                 path="/"
@@ -65,7 +69,7 @@ export default function App() {
           </Suspense>
         </>
       )}
-
+      <Modal openModalButton={ExitModalBtn} content={ExitModal} />
       <ToastContainer autoClose={3000} />
     </>
   );
