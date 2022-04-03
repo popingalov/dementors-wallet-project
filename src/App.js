@@ -6,10 +6,13 @@ import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
-import Modal from 'components/Modal/Modal'; //модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
-import ExitModalBtn from 'components/ExitModalBtn/ExitModalBtn'; //это кнопка конкретно для выхода из приложения, ви в свои модалки вставляйте вместо нее свой компонент кнопки
-import ExitModal from 'components/ExitModal/ExitModal'; //содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
-import Loader from 'components/Loader/Loader';
+import Modal from 'components/modal/Modal';
+//модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
+import ExitModalBtn from './components/exitModalBtn/ExitModalBtn';
+//это кнопка конкретно для выхода из приложения, ви в свои модалки вставляйте вместо нее свой компонент кнопки
+import ExitModal from './components/exitModal/ExitModal';
+//содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
+import Loader from './components/loader/Loader';
 import Header from './components/Header/Header';
 //
 //
