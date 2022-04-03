@@ -6,7 +6,7 @@ import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
-
+import Nav from './components/Nav';
 import Modal from 'components/modal/Modal';
 //модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
 import ExitModalBtn from './components/exitModalBtn/ExitModalBtn';
@@ -66,6 +66,7 @@ export default function App() {
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Header />
+                    <Nav />
                   </PrivateRoute>
                 }
               />
