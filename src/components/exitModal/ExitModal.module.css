@@ -4,20 +4,20 @@
 }
 .cancelBtn,
 .acceptBtn {
+  font-family: var(--primary-font);
   border-radius: 20px;
   padding: 13px 20px;
   box-sizing: border-box;
 }
 .cancelBtn {
-  background: #24cca7;
+  background: var(--green-color);
   border: none;
-  color: white;
+  color: var(--secondary-text-color);
 }
 .acceptBtn {
-  display: block;
-  background: #ffffff;
-  border: 1px solid #4a56e2;
-  color: #4a56e2;
+  background: var(--secondary-text-color);
+  border: 1px solid var(--blue-color);
+  color: var(--blue-color);
 }
 .cancelBtn:hover,
 .cancelBtn:active,

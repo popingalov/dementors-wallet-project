@@ -22,16 +22,18 @@
 .exitModal {
   padding: 20px 40px;
   margin: 0 20px;
-  background-color: white;
+  background-color: var(--secondary-text-color);
   width: fit-content;
   height: 200px;
   border-radius: 20px;
   border-color: transparent;
   z-index: 3;
+  font-family: var(--secondary-font);
 }
 
-@media screen and (min-width: 350px) {
+@media screen and (min-width: 360px) {
   .exitModal {
     padding: 40px 80px;
+    font-size: 20px;
   }
 }
