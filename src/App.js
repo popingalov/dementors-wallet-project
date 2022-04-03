@@ -10,7 +10,7 @@ import PublicRoute from './helpers/PublicRoute';
 //
 const HomeView = lazy(() => import('./pages/HomeView'));
 const RegisterView = lazy(() => import('./pages/RegistrationPage'));
-const LoginView = lazy(() => import('./pages/LoginView'));
+const LoginView = lazy(() => import('./pages/LoginPage'));
 const WalletView = lazy(() => import('./pages/WalletView'));
 
 export default function App() {
@@ -41,7 +41,7 @@ export default function App() {
                 path="/register"
                 element={
                   <PublicRoute restricted>
-                    <h2>Registr</h2>
+                    <RegisterView />
                   </PublicRoute>
                 }
               />
@@ -49,7 +49,7 @@ export default function App() {
                 path="/login"
                 element={
                   <PublicRoute redirectTo="/contacts" restricted>
-                    <h2>login</h2>
+                    <LoginView />
                   </PublicRoute>
                 }
               />
