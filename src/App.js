@@ -9,7 +9,7 @@ import PublicRoute from './helpers/PublicRoute';
 //
 //
 const HomeView = lazy(() => import('./pages/HomeView'));
-const RegisterView = lazy(() => import('./pages/RegisterView'));
+const RegisterView = lazy(() => import('./pages/RegistrationPage'));
 const LoginView = lazy(() => import('./pages/LoginView'));
 const WalletView = lazy(() => import('./pages/WalletView'));
 
