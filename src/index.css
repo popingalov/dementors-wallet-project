@@ -59,6 +59,11 @@
   --placeholder-icon-color: #e0e0e0;
 
   --modal-bg-color: tomato;
+
+  --primary-font: 'Circe';
+  --primary-font-bold: 'Circle Bold';
+  --secondary-font: 'Poppins';
+  --secondary-font-bold: 'Poppins Bold';
 }
 
 body {
