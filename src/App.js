@@ -10,6 +10,7 @@ import Modal from 'components/modal/Modal'; //модалка, вставила �
 import ExitModalBtn from 'components/exitModalBtn/ExitModalBtn'; //это кнопка конкретно для выхода из приложения, ви в свои модалки вставляйте вместо нее свой компонент кнопки
 import ExitModal from 'components/exitModal/ExitModal'; //содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
 import Loader from 'components/loader/Loader';
+import Header from './components/Header/Header';
 //
 //
 const HomeView = lazy(() => import('./pages/HomeView'));
@@ -61,7 +62,7 @@ export default function App() {
                 path="/wallet"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <h2>wallet?</h2>
+                    <Header />
                   </PrivateRoute>
                 }
               />
