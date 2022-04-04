@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -6,11 +6,20 @@ import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
-//
-//
+import Nav from './components/nav';
+import Modal from 'components/modal';
+
+//модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
+import ExitModalBtn from './components/exitModalBtn';
+//это кнопка конкретно для выхода из приложения, ви в свои модалки вставляйте вместо нее свой компонент кнопки
+import ExitModal from './components/exitModal';
+//содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
+import Loader from './components/loader/Loader';
+import Header from './components/header/Header';
+
 const HomeView = lazy(() => import('./pages/HomeView'));
-const RegisterView = lazy(() => import('./pages/RegisterView'));
-const LoginView = lazy(() => import('./pages/LoginView'));
+const RegisterView = lazy(() => import('./pages/RegistrationPage'));
+const LoginView = lazy(() => import('./pages/LoginPage'));
 const WalletView = lazy(() => import('./pages/WalletView'));
 
 export default function App() {
@@ -27,7 +36,7 @@ export default function App() {
         <h1>Hi world</h1>
       ) : (
         <>
-          <Suspense fallback={<h1>Крутим спинер</h1>}>
+          <Suspense fallback={<Loader />}>
             <Routes>
               <Route
                 path="/"
@@ -41,7 +50,7 @@ export default function App() {
                 path="/register"
                 element={
                   <PublicRoute restricted>
-                    <h2>Registr</h2>
+                    <RegisterView />
                   </PublicRoute>
                 }
               />
@@ -49,7 +58,7 @@ export default function App() {
                 path="/login"
                 element={
                   <PublicRoute redirectTo="/contacts" restricted>
-                    <h2>login</h2>
+                    <LoginView />
                   </PublicRoute>
                 }
               />
@@ -57,7 +66,8 @@ export default function App() {
                 path="/wallet"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <h2>wallet?</h2>
+                    <Header />
+                    <Nav />
                   </PrivateRoute>
                 }
               />
@@ -65,7 +75,7 @@ export default function App() {
           </Suspense>
         </>
       )}
-
+      <Modal openModalButton={ExitModalBtn} content={ExitModal} />
       <ToastContainer autoClose={3000} />
     </>
   );
