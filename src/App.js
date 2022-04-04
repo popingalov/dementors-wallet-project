@@ -6,16 +6,16 @@ import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
-import Nav from './components/Nav';
-import Modal from 'components/Modal';
+import Nav from './components/nav';
+import Modal from 'components/modal';
 
 //модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
-import ExitModalBtn from './components/ExitModalBtn';
+import ExitModalBtn from './components/exitModalBtn';
 //это кнопка конкретно для выхода из приложения, ви в свои модалки вставляйте вместо нее свой компонент кнопки
-import ExitModal from './components/ExitModal';
+import ExitModal from './components/exitModal';
 //содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
-import Loader from './components/Loader/Loader';
-import Header from './components/Header/Header';
+import Loader from './components/loader/Loader';
+import Header from './components/header/Header';
 
 const HomeView = lazy(() => import('./pages/HomeView'));
 const RegisterView = lazy(() => import('./pages/RegistrationPage'));
