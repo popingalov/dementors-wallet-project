@@ -17,8 +17,8 @@ import Header from './components/Header/Header';
 //
 //
 const HomeView = lazy(() => import('./pages/HomeView'));
-const RegisterView = lazy(() => import('./pages/RegistrationPage'));
-const LoginView = lazy(() => import('./pages/LoginPage'));
+const RegisterView = lazy(() => import('./pages/registrationPage'));
+const LoginView = lazy(() => import('./pages/loginPage'));
 const WalletView = lazy(() => import('./pages/WalletView'));
 
 export default function App() {
