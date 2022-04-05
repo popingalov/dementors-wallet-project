@@ -16,6 +16,7 @@ import ExitModal from './components/exitModal';
 //содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
 import Loader from './components/loader/Loader';
 import Header from './components/header/Header';
+import RegistrationForm from './components/registrationForm';
 
 const HomeView = lazy(() => import('./pages/HomeView'));
 const RegisterView = lazy(() => import('./pages/RegistrationPage'));
