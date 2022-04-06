@@ -1,0 +1,14 @@
+.table {
+  border-collapse: collapse;
+}
+
+.table_header {
+  background-color: #f19816;
+  border-radius: 30px;
+  border: 0px;
+}
+
+.ths {
+  border: 2px green;
+  padding: 0;
+}
