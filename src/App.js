@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense, useState } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -25,7 +25,10 @@ const WalletView = lazy(() => import('./pages/WalletView'));
 export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getFetchingCurrent);
-
+  const isLoadingSpinner = useSelector(state => {
+    return state.global.isLoading;
+  });
+  console.log(isLoadingSpinner);
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
@@ -77,6 +80,7 @@ export default function App() {
       )}
       <Modal openModalButton={ExitModalBtn} content={ExitModal} />
       <ToastContainer autoClose={3000} />
+      {isLoadingSpinner && <Loader />}
     </>
   );
 }

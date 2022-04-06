@@ -1,24 +1,32 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import modalActions from '../../redux/global/global-actions';
 import { Formik, Form } from 'formik';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import s from './Modal.module.css';
 import classNames from 'classnames';
+import { store } from 'redux/store';
 const modalRoot = document.getElementById('modal-root');
 export default function Modal({ openModalButton, content }) {
-  const [modalActive, setModalActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { openModal, closeModal } = modalActions;
+
   const handleOpen = () => {
-    setModalActive(true);
+    dispatch(openModal());
+    setIsOpen(store.getState().global.isModalLogOutOpen);
   };
-  const handleClose = () => setModalActive(false);
-  const handleKeyDown = useCallback(
-    e => {
-      if (e.code === 'Escape') {
-        setModalActive(false);
-      }
-    },
-    [modalActive],
-  );
+  const handleClose = () => {
+    dispatch(closeModal());
+    setIsOpen(store.getState().global.isModalLogOutOpen);
+  };
+  const handleKeyDown = useCallback(e => {
+    if (e.code === 'Escape') {
+      dispatch(closeModal());
+      setIsOpen(store.getState().isLoading.isModalLogOutOpen);
+    }
+  });
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -26,14 +34,13 @@ export default function Modal({ openModalButton, content }) {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleKeyDown]);
+
   return createPortal(
     <>
       {openModalButton(handleOpen)}
       <div
         className={
-          modalActive === true
-            ? classNames(s.modalWrap, s.modalWrapActive)
-            : s.modalWrap
+          isOpen ? classNames(s.modalWrap, s.modalWrapActive) : s.modalWrap
         }
         onClick={() => {
           handleClose();
