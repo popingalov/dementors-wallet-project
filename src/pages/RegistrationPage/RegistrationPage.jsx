@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './registrationPage.module.css';
+import s from './RegistrationPage.module.css';
 // import RegistrationForm from "../../components/RegistrationForm";
 import BackgroundContainer from 'components/backgroundContainer';
 
@@ -12,7 +12,7 @@ const RegistrationPage = () => {
           <p className={s.title}>Finance App</p>
         </div>
         {/* <RegistrationForm/> */}
-        <div className={s.ellipseBlur}/>
+        <div className={s.ellipseBlur} />
       </div>
     </BackgroundContainer>
   );

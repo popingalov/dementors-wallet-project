@@ -1,1 +1,1 @@
-export { default } from './backgroundContainer';
+export { default } from './BackgroundContainer';
