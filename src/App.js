@@ -18,8 +18,8 @@ import Loader from './components/loader/Loader';
 import Header from './components/header/Header';
 
 const HomeView = lazy(() => import('./pages/HomeView'));
-const RegisterView = lazy(() => import('./pages/RegistrationPage'));
-const LoginView = lazy(() => import('./pages/LoginPage'));
+const RegisterView = lazy(() => import('./pages/registrationPage'));
+const LoginView = lazy(() => import('./pages/loginPage'));
 const WalletView = lazy(() => import('./pages/WalletView'));
 
 export default function App() {
