@@ -4,19 +4,17 @@
   align-items: center;
   margin: 0 auto;
   width: 280px;
-  z-index: 100;
-
-  padding-top: 36px;
-  padding-bottom: 36px;
+  z-index: 101;
+  padding-top: 110px;
+  padding-bottom: 110px;
   background: #ffffff;
 }
-
 @media screen and (min-width: 768px) {
   .formRegister {
     position: absolute;
     margin: unset;
     width: 540px;
-    max-height: 616px;
+    min-height: 468px;
     padding-top: 40px;
     padding-bottom: 60px;
     border-radius: 20px;
@@ -26,7 +24,7 @@
 }
 @media screen and (min-width: 1280px) {
   .formRegister {
-    top: 52px;
+    top: 136px;
     right: 85px;
   }
 }
@@ -65,7 +63,6 @@ input::placeholder {
   padding-bottom: 10px;
   color: #bdbdbd;
 }
-
 .inputTop {
   margin-top: 50px;
 }
@@ -74,8 +71,11 @@ label {
   display: flex;
   align-items: center;
 }
+.input_wrap {
+  position: relative;
+}
 .icon {
-  z-index: 1;
+  z-index: 99;
   position: absolute;
   top: 4px;
   left: 0;
@@ -90,7 +90,7 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #24cca7;
+  background: #24cca7;
   border-radius: 20px;
   margin-bottom: 20px;
   border: none;
@@ -106,6 +106,7 @@ label {
   color: #ffffff;
   cursor: pointer;
 }
+
 .btn:hover,
 .btn:focus {
   border: 1px solid #24cca7;
@@ -130,8 +131,8 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
-  border: 1px solid #24cca7;
+  background: #ffffff;
+  border: 1px solid #4a56e2;
   box-sizing: border-box;
   border-radius: 20px;
   font-family: 'Circe';
@@ -154,6 +155,7 @@ label {
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 @media screen and (min-width: 768px) {
   .btn1 {
     margin: 0;
@@ -162,9 +164,6 @@ label {
   }
 }
 
-.input_wrap {
-  position: relative;
-}
 .error {
   position: absolute;
   font-size: 12px;
