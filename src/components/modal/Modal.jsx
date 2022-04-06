@@ -1,30 +1,29 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import modalActions from '../../redux/global/global-actions';
-import { Formik, Form } from 'formik';
-import { createPortal } from 'react-dom';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import modalActions from '../../redux/global/global-actions';
+import globalSelectors from 'redux/global/global-selectors';
+import { Formik, Form } from 'formik';
 import s from './Modal.module.css';
 import classNames from 'classnames';
-import { store } from 'redux/store';
+
 const modalRoot = document.getElementById('modal-root');
 export default function Modal({ openModalButton, content }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const isModalOpen = useSelector(globalSelectors.isModalOpen);
+
   const dispatch = useDispatch();
   const { openModal, closeModal } = modalActions;
 
   const handleOpen = () => {
     dispatch(openModal());
-    setIsOpen(store.getState().global.isModalLogOutOpen);
   };
   const handleClose = () => {
     dispatch(closeModal());
-    setIsOpen(store.getState().global.isModalLogOutOpen);
   };
   const handleKeyDown = useCallback(e => {
     if (e.code === 'Escape') {
       dispatch(closeModal());
-      setIsOpen(store.getState().isLoading.isModalLogOutOpen);
     }
   });
 
@@ -40,7 +39,7 @@ export default function Modal({ openModalButton, content }) {
       {openModalButton(handleOpen)}
       <div
         className={
-          isOpen ? classNames(s.modalWrap, s.modalWrapActive) : s.modalWrap
+          isModalOpen ? classNames(s.modalWrap, s.modalWrapActive) : s.modalWrap
         }
         onClick={() => {
           handleClose();

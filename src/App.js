@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
+import globalSelectors from 'redux/global/global-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
 import Nav from './components/nav';
@@ -25,10 +26,8 @@ const WalletView = lazy(() => import('./pages/WalletView'));
 export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getFetchingCurrent);
-  const isLoadingSpinner = useSelector(state => {
-    return state.global.isLoading;
-  });
-  console.log(isLoadingSpinner);
+  const isLoadingSpinner = useSelector(globalSelectors.isLoadingSpinner);
+
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
