@@ -1,9 +1,10 @@
-import { useEffect, lazy, Suspense, useState } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
+import globalSelectors from 'redux/global/global-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
 import Nav from './components/nav';
@@ -20,13 +21,14 @@ import trns from './helpers/trns-example.json';
 import DashBoard from 'components/dashboard/Dashboard';
 
 const HomeView = lazy(() => import('./pages/HomeView'));
-const RegisterView = lazy(() => import('./pages/RegistrationPage'));
-const LoginView = lazy(() => import('./pages/LoginPage'));
+const RegisterView = lazy(() => import('./pages/registrationPage'));
+const LoginView = lazy(() => import('./pages/loginPage'));
 const WalletView = lazy(() => import('./pages/WalletView'));
 
 export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getFetchingCurrent);
+  const isLoadingSpinner = useSelector(globalSelectors.isLoadingSpinner);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -80,6 +82,7 @@ export default function App() {
       )}
       <Modal openModalButton={ExitModalBtn} content={ExitModal} />
       <ToastContainer autoClose={3000} />
+      {isLoadingSpinner && <Loader />}
     </>
   );
 }
