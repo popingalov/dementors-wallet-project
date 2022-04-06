@@ -16,6 +16,8 @@ import ExitModal from './components/exitModal';
 //содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
 import Loader from './components/loader/Loader';
 import Header from './components/header/Header';
+import trns from './helpers/trns-example.json';
+import DashBoard from 'components/dashboard/Dashboard';
 
 const HomeView = lazy(() => import('./pages/HomeView'));
 const RegisterView = lazy(() => import('./pages/RegistrationPage'));
@@ -43,6 +45,7 @@ export default function App() {
                 element={
                   <PublicRoute>
                     <h2>Старт?</h2>
+                    <DashBoard transactions={trns} />
                   </PublicRoute>
                 }
               />

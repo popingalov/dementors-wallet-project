@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
+import { Td } from 'react-super-responsive-table'
 import PropTypes from 'prop-types'
 
 export default function Transaction({date, type,category, comment, amount, balance}) {
