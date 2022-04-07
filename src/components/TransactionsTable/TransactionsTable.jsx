@@ -1,9 +1,15 @@
 import { Table, Thead, Tbody, Tr, Th } from 'react-super-responsive-table'
+import {useEffect} from 'react'
 import Transaction from 'components/transaction'
 import s from './TransactionsTable.module.css'
 
-export default function TransactionsTable({ transactions }) {
-    return <Table className={s.table}>
+export default function TransactionsTable({ transactions, fetchTransactions }) {
+  
+  useEffect(() => {
+        fetchTransactions();
+  }, [fetchTransactions])  
+   
+  return <Table className={s.table}>
   <Thead >
     <Tr className={s.table_header}>
       <Th className={s.ths}>Дата</Th>

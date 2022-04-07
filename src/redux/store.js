@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import authReducer from './auth/auth-slice';
-import contactsReducer from './walletOperation';
+import { transactionsReducer } from './transactions';
 import loadingReducer from './global/global-reducer';
 
 const authPersistConfig = {
@@ -15,7 +15,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    contacts: contactsReducer,
+    transactions: transactionsReducer,
     global: loadingReducer,
   },
   middleware: getDefaultMiddleware =>
