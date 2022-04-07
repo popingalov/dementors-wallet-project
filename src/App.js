@@ -17,7 +17,7 @@ import ExitModal from './components/exitModal';
 //содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
 import Loader from './components/loader/Loader';
 import Header from './components/header/Header';
-
+import Money from 'components/money/Money';
 const HomeView = lazy(() => import('./pages/HomeView'));
 const RegisterView = lazy(() => import('./pages/registrationPage'));
 const LoginView = lazy(() => import('./pages/loginPage'));
@@ -60,6 +60,7 @@ export default function App() {
                 path="/login"
                 element={
                   <PublicRoute redirectTo="/contacts" restricted>
+                    <Money />
                     <LoginView />
                   </PublicRoute>
                 }
