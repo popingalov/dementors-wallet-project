@@ -16,7 +16,7 @@ export default function TransactionsTable({ transactions }) {
   </Thead>
   <Tbody>
         {transactions.map(({ id, date, type, category, comment, amount, balance }) => {
-          return <Tr key={id}>
+          return <Tr key={id} className={s.table_row}>
                     <Transaction date={date} type={type} category={category} comment={comment} amount={amount} balance={balance}/>
                  </Tr>
     })}

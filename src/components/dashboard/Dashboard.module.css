@@ -1,4 +1,25 @@
-.background {
-  /*   background-color: rgba(255, 255, 255, 0.4); */
-  background-color: #414141;
+.main_thumb {
+  display: flex;
+  justify-content: space-between;
+
+  min-height: 100%;
+  padding: 25px 15px;
+}
+
+.left_thumb {
+  width: 33.333333%;
+  padding-right: 70px;
+}
+
+.left_thumb::after {
+  content: '';
+  border-right: 1px solid #e7e5f2;
+  box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
+    1px 0px 0px rgba(255, 255, 255, 0.6);
+}
+
+.right_thumb {
+  width: 66.66666%;
+
+  padding-left: 70px;
 }
