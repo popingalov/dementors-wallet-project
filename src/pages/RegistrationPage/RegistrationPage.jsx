@@ -8,7 +8,6 @@ const RegistrationPage = () => {
     <BackgroundContainer>
       <div className={s.wrapper}>
         <div className={s.box}>
-          {/* <img/> */}
           <p className={s.title}>Finance App</p>
         </div>
         {/* <RegistrationForm/> */}
