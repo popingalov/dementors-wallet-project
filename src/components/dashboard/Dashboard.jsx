@@ -4,6 +4,7 @@ import s from './Dashboard.module.css'
 import Nav from '../nav'
 import { transactionsOperations } from 'redux/transactions';
 import BackgroundContainer from "components/backgroundContainer";
+import {transactionsSelectors} from '../../redux/transactions'
 
 function DashBoard({ transactions }) {
     return <BackgroundContainer>
@@ -12,7 +13,7 @@ function DashBoard({ transactions }) {
             <Nav/>
         </div>
         <div className={s.right_thumb}>
-            <TransactionsTable transactions={transactions} />
+            <TransactionsTable />
         </div>
         </div>
         
@@ -21,7 +22,7 @@ function DashBoard({ transactions }) {
 }
 
 const mapStateToProps = state => ({
-  transactions: transactionsOperations.getTransactions(state)
+  transactions: transactionsSelectors.getTransactions(state)
 });
 
 export default connect(mapStateToProps)(DashBoard);

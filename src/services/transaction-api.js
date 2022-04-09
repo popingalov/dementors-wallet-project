@@ -4,6 +4,7 @@ axios.defaults.baseURL = 'https://dementrors-waller.herokuapp.com/api';
 
 export async function fetchTransactions() {
   const { data } = await axios.get('/transactions');
+  console.log('aaaa', data);
   return data;
 }
 

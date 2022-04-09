@@ -6,6 +6,7 @@ const fetchTransactions = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const transactions = await transactionsApi.fetchTransactions();
+      console.log('OPERATIONS', transactions);
       return transactions;
     } catch (error) {
       return rejectWithValue(error);

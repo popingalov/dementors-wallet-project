@@ -47,6 +47,14 @@ export default function App() {
                 element={
                   <PublicRoute>
                     <h2>Старт?</h2>
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="transactions"
+                element={
+                  <PublicRoute>
+                    <h2>Старт?</h2>
                     <DashBoard transactions={trns} />
                   </PublicRoute>
                 }
@@ -68,7 +76,7 @@ export default function App() {
                 }
               />
               <Route
-                path="/wallet"
+                path="/transactions"
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Header />

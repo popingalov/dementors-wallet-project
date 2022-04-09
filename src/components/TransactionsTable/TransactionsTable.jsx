@@ -5,11 +5,13 @@ import s from './TransactionsTable.module.css'
 
 export default function TransactionsTable({ transactions, fetchTransactions }) {
   
+  console.log(fetchTransactions);
+  
   useEffect(() => {
         fetchTransactions();
   }, [fetchTransactions])  
    
-  return <Table className={s.table}>
+  return (transactions ? <Table className={s.table}>
   <Thead >
     <Tr className={s.table_header}>
       <Th className={s.ths}>Дата</Th>
@@ -27,5 +29,6 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
                  </Tr>
     })}
   </Tbody>
-</Table>
+</Table >
+  : "Nope")
 }
