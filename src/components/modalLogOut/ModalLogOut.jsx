@@ -1,7 +1,7 @@
-import s from './ExitModal.module.css';
+import s from './ModalLogOut.module.css';
 import { useDispatch } from 'react-redux';
 import logOut from '../../redux/auth/auth-operations';
-export default function ExitModal(handleClose) {
+export default function ModalLogOut(handleClose) {
   const dispatch = useDispatch();
   return (
     <>

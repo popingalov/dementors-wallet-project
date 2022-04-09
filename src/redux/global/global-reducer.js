@@ -4,11 +4,12 @@ import modalActions from './global-actions';
 import operations from '../auth/auth-operations';
 
 const { logOut, logIn, fetchCurrentUser, register } = operations;
-const { openModal, closeModal } = modalActions;
+const { openModal, closeModal, isModalAddTransactionOpen } = modalActions;
 
 const isModalLogOutOpen = createReducer(false, {
   [openModal]: () => true,
   [closeModal]: () => false,
+  [isModalAddTransactionOpen]: state => !state,
 });
 
 const isLoading = createReducer(false, {

@@ -1,5 +1,5 @@
-import s from './ExitModalBtn.module.css';
-export default function ExitModalBtn(handleOpen) {
+import s from './ModalLogOut.module.css';
+export default function ModalLogOutBtn(handleOpen) {
   return (
     <button
       className={s.btn}

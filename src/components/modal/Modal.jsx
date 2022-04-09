@@ -60,6 +60,7 @@ export default function Modal({ openModalButton, content }) {
     modalRoot,
   );
 }
+
 Modal.propTypes = {
   openModalButton: PropTypes.func.isRequired,
   content: PropTypes.func.isRequired,

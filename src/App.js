@@ -9,14 +9,18 @@ import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
 import Nav from './components/nav';
 import Modal from 'components/modal';
-
-//модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
-import ExitModalBtn from './components/exitModalBtn';
-//это кнопка конкретно для выхода из приложения, ви в свои модалки вставляйте вместо нее свой компонент кнопки
-import ExitModal from './components/exitModal';
-//содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
 import Loader from './components/loader/Loader';
 import Header from './components/header/Header';
+import LoginVerificationModal from 'components/loginVerificationModal/LoginVerificationModal';
+//модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
+import { ModalLogOut, ModalLogOutBtn } from './components/modalLogOut';
+import {
+  ModalAddTransactions,
+  ModalAddTransactionsBtn,
+} from './components/modalAddTransactions';
+//это кнопка конкретно для выхода из приложения, ви в свои модалки вставляйте вместо нее свой компонент кнопки
+
+//содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
 
 const HomeView = lazy(() => import('./pages/HomeView'));
 const RegisterView = lazy(() => import('./pages/registrationPage'));
@@ -77,7 +81,12 @@ export default function App() {
           </Suspense>
         </>
       )}
-      <Modal openModalButton={ExitModalBtn} content={ExitModal} />
+      {/* <Modal openModalButton={ModalLogOutBtn} content={ModalLogOut} /> */}
+      <Modal
+        openModalButton={ModalAddTransactionsBtn}
+        content={ModalAddTransactions}
+      />
+
       <ToastContainer autoClose={3000} />
       {isLoadingSpinner && <Loader />}
     </>
