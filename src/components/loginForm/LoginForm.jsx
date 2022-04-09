@@ -1,5 +1,5 @@
 import { Formik, Form } from 'formik';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
@@ -9,7 +9,7 @@ import TextInput from '../textInput';
 import Logo from '../logo';
 import { ReactComponent as EmailIcon } from '../../assets/images/icons/email.svg';
 import { ReactComponent as LockIcon } from '../../assets/images/icons/lock.svg';
-import operations from '../../redux/auth/auth-operations';
+import authOperations from '../../redux/auth/auth-operations';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -26,7 +26,7 @@ const SignupSchema = Yup.object().shape({
 export default function LoginForm() {
   const dispatch = useDispatch();
   const handleSubmit = ({ email, password }) => {
-    dispatch(operations({ email, password }));
+    dispatch(authOperations.logIn({ email, password }));
   };
   return (
     <>
@@ -91,13 +91,13 @@ export default function LoginForm() {
             >
               ВХОД
             </button>
-            <NavLink
+            <Link
               to="/register"
               className={s.btn1}
               style={{ textDecoration: 'none' }}
             >
               Регистрация
-            </NavLink>
+            </Link>
           </Form>
         )}
       </Formik>

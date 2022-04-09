@@ -24,10 +24,10 @@ const RegistrationSchema = Yup.object().shape({
     .min(6, 'минимум 6 символов!')
     .max(12, 'Не больше 12 символов!')
     .required('Обязательное поле'),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password')], 'Пароли не совпадают')
-    .required('Обязательное поле'),
-  userName: Yup.string()
+  // confirmPassword: Yup.string()
+  //   .oneOf([Yup.ref('password')], 'Пароли не совпадают')
+  //   .required('Обязательное поле'),
+  name: Yup.string()
     .typeError()
     .min(1, 'минимум 1 символа!')
     .max(12, 'Не больше 12 символов!')
@@ -35,14 +35,14 @@ const RegistrationSchema = Yup.object().shape({
 });
 export default function RegisterForm() {
   const dispatch = useDispatch();
-  const handleSubmit = ({ userName, email, password }) => {
-    dispatch(authOperations({ userName, email, password }));
+  const handleSubmit = ({ name, email, password }) => {
+    dispatch(authOperations.register({ name, email, password }));
   };
   return (
     <>
       <Formik
         initialValues={{
-          userName: '',
+          name: '',
           password: '',
           confirmPassword: '',
           email: '',
@@ -96,11 +96,11 @@ export default function RegisterForm() {
                 value={values.password}
               />
             </div>
-            <div className={s.input_wrap}>
+            {/* <div className={s.input_wrap}>
               {touched.confirmPassword && errors.confirmPassword && (
                 <span className={s.error}>{errors.confirmPassword}</span>
-              )}
-              <TextInput
+              )} */}
+            {/* <TextInput
                 label={<LockIcon className={s.icon} />}
                 placeholder="Подтвердите пароль"
                 className={s.input}
@@ -110,22 +110,22 @@ export default function RegisterForm() {
                 onBlur={handleBlur}
                 value={values.confirmPassword}
                 style={{ marginBottom: '5px' }}
-              />
-            </div>
+              /> */}
+            {/* </div> */}
             <ProgressSwitch value={values.password.length} />
             <div className={s.input_wrap}>
-              {touched.userName && errors.userName && (
-                <span className={s.error}>{errors.userName}</span>
+              {touched.name && errors.name && (
+                <span className={s.error}>{errors.name}</span>
               )}
               <TextInput
                 label={<UserIcon className={s.icon} />}
                 placeholder="Ваше Имя"
                 className={s.input}
                 type="text"
-                name="userName"
+                name="name"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.userName}
+                value={values.name}
               />
             </div>
             <button
