@@ -47,6 +47,8 @@ export default function TransactionsCategoriesSelect() {
       color: '#bdbdbd',
       position: 'absolute',
       paddingLeft: '10px',
+      fontWeight: '400',
+      fontSize: '18px',
     }),
     singleValue: () => ({
       position: 'absolute',
@@ -59,6 +61,7 @@ export default function TransactionsCategoriesSelect() {
     option: provided => ({
       ...provided,
       textAlign: 'left',
+      fontSize: '18px',
       backgroundColor: 'transparent',
       color: 'inherit',
       padding: '20px',

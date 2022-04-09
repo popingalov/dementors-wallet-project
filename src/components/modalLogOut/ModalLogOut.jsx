@@ -1,7 +1,8 @@
 import s from './ModalLogOut.module.css';
 import { useDispatch } from 'react-redux';
 import logOut from '../../redux/auth/auth-operations';
-export default function ModalLogOut(handleClose) {
+import modalActions from 'redux/global/global-actions';
+export default function ModalLogOut({ handleClose }) {
   const dispatch = useDispatch();
   return (
     <>
@@ -12,6 +13,7 @@ export default function ModalLogOut(handleClose) {
           className={s.cancelBtn}
           onClick={() => {
             handleClose();
+            dispatch(modalActions.modalLogOutClose());
           }}
         >
           Нет
@@ -21,6 +23,7 @@ export default function ModalLogOut(handleClose) {
           className={s.acceptBtn}
           onSubmit={() => {
             handleClose();
+            dispatch(modalActions.modalLogOutClose());
             dispatch(logOut());
           }}
         >

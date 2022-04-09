@@ -149,10 +149,14 @@
   width: 100%;
   margin: 40px auto;
 }
+.sumInput {
+  color: var(--primary-text-color);
+}
 .sumInput[placeholder] {
   width: 100%;
   margin-bottom: 32px;
   text-align: center;
+  font-weight: 700;
 }
 .datetime {
   width: 100%;
@@ -164,17 +168,14 @@
   background-image: url('../../assets/images/icons/data.svg');
   background-repeat: no-repeat;
   background-position: 94% 2px;
+  font-weight: 400;
 }
 .commentInput {
   width: 100%;
   padding: 4px 8px;
   margin-bottom: 40px;
-}
-
-.options {
-  width: 90%;
-  height: auto;
-  margin-top: 10px;
+  font-weight: 400;
+  color: var(--primary-text-color);
 }
 
 @media screen and (min-width: 320px) {

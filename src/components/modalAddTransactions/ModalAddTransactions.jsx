@@ -7,12 +7,9 @@ import closeBtnIcon from '../../assets/images/icons/close.svg';
 import classNames from 'classnames';
 import Datetime from 'react-datetime';
 import TransactionsCategoriesSelect from './TransactionsCategoriesSelect';
-import { useState } from 'react';
-// import { Field } from 'formik';
-export default function ModalAddTransactions(handleClose) {
+import modalActions from '../../redux/global/global-actions';
+export default function ModalAddTransactions({ handleClose }) {
   const dispatch = useDispatch();
-  const [newValue, setNewValue] = useState({});
-
   const today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -25,6 +22,7 @@ export default function ModalAddTransactions(handleClose) {
         type="button"
         onClick={() => {
           handleClose();
+          dispatch(modalActions.modalAddTransactionClose());
         }}
         className={s.closeBtn}
       >
@@ -63,6 +61,7 @@ export default function ModalAddTransactions(handleClose) {
           type="button"
           className={s.acceptBtn}
           onClick={() => {
+            dispatch(modalActions.modalAddTransactionClose());
             handleClose();
           }}
         >
@@ -73,6 +72,7 @@ export default function ModalAddTransactions(handleClose) {
           className={s.cancelBtn}
           onClick={() => {
             handleClose();
+            dispatch(modalActions.modalAddTransactionClose());
           }}
         >
           Отмена

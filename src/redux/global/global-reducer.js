@@ -4,14 +4,28 @@ import modalActions from './global-actions';
 import operations from '../auth/auth-operations';
 
 const { logOut, logIn, fetchCurrentUser, register } = operations;
-const { openModal, closeModal, isModalAddTransactionOpen } = modalActions;
+const {
+  openModal,
+  closeModal,
+  modalAddTransactionOpen,
+  modalAddTransactionClose,
+  modalLogOutClose,
+  modalLogOutOpen,
+} = modalActions;
 
-const isModalLogOutOpen = createReducer(false, {
+const isModalOpen = createReducer(false, {
   [openModal]: () => true,
   [closeModal]: () => false,
-  [isModalAddTransactionOpen]: state => !state,
 });
 
+const isModalLogOutOpen = createReducer(false, {
+  [modalLogOutOpen]: () => true,
+  [modalLogOutClose]: () => false,
+});
+const isModalAddTransactionOpen = createReducer(false, {
+  [modalAddTransactionOpen]: () => true,
+  [modalAddTransactionClose]: () => false,
+});
 const isLoading = createReducer(false, {
   [logOut.pending]: () => true,
   [logOut.fulfilled]: () => false,
@@ -34,5 +48,7 @@ const isLoading = createReducer(false, {
 });
 export default combineReducers({
   isLoading,
+  isModalOpen,
+  isModalAddTransactionOpen,
   isModalLogOutOpen,
 });

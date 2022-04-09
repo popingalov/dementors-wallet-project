@@ -1,12 +1,18 @@
 import s from './ModalAddTransactions.module.css';
 import { useDispatch } from 'react-redux';
 import btnIcon from '../../assets/images/icons/+.svg';
-
-export default function ModalAddTransactionsBtn(handleOpen) {
+import modalActions from '../../redux/global/global-actions';
+export default function ModalAddTransactionsBtn() {
+  const dispatch = useDispatch();
+  const handleOpen = () => {
+    dispatch(modalActions.openModal());
+  };
   return (
     <button
       className={s.btn}
       onClick={() => {
+        dispatch(modalActions.modalLogOutClose());
+        dispatch(modalActions.modalAddTransactionOpen());
         handleOpen();
       }}
     >

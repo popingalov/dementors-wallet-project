@@ -31,7 +31,7 @@ export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getFetchingCurrent);
   const isLoadingSpinner = useSelector(globalSelectors.isLoadingSpinner);
-
+  const isModalOpen = useSelector(globalSelectors.isModalOpen);
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
@@ -81,12 +81,11 @@ export default function App() {
           </Suspense>
         </>
       )}
-      {/* <Modal openModalButton={ModalLogOutBtn} content={ModalLogOut} /> */}
-      <Modal
-        openModalButton={ModalAddTransactionsBtn}
-        content={ModalAddTransactions}
-      />
-
+      {/* <Modal openModalButton={ModalLogOutBtn} />
+      <Modal openModalButton={ModalAddTransactionsBtn} /> */}
+      <ModalAddTransactionsBtn />
+      <ModalLogOutBtn />
+      {isModalOpen && <Modal />}
       <ToastContainer autoClose={3000} />
       {isLoadingSpinner && <Loader />}
     </>

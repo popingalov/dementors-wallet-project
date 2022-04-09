@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import modalActions from '../../redux/global/global-actions';
@@ -7,11 +6,16 @@ import globalSelectors from 'redux/global/global-selectors';
 import { Formik, Form } from 'formik';
 import s from './Modal.module.css';
 import classNames from 'classnames';
-
+import { ModalLogOut } from 'components/modalLogOut';
+import { ModalAddTransactions } from 'components/modalAddTransactions';
 const modalRoot = document.getElementById('modal-root');
-export default function Modal({ openModalButton, content }) {
-  const isModalOpen = useSelector(globalSelectors.isModalOpen);
 
+export default function Modal() {
+  const isModalOpen = useSelector(globalSelectors.isModalOpen);
+  const isModalLogOutOpen = useSelector(globalSelectors.isModalLogOutOpen);
+  const isAddTransactionModalOpen = useSelector(
+    globalSelectors.isModalAddTransactionOpen,
+  );
   const dispatch = useDispatch();
   const { openModal, closeModal } = modalActions;
 
@@ -36,7 +40,6 @@ export default function Modal({ openModalButton, content }) {
 
   return createPortal(
     <>
-      {openModalButton(handleOpen)}
       <div
         className={
           isModalOpen ? classNames(s.modalWrap, s.modalWrapActive) : s.modalWrap
@@ -52,7 +55,12 @@ export default function Modal({ openModalButton, content }) {
           }}
         >
           <Formik>
-            <Form>{content(handleClose)}</Form>
+            <Form>
+              {isModalLogOutOpen && <ModalLogOut handleClose={handleClose} />}
+              {isAddTransactionModalOpen && (
+                <ModalAddTransactions handleClose={handleClose} />
+              )}
+            </Form>
           </Formik>
         </div>
       </div>
@@ -60,8 +68,3 @@ export default function Modal({ openModalButton, content }) {
     modalRoot,
   );
 }
-
-Modal.propTypes = {
-  openModalButton: PropTypes.func.isRequired,
-  content: PropTypes.func.isRequired,
-};
