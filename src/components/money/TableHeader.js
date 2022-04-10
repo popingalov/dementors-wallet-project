@@ -2,9 +2,15 @@ import s from './Money.module.css';
 const TableHeader = () => {
   return (
     <thead className={`${s.tableRow} ${s.tableRowHeader}`}>
-      <th className={s.tableCell}>Валюта</th>
-      <th className={s.tableCell}>Покупка</th>
-      <th className={s.tableCell}>Продаж</th>
+      <tr className={s.tableCell}>
+        <td>Валюта</td>
+      </tr>
+      <tr className={s.tableCell}>
+        <td>Покупка</td>
+      </tr>
+      <tr className={s.tableCell}>
+        <td>Продаж</td>
+      </tr>
     </thead>
   );
 };
