@@ -1,36 +1,44 @@
-import React, { useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { createPortal } from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import modalActions from '../../redux/global/global-actions';
-import globalSelectors from 'redux/global/global-selectors';
-import { Formik, Form } from 'formik';
-import s from './Modal.module.css';
-import classNames from 'classnames';
+import classNames from "classnames";
+import { Form, Formik } from "formik";
+import PropTypes from "prop-types";
+import React, { useCallback, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
+import globalSelectors from "redux/global/global-selectors";
+import modalActions from "../../redux/global/global-actions";
+import s from "./Modal.module.css";
 
-const modalRoot = document.getElementById('modal-root');
+const modalRoot = document.getElementById("modal-root");
+
 export default function Modal({ openModalButton, content }) {
+  // отпимуємо статус відкриття модалки із редаксу
   const isModalOpen = useSelector(globalSelectors.isModalOpen);
 
   const dispatch = useDispatch();
+
+  // отпимуємо єкшени для тоглінгу статусу модалки із редаксу
   const { openModal, closeModal } = modalActions;
 
+  // хендлер відкриття модалки
   const handleOpen = () => {
     dispatch(openModal());
   };
   const handleClose = () => {
     dispatch(closeModal());
   };
-  const handleKeyDown = useCallback(e => {
-    if (e.code === 'Escape') {
-      dispatch(closeModal());
-    }
-  });
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.code === "Escape") {
+        dispatch(closeModal());
+      }
+    },
+    [dispatch, closeModal]
+  );
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [handleKeyDown]);
 
@@ -47,7 +55,7 @@ export default function Modal({ openModalButton, content }) {
       >
         <div
           className={s.exitModal}
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
           }}
         >
@@ -57,7 +65,7 @@ export default function Modal({ openModalButton, content }) {
         </div>
       </div>
     </>,
-    modalRoot,
+    modalRoot
   );
 }
 Modal.propTypes = {

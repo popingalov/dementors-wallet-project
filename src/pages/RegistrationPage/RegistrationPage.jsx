@@ -1,7 +1,7 @@
-import React from 'react';
-import s from './RegistrationPage.module.css';
+import React from "react";
+import s from "./RegistrationPage.module.css";
 // import RegistrationForm from "../../components/RegistrationForm";
-import BackgroundContainer from 'components/backgroundContainer/BackgroundContainer';
+import BackgroundContainer from "components/BackgroundContainer";
 
 const RegistrationPage = () => {
   return (

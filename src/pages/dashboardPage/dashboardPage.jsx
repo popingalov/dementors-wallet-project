@@ -1,13 +1,13 @@
 import React, { useState, useEffect, Fragment } from "react";
-import {useLocation, Outlet } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Media from "react-media";
-import s from "./dashboardPage.module.css"
-import Header from "../../components/header";
-import Nav from "../../components/nav";
+import s from "./DashboardPage.module.css";
+import Header from "../../components/Header";
+import Nav from "../../components/Nav";
 //import Balance from "../../components/balance";
 import Currency from "../../components/currency";
-import  operations  from "../../redux/auth/auth-operations";
+import operations from "../../redux/auth/auth-operations";
 
 const DashboardPage = () => {
   const location = useLocation();
@@ -30,7 +30,7 @@ const DashboardPage = () => {
         <main className={s.main}>
           <aside className={s.aside}>
             <section className={s.nav}>
-              <Nav/>
+              <Nav />
               <Media
                 queries={{
                   mobile: { maxWidth: 767 },
@@ -40,8 +40,15 @@ const DashboardPage = () => {
                 {(matches) => {
                   return (
                     <Fragment>
-                      {matches.mobile && display && {/*< Balance />*/}}
-                      {matches.other && {/*<Balance />*/}}
+                      {matches.mobile &&
+                        display &&
+                        {
+                          /*< Balance />*/
+                        }}
+                      {matches.other &&
+                        {
+                          /*<Balance />*/
+                        }}
                     </Fragment>
                   );
                 }}
@@ -52,7 +59,7 @@ const DashboardPage = () => {
             </section>
           </aside>
           <article className={s.box}>
-            <Outlet/>
+            <Outlet />
           </article>
         </main>
       </div>
