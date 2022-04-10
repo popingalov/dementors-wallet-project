@@ -1,0 +1,99 @@
+/*проверить после сборки всех компонентов*/
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  background-color: var(--secondary-background-color);
+  overflow-x: hidden;
+}
+
+.main {
+  min-height: calc(100vh - 60px);
+  padding: 0 20px 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .main {    
+    min-height: calc(100vh - 80px);
+    padding: 0 40px 0 40px;
+    }
+
+  .main::before {
+    content: "";
+    position: absolute;    
+    right: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+    background-image:
+      url(../../assets/images/Ellipse1_tabl.png), 
+      url(../../assets/images/Ellipse2_tabl.png);
+      background-position: 
+      left bottom, right top;
+      filter: blur(30px);
+      background-repeat: no-repeat;
+    }
+
+  @media screen and (min-device-pixel-ratio: 2),
+  screen and (min-resolution: 192dpi),
+  screen and (min-resolution: 2dppx) {
+    .main::before {
+      background-image: 
+      url(../../assets/images/Ellipse1_tabl@2x.png),
+      url(../../assets/images/Ellipse2_tabl@2x.png)
+    }
+  };
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px){ 
+  .aside {
+    padding-top: 10px;
+    display: flex;
+    
+  }
+
+  .nav {
+    width: 50%;
+  }
+
+  .currency { 
+    width: 50%;
+  }
+}
+
+
+@media screen and (min-width: 1280px) {
+.main{
+  display: flex;
+  padding-left: 85px;
+  padding-right: 85px;
+}
+
+.main::before {
+  background-image: 
+  url(../../assets/images/Ellipse1_desk.png),
+  url(../../assets/images/Ellipse2_desk.png);
+}
+  @media screen and (min-device-pixel-ratio: 2),
+  screen and (min-resolution: 192dpi),
+  screen and (min-resolution: 2dppx) {
+    .main::before {
+      background-image: url(../../assets/images/Ellipse1_desk@2x.png),
+        url(../../assets/images/Ellipse2_desk@2x.png);
+    }
+  }
+
+.aside {
+  border-right: 1px solid var(--first-bg-color);
+  box-shadow: inset -1px 0px 0px rgba(0, 0, 0, 0.05),
+      1px 0px 0px rgba(255, 255, 255, 0.6);
+  width: 36%;
+}
+
+.box {
+  width: 64px;
+  }
+}
+
+
+
