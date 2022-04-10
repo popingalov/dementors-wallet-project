@@ -5,22 +5,24 @@ table {
 
   width: 100%;
 }
-
-thead th {
-  background-color: #fff;
-}
-thead th:first-child {
-  border-radius: 100px 0 0 100px;
-}
-thead th:last-child {
-  border-radius: 0 100px 100px 0;
-}
-/** Border Fix. **/
-table th {
-  border: none !important;
-}
-table td {
-  border: none !important;
+@media only screen and (min-width: 768px) {
+  thead th {
+    background-color: #fff;
+  }
+  thead th:first-child {
+    border-radius: 100px 0 0 100px;
+  }
+  thead th:last-child {
+    border-radius: 0 100px 100px 0;
+  }
+  /** Border Fix. **/
+  table th {
+    border: none !important;
+  }
+  table td {
+    border: none !important;
+    padding: 20px;
+  }
 }
 
 .table_header {
@@ -28,15 +30,16 @@ table td {
 }
 .table_row {
   text-align: center;
-  height: 85px;
+  min-height: 85px;
   position: relative;
+  padding: 50px;
 }
 
-/* .table_row:not(:last-child) {
+.table_row:not(:last-child) {
   width: 100%;
   border-bottom: 1px solid #dcdcdf;
   box-shadow: 0 3px 2px -2px rgba(255, 255, 255, 0.6);
-} */
+}
 /* .table_row:not(:last-child)::after {
   content: '';
   width: 90%;
@@ -48,7 +51,7 @@ table td {
   z-index: 1;
 } */
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 767.9px) {
   /* Force table to not be like tables anymore */
   table,
   thead,
@@ -93,33 +96,21 @@ table td {
 	Label the data
 	*/
   td:nth-of-type(1):before {
-    content: 'First Name';
+    content: 'Дата';
   }
   td:nth-of-type(2):before {
-    content: 'Last Name';
+    content: 'Тип';
   }
   td:nth-of-type(3):before {
-    content: 'Job Title';
+    content: 'Категория';
   }
   td:nth-of-type(4):before {
-    content: 'Favorite Color';
+    content: 'Комментарий';
   }
   td:nth-of-type(5):before {
-    content: 'Wars of Trek?';
+    content: 'Сумма';
   }
   td:nth-of-type(6):before {
-    content: 'Secret Alias';
-  }
-  td:nth-of-type(7):before {
-    content: 'Date of Birth';
-  }
-  td:nth-of-type(8):before {
-    content: 'Dream Vacation City';
-  }
-  td:nth-of-type(9):before {
-    content: 'GPA';
-  }
-  td:nth-of-type(10):before {
-    content: 'Arbitrary Data';
+    content: 'Баланс';
   }
 }

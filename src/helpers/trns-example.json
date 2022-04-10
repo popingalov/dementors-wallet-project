@@ -1,7 +1,7 @@
 [{
   "id": 123,
   "date": "04.11.19",
-  "type": "costs",
+  "type": "+",
   "category": "рвзное",
   "comment": "hihihi",
   "amount": 220,
@@ -10,7 +10,7 @@
 {
   "id": 124,
   "date": "04.11.19",
-  "type": "costs",
+  "type": "-",
   "category": "рвзное",
   "comment": "hihihi",
   "amount": 220,
