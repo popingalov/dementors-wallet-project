@@ -47,6 +47,7 @@ export default function App() {
                 element={
                   <PublicRoute>
                     <h2>Старт?</h2>
+                    <DashBoard />
                   </PublicRoute>
                 }
               />

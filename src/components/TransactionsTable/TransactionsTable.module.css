@@ -29,13 +29,74 @@ table td {
 .table_row {
   text-align: center;
   height: 85px;
+  position: relative;
 }
 
-.table_row:not(:last-child)::after {
+/* .table_row:not(:last-child) {
   width: 100%;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0 3px 2px -2px rgba(255, 255, 255, 0.6);
+} */
+/* .table_row:not(:last-child)::after {
   content: '';
-  border: 1px solid #dcdcdf;
-  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  width: 90%;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0 3px 2px -2px rgba(255, 255, 255, 0.6);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+} */
 
-  transform: rotate(-90deg);
+@media only screen and (max-width: 800px) {
+  /* Force table to not be like tables anymore */
+  #no-more-tables table,
+  #no-more-tables thead,
+  #no-more-tables tbody,
+  #no-more-tables th,
+  #no-more-tables td,
+  #no-more-tables tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #no-more-tables thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  #no-more-tables tr {
+    border: 1px solid #ccc;
+  }
+
+  #no-more-tables td {
+    /* Behave like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+  }
+
+  #no-more-tables td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  /*
+        Label the data
+        */
+  #no-more-tables td:before {
+    content: attr(data-title);
+  }
 }

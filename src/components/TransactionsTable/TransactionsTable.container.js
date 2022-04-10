@@ -4,14 +4,16 @@ import {
   transactionsOperations,
   transactionsSelectors,
 } from '../../redux/transactions';
+//import trnsExmp from '../../helpers/trns-example.json';
 
 const mapStateToProps = state => ({
+  /* 
+  transactions: trnsExmp, */
   transactions: transactionsSelectors.getTransactions(state),
-  isLoading: transactionsSelectors.getIsLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchContacts: () => dispatch(transactionsOperations.fetchTransactions()),
+  fetchTransactions: () => dispatch(transactionsOperations.fetchTransactions()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionsTable);
