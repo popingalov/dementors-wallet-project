@@ -2,7 +2,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import Media from "react-media";
+import Media from 'react-media';
 
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
@@ -22,13 +22,10 @@ import Loader from './components/loader/Loader';
 
 import Header from './components/header/Header';
 import Money from 'components/money/Money';
-const HomeView = lazy(() => import('./pages/HomeView'));
-
 
 import Currency from './components/currency';
 import HomeTab from './components/homeTab';
 //import HomeText from './components/homeText';
-
 
 const RegisterView = lazy(() => import('./pages/registrationPage'));
 const LoginView = lazy(() => import('./pages/loginPage'));
@@ -48,43 +45,52 @@ export default function App() {
       {isFetchingCurrentUser ? (
         <Loader />
       ) : (
-          <>
-            <Suspense fallback={<Loader />}>
-              <Routes>
-                <Route path="/" element={<PrivateRoute/>}>
-                  <Route element={<DashboardPage />}>
-                    <Route index element={<Navigate to="/home" />} />
-                    {/* есть баланс - ? <HomeTab />:<HomeText /> */}
-                    <Route path="home" element={<HomeTab />} />
-                    
-                    <Route path="diagram" element={{/*<DiagramTab />*/ }} />
-                    <Route path="currency"
-                      element={
-                      <Media query={{ maxWidth: 767 }}>
-                        {(matches) => matches ? <Currency /> : <Navigate to="/home" />}
-                      </Media>}                      
-                    />
-                  </Route>
-                </Route>
-                <Route
-                    path="/register"
+        <>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<PrivateRoute />}>
+                <Route element={<DashboardPage />}>
+                  <Route index element={<Navigate to="/home" />} />
+                  {/* есть баланс - ? <HomeTab />:<HomeText /> */}
+                  <Route path="home" element={<HomeTab />} />
+
+                  <Route
+                    path="diagram"
                     element={
-                      <PublicRoute restricted>
-                        <RegisterView />
-                      </PublicRoute>
+                      {
+                        /*<DiagramTab />*/
+                      }
                     }
                   />
                   <Route
-                    path="/login"
+                    path="currency"
                     element={
-                      <PublicRoute redirectTo="/contacts" restricted>
-                        <LoginView />
-                      </PublicRoute>
+                      <Media query={{ maxWidth: 767 }}>
+                        {matches =>
+                          matches ? <Currency /> : <Navigate to="/home" />
+                        }
+                      </Media>
                     }
-                />
-                <Route path="*" element={<LoginView />} />
-              
-
+                  />
+                </Route>
+              </Route>
+              <Route
+                path="/register"
+                element={
+                  <PublicRoute restricted>
+                    <RegisterView />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute redirectTo="/contacts" restricted>
+                    <LoginView />
+                  </PublicRoute>
+                }
+              />
+              <Route path="*" element={<LoginView />} />
             </Routes>
           </Suspense>
         </>
