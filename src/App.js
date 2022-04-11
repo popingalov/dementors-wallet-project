@@ -10,7 +10,6 @@ import globalSelectors from 'redux/global/global-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
 
-
 import { ModalAddTransactionsBtn } from './components/modalAddTransactions';
 
 import TransactionsTable from 'components/transactionsTable';
@@ -39,10 +38,9 @@ const NotFoundPage = lazy(() => import('./pages/notFoundPage'));
 
 //import HomeText from './components/homeText';
 
-const RegisterView = lazy(() => import('./pages/RegistrationPage'));
-const LoginView = lazy(() => import('./pages/LoginPage'));
-const DashboardPage = lazy(() => import('./pages/DashboardPage'));
-
+const RegisterView = lazy(() => import('./pages/registrationPage'));
+const LoginView = lazy(() => import('./pages/loginPage'));
+const DashboardPage = lazy(() => import('./pages/dashboardPage'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -64,8 +62,8 @@ export default function App() {
               <Route
                 path="/"
                 element={
-                  <PublicRoute>
-                    <DashboardPage />
+                  <PublicRoute redirectTo="/wallet">
+                    <LoginView />
                   </PublicRoute>
                 }
               />
@@ -94,15 +92,14 @@ export default function App() {
                     </DashboardPage>
                   </PrivateRoute>
                 }
-                />
-                <Route
-                path='*'
+              />
+              <Route
+                path="*"
                 element={
                   <PublicRoute restricted>
                     <NotFoundPage />
                   </PublicRoute>
                 }
-
               />
             </Routes>
           </Suspense>

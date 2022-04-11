@@ -13,20 +13,21 @@ import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import clasNames from 'classnames';
+import { transactionsOperations } from '../../redux/transactions';
 let schema = yup.object().shape({
-  transactionType: yup
+  type: yup
     .string()
-    .default('outcomes')
+    .default('-')
     .required(
       "Выберите тип транзакции 'Доход' или  'Расходы'. Это обязательное поле ",
     ),
-  sum: yup
+  amount: yup
     .string()
     .max(10)
     .default('0.00')
     .required('Введите сумму. Это обязательное поле'),
 
-  dateOfTransaction: yup
+  date: yup
     .string()
     .default(function () {
       const today = new Date();
@@ -41,9 +42,9 @@ let schema = yup.object().shape({
     .string()
     .max(15, 'Максимально допустимая длинна комментария 15 символов'),
   category: yup.string(),
-  newCategory: yup
-    .string()
-    .max(15, 'Максимально допустимая длинна названия 15 символов'),
+  //   newCategory: yup
+  //     .string()
+  //     .max(15, 'Максимально допустимая длинна названия 15 символов'),
 });
 
 const today = new Date();
@@ -53,26 +54,26 @@ var yyyy = today.getFullYear();
 let currentDate = dd + '.' + mm + '.' + yyyy;
 
 const initialValues = {
-  transactionType: '',
-  sum: '',
-  dateOfTransaction: '',
+  type: '',
+  amount: '',
+  date: '',
   comment: '',
   category: '',
-  newCategory: '',
+  //   newCategory: '',
 };
 
 export default function ModalAddTransactions({ handleClose }) {
   const [transactions, setTransactions] = useState(initialValues);
   const [date, setDate] = useState(currentDate);
-  const [sum, setSum] = useState('');
+  const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
-  const [transactionType, setTransactionType] = useState('outcomes');
+  const [transactionType, setTransactionType] = useState('-');
   const dispatch = useDispatch();
 
   const handleCheckbox = e => {
     e.target.checked === true
-      ? setTransactionType('incomes')
-      : setTransactionType('outcomes');
+      ? setTransactionType('+')
+      : setTransactionType('-');
   };
 
   const onChangeCategory = e => {
@@ -90,13 +91,13 @@ export default function ModalAddTransactions({ handleClose }) {
   const addCategory = e => {
     return e.target.value;
   };
-  const sumChange = e => {
-    return setSum(e.target.value);
+  const amountChange = e => {
+    return setAmount(e.target.value);
   };
-  const sumForSending = sum => {
-    if (Number.isInteger(Number(sum)) === true) {
-      return sum + '.00';
-    } else return sum;
+  const amountForSending = amount => {
+    if (Number.isInteger(Number(amount)) === true) {
+      return amount + '.00';
+    } else return amount;
   };
 
   console.log(transactions);
@@ -108,17 +109,18 @@ export default function ModalAddTransactions({ handleClose }) {
         validationSchema={schema}
         onSubmit={(values, { resetForm }) => {
           setTransactions({
-            transactionType: transactionType,
-            sum: sumForSending(sum),
-            dateOfTransaction: date,
+            type: transactionType,
+            amount: amountForSending(amount),
+            date: date,
             comment: values.comment,
             category: category,
-            newCategory: values.newCategory,
+            // newCategory: values.newCategory,
           });
-          setSum('');
+          dispatch(transactionsOperations.addTransaction(transactions));
+          setAmount('');
           setCategory('');
           setDate('');
-          setTransactionType('outcomes');
+          setTransactionType('-');
           resetForm();
         }}
       >
@@ -149,12 +151,12 @@ export default function ModalAddTransactions({ handleClose }) {
                 <Field
                   type="checkbox"
                   className={s.checkbox}
-                  name="transactionType"
+                  name="type"
                   onClick={handleCheckbox}
                 />
 
                 <ErrorMessage
-                  name="transactionType"
+                  name="type"
                   render={msg => {
                     return toast(msg, { toastId: '' });
                   }}
@@ -198,15 +200,15 @@ export default function ModalAddTransactions({ handleClose }) {
           <div className={s.sumAndDateWrap}>
             <Field
               type="number"
-              name="sum"
+              name="amount"
               className={s.sumInput}
               placeholder="0.00"
-              value={sum}
+              value={amount}
               required
-              onChange={sumChange}
+              onChange={amountChange}
             />
             <ErrorMessage
-              name="sum"
+              name="amount"
               render={msg => {
                 return toast(msg, { toastId: '' });
               }}
@@ -217,11 +219,11 @@ export default function ModalAddTransactions({ handleClose }) {
               className={s.datetime}
               initialValue={currentDate}
               closeOnSelect={true}
-              name="dateOfTransaction"
+              name="date"
               onChange={getDate}
             />
             <ErrorMessage
-              name="dateOfTransaction"
+              name="date"
               render={msg => {
                 return toast(msg, { toastId: '' });
               }}

@@ -4,17 +4,10 @@ import modalActions from './global-actions';
 
 import { toast } from 'react-toastify';
 import { combineReducers } from 'redux';
-import {
-  fetchCurrentUser,
-  logIn,
-  logOut,
-  register,
-} from '../auth/auth-operations';
-import {
-  addCategory,
-  getCategories,
-} from '../categoties/categories-operations';
-
+import auth from '../auth/auth-operations';
+import cat from 'redux/categoties/categories-operations';
+const { addCategory, getCategories } = cat;
+const { fetchCurrentUser, logIn, logOut, register } = auth;
 const {
   changeLanguage,
   openModal,
@@ -72,12 +65,9 @@ const error = createReducer(null, {
 
 export default combineReducers({
   isLoading,
-
   isModalOpen,
   isModalAddTransactionOpen,
-
   isEnglishVersion,
-
   isModalLogOutOpen,
   error,
 });

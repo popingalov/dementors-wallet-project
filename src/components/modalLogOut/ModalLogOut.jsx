@@ -12,6 +12,7 @@ export default function ModalLogOut({ handleClose }) {
           type="button"
           className={s.cancelBtn}
           onClick={() => {
+            console.log('Выход');
             handleClose();
             dispatch(modalActions.modalLogOutClose());
           }}
@@ -19,12 +20,13 @@ export default function ModalLogOut({ handleClose }) {
           Нет
         </button>
         <button
-          type="submit"
+          type="button"
           className={s.acceptBtn}
-          onSubmit={() => {
+          onClick={() => {
+            console.log('123');
             handleClose();
             dispatch(modalActions.modalLogOutClose());
-            dispatch(logOut());
+            dispatch(logOut.logOut());
           }}
         >
           Да

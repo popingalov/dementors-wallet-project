@@ -8,6 +8,8 @@ export async function fetchTransactions() {
 }
 
 export async function addTransaction(contact) {
+  console.log(contact);
   const { data } = await axios.post('/transactions', contact);
+
   return data;
 }
