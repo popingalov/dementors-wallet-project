@@ -1,0 +1,14 @@
+.table_column {
+  width: 100px;
+  font-size: 16px;
+}
+
+.green {
+  color: #24cca7;
+  font-weight: 700;
+}
+
+.red {
+  color: #ff6596;
+  font-weight: 700;
+}

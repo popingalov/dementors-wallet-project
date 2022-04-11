@@ -21,6 +21,8 @@ import ExitModal from './components/exitModal';
 import Loader from './components/loader/Loader';
 
 import Header from './components/header/Header';
+import trns from './helpers/trns-example.json';
+import DashBoard from 'components/dashboard/Dashboard';
 import Money from 'components/money/Money';
 
 import Currency from './components/currency';
