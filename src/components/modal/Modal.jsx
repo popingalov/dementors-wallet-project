@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+import { ModalLogOut } from 'components/modalLogOut';
+import { ModalAddTransactions } from 'components/modalAddTransactions';
+
+
 import classNames from "classnames";
 import { Form, Formik } from "formik";
 import PropTypes from "prop-types";
@@ -10,10 +21,12 @@ import s from "./Modal.module.css";
 
 const modalRoot = document.getElementById("modal-root");
 
-export default function Modal({ openModalButton, content }) {
-  // отпимуємо статус відкриття модалки із редаксу
+export default function Modal() {
   const isModalOpen = useSelector(globalSelectors.isModalOpen);
-
+  const isModalLogOutOpen = useSelector(globalSelectors.isModalLogOutOpen);
+  const isAddTransactionModalOpen = useSelector(
+    globalSelectors.isModalAddTransactionOpen,
+  );
   const dispatch = useDispatch();
 
   // отпимуємо єкшени для тоглінгу статусу модалки із редаксу
@@ -45,7 +58,6 @@ export default function Modal({ openModalButton, content }) {
 
   return createPortal(
     <>
-      {openModalButton(handleOpen)}
       <div
         className={
           isModalOpen ? classNames(s.modalWrap, s.modalWrapActive) : s.modalWrap
@@ -60,16 +72,13 @@ export default function Modal({ openModalButton, content }) {
             e.stopPropagation();
           }}
         >
-          <Formik>
-            <Form>{content(handleClose)}</Form>
-          </Formik>
+          {isModalLogOutOpen && <ModalLogOut handleClose={handleClose} />}
+          {isAddTransactionModalOpen && (
+            <ModalAddTransactions handleClose={handleClose} />
+          )}
         </div>
       </div>
     </>,
     modalRoot
   );
 }
-Modal.propTypes = {
-  openModalButton: PropTypes.func.isRequired,
-  content: PropTypes.func.isRequired,
-};

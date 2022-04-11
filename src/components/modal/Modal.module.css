@@ -17,22 +17,28 @@
 .modalWrapActive {
   opacity: 1;
   pointer-events: all;
+  overflow-y: scroll;
 }
 
 .exitModal {
+  position: relative;
+  display: flex;
+  justify-content: center;
   padding: 20px 40px;
-  margin: 0 20px;
+  width: 100vw;
   background-color: var(--secondary-text-color);
-  width: fit-content;
-  border-radius: 20px;
-  border-color: transparent;
+  margin-top: 120px;
   z-index: 3;
-  font-family: var(--secondary-font);
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 480px) {
   .exitModal {
-    padding: 40px 80px;
+    padding: 40px 70px;
+    margin: 0 20px;
+    width: fit-content;
+    border-radius: 20px;
+    height: auto;
+    border-color: transparent;
     font-size: 20px;
   }
 }
