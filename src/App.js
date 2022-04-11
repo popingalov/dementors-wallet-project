@@ -9,7 +9,7 @@ import authSelectors from 'redux/auth/auth-selectors';
 import globalSelectors from 'redux/global/global-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
-
+import TransactionsTable from '../src/components/transactionsTable';
 //import Nav from './components/nav';
 import Modal from 'components/modal';
 
@@ -20,16 +20,18 @@ import ExitModal from './components/exitModal';
 //содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
 import Loader from './components/loader/Loader';
 
-import Header from './components/header/Header';
-import Money from 'components/money/Money';
+//import Header from './components/header/Header';
+//import Money from 'components/money/Money';
 
-import Currency from './components/currency';
-import HomeTab from './components/homeTab';
+//import Currency from './components/currency';
+//import HomeTab from './components/homeTab';
+
 //import HomeText from './components/homeText';
 
 const RegisterView = lazy(() => import('./pages/registrationPage'));
 const LoginView = lazy(() => import('./pages/loginPage'));
 const DashboardPage = lazy(() => import('./pages/dashboardPage'));
+const NotFoundPage = lazy(() => import('./pages/notFoundPage'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -46,34 +48,16 @@ export default function App() {
         <Loader />
       ) : (
         <>
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<Loader size={200} />}>
             <Routes>
-              <Route path="/" element={<PrivateRoute />}>
-                <Route element={<DashboardPage />}>
-                  <Route index element={<Navigate to="/home" />} />
-                  {/* есть баланс - ? <HomeTab />:<HomeText /> */}
-                  <Route path="home" element={<HomeTab />} />
-
-                  <Route
-                    path="diagram"
-                    element={
-                      {
-                        /*<DiagramTab />*/
-                      }
-                    }
-                  />
-                  <Route
-                    path="currency"
-                    element={
-                      <Media query={{ maxWidth: 767 }}>
-                        {matches =>
-                          matches ? <Currency /> : <Navigate to="/home" />
-                        }
-                      </Media>
-                    }
-                  />
-                </Route>
-              </Route>
+              <Route
+                path="/"
+                element={
+                  <PublicRoute>
+                    <DashboardPage />
+                  </PublicRoute>
+                }
+              />
               <Route
                 path="/register"
                 element={
@@ -85,12 +69,29 @@ export default function App() {
               <Route
                 path="/login"
                 element={
-                  <PublicRoute redirectTo="/" restricted>
+                  <PublicRoute redirectTo="/wallet" restricted>
                     <LoginView />
                   </PublicRoute>
                 }
               />
-              <Route path="*" element={<LoginView />} />
+              <Route
+                path="/wallet"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <DashboardPage>
+                      <TransactionsTable />
+                    </DashboardPage>
+                  </PrivateRoute>
+                }
+                />
+                <Route
+                path='*'
+                element={
+                  <PublicRoute restricted>
+                    <NotFoundPage />
+                  </PublicRoute>
+                }
+              />
             </Routes>
           </Suspense>
         </>

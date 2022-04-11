@@ -51,13 +51,6 @@
 }
 
 @media screen and (min-width:1280px ) {
-  /*.title{
-    position: absolute;
-    top: 597px;
-    left: 200px;
-    font-family: var(--secondary-font);
-margin-top: 30px;
-  }*/
 
   .box {
     flex-direction: column;
@@ -67,7 +60,7 @@ margin-top: 30px;
     margin-bottom: 0;
 
     /*исправить, когда будет форма между формой margin-right:140px*/
-    margin-left: 100px;
+    margin-left: 20px;
   
     background-size: contain;
     background-image: url('../../assets/images/pic_reg_desk.png');
@@ -79,14 +72,14 @@ margin-top: 30px;
     background-repeat: no-repeat;
   }
 
-  /* c формой совместить
+  /* c формой совместить*/
   
   .wrapper{
     display: flex;
     width: 1280px;
     align-items: center;
     
-  }*/
+  }
 
   .ellipseBlur{
     position: absolute;
