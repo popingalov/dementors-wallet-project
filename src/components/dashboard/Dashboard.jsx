@@ -1,7 +1,7 @@
-import TransactionsTable from "components/transactionsTable";
-import s from './Dashboard.module.css'
-import Nav from '../nav'
 import BackgroundContainer from "components/backgroundContainer";
+import TransactionsTable from "components/transactionsTable";
+import Nav from '../nav';
+import s from './Dashboard.module.css';
 
 export default function DashBoard() {
     return <BackgroundContainer>
