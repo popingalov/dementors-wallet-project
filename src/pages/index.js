@@ -1,5 +1,5 @@
-import DashboardPage from './dashboardPage';
-import RegistrationPage from './registrationPage';
-import LoginPage from './loginPage';
+import DashboardPage from "./DashboardPage";
+import RegistrationPage from "./registrationPage";
+import LoginPage from "./loginPage";
 
-export {RegistrationPage,LoginPage, DashboardPage};
+export { RegistrationPage, LoginPage, DashboardPage };
