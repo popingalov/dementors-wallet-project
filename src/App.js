@@ -20,8 +20,15 @@ import TransactionsTable from 'components/transactionsTable';
 //содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
 import Loader from "./components/loader/Loader";
 
+
 // import Header from "./components/header/Header";
 // import Money from "components/money/Money";
+
+import Header from './components/header/Header';
+import trns from './helpers/trns-example.json';
+import DashBoard from 'components/dashboard/Dashboard';
+import Money from 'components/money/Money';
+
 
 import Currency from './components/currency';
 import HomeTab from './components/homeTab';

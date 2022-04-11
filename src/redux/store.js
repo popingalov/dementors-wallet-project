@@ -2,9 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import authReducer from "./auth/auth-slice";
+
+
 import categoryReducer from "./categoties/categories-operations";
-import globalReducer from "./global/global-reducer";
+
+
+import authReducer from './auth/auth-slice';
+import { transactionsReducer } from './transactions';
+import loadingReducer from './global/global-reducer';
+
 
 const authPersistConfig = {
   key: "auth",
@@ -15,8 +21,13 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+
     categories: categoryReducer,
-    global: globalReducer,
+
+
+    transactions: transactionsReducer,
+    global: loadingReducer,
+
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
