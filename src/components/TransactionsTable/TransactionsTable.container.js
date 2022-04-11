@@ -7,8 +7,8 @@ import {
 import trnsExmp from '../../helpers/trns-example.json';
 
 const mapStateToProps = state => ({
-  transactions: trnsExmp,
-  /* transactions: transactionsSelectors.getTransactions(state), */
+  /* transactions: trnsExmp, */
+  transactions: transactionsSelectors.getTransactions(state),
 });
 
 const mapDispatchToProps = dispatch => ({

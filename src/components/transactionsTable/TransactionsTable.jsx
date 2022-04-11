@@ -3,15 +3,15 @@ import Transaction from 'components/transaction';
 import s from './TransactionsTable.module.css';
 
 export default function TransactionsTable({ transactions, fetchTransactions }) {
- 
   useEffect(() => {
     fetchTransactions();
   }, [fetchTransactions]);
-  
-  return transactions.length ? 
+
+  return transactions ? (
+    <div id="no-more-tables">
       <table className={s.table}>
-        <thead className={s.table_header}>
-          <tr className={s.table_header_row}>
+        <thead>
+          <tr className={s.table_header}>
             <th className={s.ths}>Дата</th>
             <th className={s.ths}>Тип</th>
             <th className={s.ths}>Категория</th>
@@ -20,12 +20,12 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
             <th className={s.ths}>Баланс</th>
           </tr>
         </thead>
-        <tbody className={s.table_body}>
+        <tbody>
           {transactions.map(
             ({ id, date, type, category, comment, amount, balance }) => {
-              const isPositive = type === "+";
+              console.log(transactions);
               return (
-                <tr key={id} className={`${s.table_row} + ${isPositive ? s.table_row_green : s.table_row_red}`}>
+                <tr key={id} className={s.table_row}>
                   <Transaction
                     date={date}
                     type={type}
@@ -40,7 +40,8 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
           )}
         </tbody>
       </table>
-   : (
-    'Дорогой пользователь, у тебя пока еще нет совершенных транзакций. Для добавления новой нажми на плюс внизу справа.'
+    </div>
+  ) : (
+    'Nope'
   );
 }
