@@ -43,6 +43,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
 input,
 select {
   border: none;
@@ -55,3 +56,8 @@ input {
   font-size: 18px;
   line-height: 27px;
 }
+
+p{
+    margin: 0;
+    }
+

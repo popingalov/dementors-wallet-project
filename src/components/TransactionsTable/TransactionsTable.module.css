@@ -1,0 +1,116 @@
+table {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  thead th {
+    background-color: #fff;
+  }
+  thead th:first-child {
+    border-radius: 100px 0 0 100px;
+  }
+  thead th:last-child {
+    border-radius: 0 100px 100px 0;
+  }
+  /** Border Fix. **/
+  table th {
+    border: none !important;
+  }
+  table td {
+    border: none !important;
+    padding: 20px;
+  }
+}
+
+.table_header {
+  height: 58px;
+}
+.table_row {
+  text-align: center;
+  min-height: 85px;
+  position: relative;
+  padding: 50px;
+}
+
+.table_row:not(:last-child) {
+  width: 100%;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0 3px 2px -2px rgba(255, 255, 255, 0.6);
+}
+/* .table_row:not(:last-child)::after {
+  content: '';
+  width: 90%;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0 3px 2px -2px rgba(255, 255, 255, 0.6);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+} */
+
+@media only screen and (max-width: 767.9px) {
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  /*
+	Label the data
+	*/
+  td:nth-of-type(1):before {
+    content: 'Дата';
+  }
+  td:nth-of-type(2):before {
+    content: 'Тип';
+  }
+  td:nth-of-type(3):before {
+    content: 'Категория';
+  }
+  td:nth-of-type(4):before {
+    content: 'Комментарий';
+  }
+  td:nth-of-type(5):before {
+    content: 'Сумма';
+  }
+  td:nth-of-type(6):before {
+    content: 'Баланс';
+  }
+}

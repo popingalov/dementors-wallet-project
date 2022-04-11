@@ -1,14 +1,25 @@
-import React, { useCallback, useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import modalActions from '../../redux/global/global-actions';
-import globalSelectors from 'redux/global/global-selectors';
 
-import s from './Modal.module.css';
-import classNames from 'classnames';
+
+
+
+
+
+
 import { ModalLogOut } from 'components/modalLogOut';
 import { ModalAddTransactions } from 'components/modalAddTransactions';
-const modalRoot = document.getElementById('modal-root');
+
+
+import classNames from "classnames";
+import { Form, Formik } from "formik";
+import PropTypes from "prop-types";
+import React, { useCallback, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
+import globalSelectors from "redux/global/global-selectors";
+import modalActions from "../../redux/global/global-actions";
+import s from "./Modal.module.css";
+
+const modalRoot = document.getElementById("modal-root");
 
 export default function Modal() {
   const isModalOpen = useSelector(globalSelectors.isModalOpen);
@@ -17,24 +28,31 @@ export default function Modal() {
     globalSelectors.isModalAddTransactionOpen,
   );
   const dispatch = useDispatch();
+
+  // отпимуємо єкшени для тоглінгу статусу модалки із редаксу
   const { openModal, closeModal } = modalActions;
 
+  // хендлер відкриття модалки
   const handleOpen = () => {
     dispatch(openModal());
   };
   const handleClose = () => {
     dispatch(closeModal());
   };
-  const handleKeyDown = useCallback(e => {
-    if (e.code === 'Escape') {
-      dispatch(closeModal());
-    }
-  });
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.code === "Escape") {
+        dispatch(closeModal());
+      }
+    },
+    [dispatch, closeModal]
+  );
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
+    
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [handleKeyDown]);
 
@@ -50,7 +68,7 @@ export default function Modal() {
       >
         <div
           className={s.exitModal}
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
           }}
         >
@@ -61,6 +79,6 @@ export default function Modal() {
         </div>
       </div>
     </>,
-    modalRoot,
+    modalRoot
   );
 }

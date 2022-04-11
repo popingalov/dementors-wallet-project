@@ -1,5 +1,5 @@
-import HomeView from './HomeView';
-import RegistrationPage from './registrationPage';
-import LoginPage from './loginPage';
-import WalletView from './WalletView';
-export { HomeView, RegistrationPage, LoginPage, WalletView };
+import DashboardPage from "./DashboardPage";
+import RegistrationPage from "./registrationPage";
+import LoginPage from "./loginPage";
+
+export { RegistrationPage, LoginPage, DashboardPage };

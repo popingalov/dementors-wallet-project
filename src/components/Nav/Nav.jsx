@@ -6,14 +6,14 @@ import s from './Nav.module.css';
 
 const Nav = () => {
   return (
-    <nav className={s}>
+    <nav className={s.nav}>
       <ul className={s.list}>
         <li className={s.item}>
           <NavLink
             className={({ isActive }) =>
               [s.link, isActive ? s.active : ''].join(' ')
             }
-            to="/"
+            to="/wallet"
           >
             <HomeIcon className={s.icon} />
             <span className={s.linkText}>Главная</span>
@@ -24,7 +24,7 @@ const Nav = () => {
             className={({ isActive }) =>
               [s.link, isActive ? s.active : ''].join(' ')
             }
-            to="/stat"
+            to="/wallet/stat"
           >
             <StatsIcon className={s.icon} />
             <span className={s.linkText}>Статистика</span>

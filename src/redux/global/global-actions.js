@@ -2,6 +2,7 @@ const { createAction } = require('@reduxjs/toolkit');
 
 const openModal = createAction('modal/openModal');
 const closeModal = createAction('modal/closeModal');
+const changeLanguage = createAction('language/changeLanguage')
 
 const modalLogOutOpen = createAction('modal/modalLogOutOpen');
 const modalLogOutClose = createAction('modal/modalLogOutClose');
@@ -15,5 +16,7 @@ const modalActions = {
   modalAddTransactionClose,
   modalLogOutOpen,
   modalLogOutClose,
+  changeLanguage
+
 };
 export default modalActions;
