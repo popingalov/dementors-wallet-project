@@ -9,9 +9,10 @@ export default function Money() {
 
   useEffect(() => {
     let clear = true;
+
     (async () => {
       const date = await getExchangeRates();
-      const result = date.filter(item => item.ccy !== 'BTC');
+      const result = date?.filter(item => item.ccy !== 'BTC');
       if (clear) {
         setCurrencies(result);
       }
@@ -23,7 +24,7 @@ export default function Money() {
     <table className={s.container}>
       <TableHeader />
       <tbody className={s.gap}>
-        {currencies.map(item => {
+        {currencies?.map(item => {
           return <TableRow key={item.ccy} date={item} />;
         })}
       </tbody>

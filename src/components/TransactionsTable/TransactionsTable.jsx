@@ -1,3 +1,4 @@
+
 import {useEffect} from 'react'
 import Transaction from 'components/transaction'
 import s from './TransactionsTable.module.css'
@@ -30,4 +31,4 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
 </table >
   </div>
   : "Nope")
-}
+
