@@ -1,4 +1,4 @@
-import DashboardPage from "./DashboardPage";
+import DashboardPage from "./dashboardPage";
 import RegistrationPage from "./registrationPage";
 import LoginPage from "./loginPage";
 
