@@ -1,13 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
-
-import modalActions from './global-actions';
-
 import { toast } from 'react-toastify';
 import { combineReducers } from 'redux';
-import auth from '../auth/auth-operations';
-import cat from 'redux/categoties/categories-operations';
-const { addCategory, getCategories } = cat;
-const { fetchCurrentUser, logIn, logOut, register } = auth;
+import categoriesOperations from '../categoties/categories-operations';
+import transactionsOperations from '../transactions/transaction-operations';
+import authOperations from '../auth/auth-operations';
+import modalActions from './global-actions';
+
 const {
   changeLanguage,
   openModal,
@@ -33,23 +31,23 @@ const isModalAddTransactionOpen = createReducer(false, {
   [modalAddTransactionClose]: () => false,
 });
 
-const isEnglishVersion = createReducer(false, {
+const isEnglishVersion = createReducer( false, {
   [changeLanguage]: (_, { payload }) => payload,
 });
 
 const isLoading = createReducer(false, {
-  [logOut.pending]: () => true,
-  [logOut.fulfilled]: () => false,
-  [logOut.rejected]: () => false,
-  [logIn.pending]: () => true,
-  [logIn.fulfilled]: () => false,
-  [logIn.rejected]: () => false,
-  [fetchCurrentUser.pending]: () => true,
-  [fetchCurrentUser.fulfilled]: () => false,
-  [fetchCurrentUser.rejected]: () => false,
-  [register.pending]: () => true,
-  [register.fulfilled]: () => false,
-  [register.rejected]: () => false,
+  [authOperations.logOut.pending]: () => true,
+  [authOperations.logOut.fulfilled]: () => false,
+  [authOperations.logOut.rejected]: () => false,
+  [authOperations.logIn.pending]: () => true,
+  [authOperations.logIn.fulfilled]: () => false,
+  [authOperations.logIn.rejected]: () => false,
+  [authOperations.fetchCurrentUser.pending]: () => true,
+  [authOperations.fetchCurrentUser.fulfilled]: () => false,
+  [authOperations.fetchCurrentUser.rejected]: () => false,
+  [authOperations.register.pending]: () => true,
+  [authOperations.register.fulfilled]: () => false,
+  [authOperations.register.rejected]: () => false,
   [openModal.pending]: () => true,
   [openModal.fulfilled]: () => false,
   [openModal.rejected]: () => false,
@@ -59,8 +57,9 @@ const isLoading = createReducer(false, {
 });
 
 const error = createReducer(null, {
-  [getCategories.rejected]: (_, { payload }) => toast.error(payload),
-  [addCategory.rejected]: (_, { payload }) => toast.error(payload),
+  [categoriesOperations.getCategories.rejected]: (_, { payload }) => toast.error(payload),
+  [transactionsOperations.fetchTransactions.rejected]: (_, { payload }) => toast.error(payload),
+  [transactionsOperations.addTransaction.rejected]: (_, { payload }) => toast.error(payload),
 });
 
 export default combineReducers({

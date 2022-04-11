@@ -1,15 +1,13 @@
 import { connect } from 'react-redux';
+import transactionsOperations from '../../redux/transactions/transaction-operations';
+import { getTransactions } from '../../redux/transactions/transaction-selectors';
 import TransactionsTable from './TransactionsTable';
-import {
-  transactionsOperations,
-  transactionsSelectors,
-} from '../../redux/transactions';
 //import trnsExmp from '../../helpers/trns-example.json';
 
 const mapStateToProps = state => ({
   /* 
   transactions: trnsExmp, */
-  transactions: transactionsSelectors.getTransactions(state),
+  transactions: getTransactions(state),
 });
 
 const mapDispatchToProps = dispatch => ({

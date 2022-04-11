@@ -17,10 +17,10 @@ import Loader from './components/loader/Loader';
 
 // import Money from "components/money/Money";
 
-import Header from './components/header/Header';
+import Header from './components/header';
 import trns from './helpers/trns-example.json';
-import DashBoard from 'components/dashboard/Dashboard';
-import Money from 'components/money/Money';
+import DashBoard from 'components/dashboard';
+import Money from 'components/money';
 
 import Currency from './components/currency';
 import HomeTab from './components/homeTab';

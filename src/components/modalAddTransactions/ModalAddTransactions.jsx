@@ -13,7 +13,7 @@ import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import clasNames from 'classnames';
-import { transactionsOperations } from '../../redux/transactions';
+import transactionsOperations from '../../redux/transactions/transaction-operations';
 let schema = yup.object().shape({
   type: yup
     .string()

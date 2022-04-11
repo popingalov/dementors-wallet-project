@@ -8,7 +8,7 @@ import categoryReducer from "./categoties/categories-operations";
 
 
 import authReducer from './auth/auth-slice';
-import { transactionsReducer } from './transactions';
+import transactionsReducer from './transactions/transaction-reducer';
 import loadingReducer from './global/global-reducer';
 
 
