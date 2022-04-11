@@ -1,6 +1,9 @@
 import s from './ModalLogOut.module.css';
 import { useDispatch } from 'react-redux';
 import modalActions from 'redux/global/global-actions';
+import '../header/Header.module.css';
+import { ReactComponent as ExitIcon } from 'assets/images/icons/exit.svg';
+import classNames from 'classnames';
 export default function ModalLogOutBtn() {
   const dispatch = useDispatch();
   const handleOpen = () => {
@@ -8,14 +11,15 @@ export default function ModalLogOutBtn() {
   };
   return (
     <button
-      className={s.btn}
+      className={classNames('logOutBtn')}
       onClick={() => {
         dispatch(modalActions.modalAddTransactionClose());
         dispatch(modalActions.modalLogOutOpen());
         handleOpen();
       }}
     >
-      Выйти
+      <ExitIcon className={'exitIcon'} />
+      <span className={'logOutBtnText'}>Выйти</span>
     </button>
   );
 }

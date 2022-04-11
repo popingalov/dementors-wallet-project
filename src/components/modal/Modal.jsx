@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import modalActions from '../../redux/global/global-actions';
 import globalSelectors from 'redux/global/global-selectors';
-import { Formik, Form } from 'formik';
+
 import s from './Modal.module.css';
 import classNames from 'classnames';
 import { ModalLogOut } from 'components/modalLogOut';
@@ -54,14 +54,10 @@ export default function Modal() {
             e.stopPropagation();
           }}
         >
-          <Formik>
-            <Form>
-              {isModalLogOutOpen && <ModalLogOut handleClose={handleClose} />}
-              {isAddTransactionModalOpen && (
-                <ModalAddTransactions handleClose={handleClose} />
-              )}
-            </Form>
-          </Formik>
+          {isModalLogOutOpen && <ModalLogOut handleClose={handleClose} />}
+          {isAddTransactionModalOpen && (
+            <ModalAddTransactions handleClose={handleClose} />
+          )}
         </div>
       </div>
     </>,

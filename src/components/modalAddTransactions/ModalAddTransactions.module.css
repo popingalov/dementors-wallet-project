@@ -52,9 +52,9 @@
 
 .checkboxWrap {
   width: 220px;
-  margin: 42px auto 20px auto;
+  margin: 0px auto 10px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 .incomes,
@@ -64,11 +64,22 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  color: var(--green-color);
+  color: var(--placeholder-icon-color);
+  position: relative;
+  top: 33px;
+  left: -80px;
 }
 .outcomes {
-  color: var(--placeholder-icon-color);
+  top: -30px;
+  left: 90px;
 }
+.incomesActive {
+  color: var(--green-color);
+}
+.outcomesActive {
+  color: var(--red-color);
+}
+
 .knobs,
 .layer {
   position: absolute;
@@ -105,38 +116,37 @@
 }
 .layer {
   width: 100%;
-
   transition: 0.3s ease all;
   z-index: 1;
 }
 #button-2 .knobs:before {
   content: '';
   position: absolute;
-  top: -4px;
-  left: -4px;
   width: 44px;
   height: 44px;
+  top: -4px;
+  left: 42px;
+  background-color: var(--red-color);
+  background-image: url('../../assets/images/icons/outcomes.svg');
+  box-shadow: 0px 6px 15px rgba(255, 101, 150, 0.5);
   color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
   font-size: 10px;
   font-weight: bold;
   text-align: center;
   line-height: 1;
   padding: 9px 4px;
-  background-color: var(--green-color);
-  border-radius: 50%;
   transition: 0.5s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
-  background-image: url('../../assets/images/icons/+.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
 }
 
 #button-2 .checkbox:checked + .knobs:before {
   content: '';
-  left: 42px;
-  background-color: var(--red-color);
-  background-image: url('../../assets/images/icons/outcomes.svg');
-  box-shadow: 0px 6px 15px rgba(255, 101, 150, 0.5);
+  left: -4px;
+  background-color: var(--green-color);
+  background-image: url('../../assets/images/icons/+.svg');
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
 }
 
 #button-2 .knobs,
@@ -147,7 +157,7 @@
 
 .sumAndDateWrap {
   width: 100%;
-  margin: 40px auto;
+  margin: 30px auto;
 }
 .sumInput {
   color: var(--primary-text-color);
@@ -160,6 +170,7 @@
 }
 .datetime {
   width: 100%;
+  top: 2px;
 }
 .datetime input {
   width: 100%;
@@ -173,11 +184,29 @@
 .commentInput {
   width: 100%;
   padding: 4px 8px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-weight: 400;
   color: var(--primary-text-color);
 }
-
+.newCategory {
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+.newCategoryBtn {
+  position: absolute;
+  width: 24px;
+  margin-left: -30px;
+  height: 24px;
+  background: var(--green-color);
+  border-radius: 50%;
+  border: transparent;
+  background-image: url('../../assets/images/icons/+.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
+}
 @media screen and (min-width: 320px) {
   .btn {
     bottom: 40px;

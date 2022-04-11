@@ -1,6 +1,6 @@
 import Select, { components } from 'react-select';
 import IndicatorArrow from '../../assets/images/icons/categories.svg';
-export default function TransactionsCategoriesSelect() {
+export default function TransactionsCategoriesSelect({ onChange }) {
   const DropdownIndicator = props => {
     return (
       <components.DropdownIndicator {...props}>
@@ -17,8 +17,8 @@ export default function TransactionsCategoriesSelect() {
     menu: (provided, state) => ({
       ...provided,
       width: '100%',
-      backgroundColor: 'rgba(255,255,255,0.7)',
-      backdropFilter: 'blur(50%)',
+      backgroundColor: 'rgba(255,255,255,0.5)',
+      backdropFilter: 'blur(10px)',
     }),
 
     indicatorSeparator: () => ({
@@ -44,7 +44,7 @@ export default function TransactionsCategoriesSelect() {
     }),
 
     placeholder: () => ({
-      color: '#bdbdbd',
+      color: '#808080',
       position: 'absolute',
       paddingLeft: '10px',
       fontWeight: '400',
@@ -53,6 +53,7 @@ export default function TransactionsCategoriesSelect() {
     singleValue: () => ({
       position: 'absolute',
       paddingLeft: '10px',
+      fontSize: '18px',
     }),
 
     input: () => ({
@@ -79,16 +80,16 @@ export default function TransactionsCategoriesSelect() {
       },
     }),
   };
-  function onChangeCategory(value) {
-    console.log(value);
-  }
+
   return (
     <Select
       components={{ DropdownIndicator }}
       options={options}
       styles={customStyles}
       placeholder={'Выберите категорию'}
-      onChange={onChangeCategory}
+      onChange={e => {
+        onChange(e);
+      }}
     />
   );
 }
