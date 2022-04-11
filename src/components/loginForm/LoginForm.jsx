@@ -25,8 +25,8 @@ const SignupSchema = Yup.object().shape({
 });
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const handleSubmit = ({ email, password }) => {
-    dispatch(authOperations.logIn({ email, password }));
+  const handleSubmit = user => {
+    dispatch(authOperations.logIn(user));
   };
   return (
     <>
@@ -38,6 +38,7 @@ export default function LoginForm() {
         validateOnBlur
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
+
           resetForm();
         }}
         validationSchema={SignupSchema}

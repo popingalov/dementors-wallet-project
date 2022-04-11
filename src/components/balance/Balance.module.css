@@ -1,0 +1,29 @@
+.container{
+  padding: 8px 40px 13px 40px;
+   width: 348px;
+  background-color: white;
+  border-radius: 30px;
+  height: auto;
+  max-height: 80px;
+  margin-bottom: 30px;
+ }
+.text{
+    font-family: 'Circe';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+    height: 12.8px;
+    color: #A6A6A6;
+}
+
+.balance{font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 1.5;
+display: flex;
+align-items: center;
+height: 36px;
+color: #000000;}
