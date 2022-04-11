@@ -10,10 +10,12 @@ import globalSelectors from 'redux/global/global-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
 
+
 import { ModalAddTransactionsBtn } from './components/modalAddTransactions';
 
 import TransactionsTable from 'components/transactionsTable';
 import Nav from './components/nav';
+
 import Modal from 'components/modal';
 
 //модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
@@ -33,11 +35,14 @@ import Money from 'components/money/Money';
 import Currency from './components/currency';
 import HomeTab from './components/homeTab';
 
+const NotFoundPage = lazy(() => import('./pages/notFoundPage'));
+
 //import HomeText from './components/homeText';
 
 const RegisterView = lazy(() => import('./pages/RegistrationPage'));
 const LoginView = lazy(() => import('./pages/LoginPage'));
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+
 
 export default function App() {
   const dispatch = useDispatch();
@@ -89,6 +94,15 @@ export default function App() {
                     </DashboardPage>
                   </PrivateRoute>
                 }
+                />
+                <Route
+                path='*'
+                element={
+                  <PublicRoute restricted>
+                    <NotFoundPage />
+                  </PublicRoute>
+                }
+
               />
             </Routes>
           </Suspense>

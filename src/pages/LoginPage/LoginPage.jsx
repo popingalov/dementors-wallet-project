@@ -1,3 +1,6 @@
+
+import LoginForm from "../../components/loginForm";
+
 // import LoginForm from "../../components/LoginForm";
 import BackgroundContainer from "components/BackgroundContainer";
 import React from "react";
@@ -10,7 +13,7 @@ const LoginPage = () => {
         <div className={`${s.box} ${s.picture}`}>
           <p className={s.title}>Finance App</p>
         </div>
-        {/*<LoginForm/> */}
+        <LoginForm/>
         <div className={s.ellipseBlur}></div>
       </div>
     </BackgroundContainer>

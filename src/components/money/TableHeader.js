@@ -9,7 +9,7 @@ const TableHeader = () => {
         <td>Покупка</td>
       </tr>
       <tr className={s.tableCell}>
-        <td>Продаж</td>
+        <td>Продажа</td>
       </tr>
     </thead>
   );
