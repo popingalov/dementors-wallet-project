@@ -1,10 +1,9 @@
-
-import LoginForm from "../../components/loginForm";
+import LoginForm from '../../components/loginForm';
 
 // import LoginForm from "../../components/LoginForm";
-import BackgroundContainer from "components/BackgroundContainer";
-import React from "react";
-import s from "../RegistrationPage/RegistrationPage.module.css";
+import BackgroundContainer from 'components/backgroundContainer';
+import React from 'react';
+import s from '../registrationPage/RegistrationPage.module.css';
 
 const LoginPage = () => {
   return (
@@ -13,7 +12,7 @@ const LoginPage = () => {
         <div className={`${s.box} ${s.picture}`}>
           <p className={s.title}>Finance App</p>
         </div>
-        <LoginForm/>
+        <LoginForm />
         <div className={s.ellipseBlur}></div>
       </div>
     </BackgroundContainer>
