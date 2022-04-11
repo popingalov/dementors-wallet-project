@@ -1,3 +1,4 @@
+
 import s from './Balance.module.css';
 export default function Balance() {
   return (
@@ -9,3 +10,4 @@ export default function Balance() {
     </>
   );
 }
+

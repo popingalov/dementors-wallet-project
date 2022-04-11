@@ -3,6 +3,7 @@ body {
   font-family: 'Circe', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
 }
 
 img {
@@ -17,13 +18,19 @@ svg {
 
 button {
   padding: 0;
-
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-ul {
+ul,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   padding: 0;
   margin: 0;
 }
@@ -36,3 +43,21 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+input,
+select {
+  border: none;
+  border-bottom: 1px solid var(--placeholder-icon-color);
+  outline: transparent;
+}
+input {
+  font-family: 'Circe';
+  font-style: normal;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+p{
+    margin: 0;
+    }
+

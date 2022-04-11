@@ -1,7 +1,10 @@
-import React from 'react';
-import s from '../registrationPage/RegistrationPage.module.css';
+
 import LoginForm from "../../components/loginForm";
-import BackgroundContainer from 'components/backgroundContainer';
+
+// import LoginForm from "../../components/LoginForm";
+import BackgroundContainer from "components/BackgroundContainer";
+import React from "react";
+import s from "../RegistrationPage/RegistrationPage.module.css";
 
 const LoginPage = () => {
   return (
