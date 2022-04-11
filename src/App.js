@@ -10,18 +10,9 @@ import globalSelectors from 'redux/global/global-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
 
-import { ModalAddTransactionsBtn } from './components/modalAddTransactions';
-
-import TransactionsTable from 'components/transactionsTable';
+import TransactionsTable from './components/transactionsTable';
 import Nav from './components/nav';
 
-import Modal from 'components/modal';
-
-//модалка, вставила сюда, чтобы было видно, берите потом так же вставляйте в свои компоненты, куда нужно
-// import ExitModalBtn from "./components/exitModalBtn";
-//это кнопка конкретно для выхода из приложения, ви в свои модалки вставляйте вместо нее свой компонент кнопки
-// import ExitModal from "./components/exitModal";
-//содержание самой формы в модалке, вместо этого компонента вставляйте свои компоненты.
 import Loader from './components/loader/Loader';
 
 // import Money from "components/money/Money";
@@ -46,7 +37,7 @@ export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getFetchingCurrent);
   const isLoadingSpinner = useSelector(globalSelectors.isLoadingSpinner);
-  const isModalOpen = useSelector(globalSelectors.isModalOpen);
+
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
@@ -105,11 +96,6 @@ export default function App() {
           </Suspense>
         </>
       )}
-
-      <ModalAddTransactionsBtn />
-      {isModalOpen && <Modal />}
-
-      {/* <Modal openModalButton={ExitModalBtn} content={ExitModal} /> */}
 
       <ToastContainer autoClose={3000} />
       {isLoadingSpinner && <Loader />}

@@ -137,16 +137,16 @@ export default function ModalAddTransactions({ handleClose }) {
           </button>
           <p className={s.title}>Добавить транзакцию</p>
           <div className={s.checkboxWrap}>
+            <span
+              className={
+                transactionType === '+'
+                  ? classNames(s.incomes, s.incomesActive)
+                  : s.incomes
+              }
+            >
+              Доход
+            </span>
             <label htmlFor="transactionType">
-              <span
-                className={
-                  transactionType === 'incomes'
-                    ? classNames(s.incomes, s.incomesActive)
-                    : s.incomes
-                }
-              >
-                Доход
-              </span>
               <div className={classNames(s.button, s.r)} id={s['button-2']}>
                 <Field
                   type="checkbox"
@@ -164,16 +164,16 @@ export default function ModalAddTransactions({ handleClose }) {
                 <div className={s.knobs}></div>
                 <div className={s.layer}></div>
               </div>
-              <span
-                className={
-                  transactionType === 'outcomes'
-                    ? clasNames(s.outcomes, s.outcomesActive)
-                    : s.outcomes
-                }
-              >
-                Расход
-              </span>
             </label>
+            <span
+              className={
+                transactionType === '-'
+                  ? clasNames(s.outcomes, s.outcomesActive)
+                  : s.outcomes
+              }
+            >
+              Расход
+            </span>
           </div>
           <Field
             type="text"
