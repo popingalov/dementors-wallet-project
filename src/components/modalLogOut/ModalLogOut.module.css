@@ -1,5 +1,12 @@
+.logOutBtn {
+  width: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .btnWrap {
   display: flex;
+  margin-top: 20px;
   justify-content: space-between;
 }
 .cancelBtn,
@@ -32,4 +39,9 @@
 }
 .btn {
   z-index: 1;
+}
+@media screen and (min-width: 768px) {
+  .logOutBtn {
+    width: 75px;
+  }
 }
