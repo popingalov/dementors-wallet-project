@@ -25,6 +25,7 @@ import Money from 'components/money';
 
 import Currency from './components/currency';
 import HomeTab from './components/homeTab';
+import Statistics from 'components/statistics/statistics';
 
 const NotFoundPage = lazy(() => import('./pages/notFoundPage'));
 
@@ -46,6 +47,7 @@ export default function App() {
 
   return (
     <>
+    
       {isFetchingCurrentUser ? (
         <Loader />
       ) : (
@@ -82,6 +84,16 @@ export default function App() {
                   <PrivateRoute redirectTo="/login">
                     <DashboardPage>
                       <TransactionsTable />
+                    </DashboardPage>
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/wallet/stat"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <DashboardPage>
+                      <Statistics />
                     </DashboardPage>
                   </PrivateRoute>
                 }
