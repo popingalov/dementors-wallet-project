@@ -1,0 +1,83 @@
+/*проверить после сборки всех компонентов*/
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+}
+.addTransactionBtn {
+  position: sticky;
+  width: 44px;
+  height: 44px;
+  bottom: 20px;
+  margin-left: auto;
+}
+.main {
+  height: 100vh;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    min-height: calc(100vh - 80px);
+    padding: 0 40px 0 40px;
+    padding: 45px 0 45px 10px;
+    display: block;
+  }
+  .addTransactionBtn {
+    bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .aside {
+    padding-top: 10px;
+  }
+
+  .nav {
+    width: 50%;
+  }
+  .currency {
+    width: 50%;
+    right: 0;
+    position: absolute;
+    top: 45px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .main {
+    display: flex;
+    justify-content: unset;
+  }
+
+  /* .main::before {
+    background-image: url(../../assets/images/Ellipse1_desk.png),
+      url(../../assets/images/Ellipse2_desk.png);
+  }
+  @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+    .main::before {
+      background-image: url(../../assets/images/Ellipse1_desk@2x.png),
+        url(../../assets/images/Ellipse2_desk@2x.png);
+    } */
+  /* } */
+
+  .aside {
+    padding-right: 70px;
+    border-right: 1px solid var(--first-bg-color);
+    box-shadow: inset -1px 0px 0px rgba(0, 0, 0, 0.05),
+      1px 0px 0px rgba(255, 255, 255, 0.6);
+    width: 36%;
+  }
+
+  .box {
+    width: 100%;
+    margin-left: 70px;
+  }
+  .currency {
+    position: relative;
+  }
+}
