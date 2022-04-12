@@ -1,19 +1,18 @@
-import s from './ModalAddTransactions.module.css';
-import React from 'react';
-import './ModalAddTransactions.module.css';
+import { default as clasNames, default as classNames } from 'classnames';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React, { useState } from 'react';
+import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { useDispatch } from 'react-redux';
-import Datetime from 'react-datetime';
-import closeBtnIcon from '../../assets/images/icons/close.svg';
-import classNames from 'classnames';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import TransactionsCategoriesSelect from './TransactionsCategoriesSelect';
-import modalActions from '../../redux/global/global-actions';
-import * as yup from 'yup';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
-import clasNames from 'classnames';
+import * as yup from 'yup';
+import closeBtnIcon from '../../assets/images/icons/close.svg';
+import modalActions from '../../redux/global/global-actions';
 import transactionsOperations from '../../redux/transactions/transaction-operations';
+import './ModalAddTransactions.module.css';
+import s from './ModalAddTransactions.module.css';
+import TransactionsCategoriesSelect from './TransactionsCategoriesSelect';
+
 let schema = yup.object().shape({
   type: yup
     .string()
@@ -65,14 +64,14 @@ export default function ModalAddTransactions({ handleClose }) {
   const [date, setDate] = useState(currentDate);
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
-  const [transactionType, setTransactionType] = useState('-');
+  const [transactionType, setTransactionType] = useState("-");
   const [newCategory, setNewCategory] = useState('');
   const dispatch = useDispatch();
 
   const handleCheckbox = e => {
     e.target.checked === true
-      ? setTransactionType('+')
-      : setTransactionType('-');
+      ? setTransactionType("+")
+      : setTransactionType("-");
   };
 
   const onChangeCategory = e => {
@@ -110,7 +109,7 @@ export default function ModalAddTransactions({ handleClose }) {
     });
   };
   // setResult(transactions);
-  console.log(transactions);
+  // console.log(transactions);
   return (
     <>
       <Formik
@@ -121,15 +120,16 @@ export default function ModalAddTransactions({ handleClose }) {
             type: transactionType,
             amount: amountForSending(amount),
             date: date ? date : currentDate,
-            comment: values.comment,
-            category: category || newCategory,
+            comment: values.comment || "Нет комментария" ,
+            category,
+            newCategory,
           };
 
           dispatch(transactionsOperations.addTransaction(reset));
           setAmount('');
           setCategory('');
           setDate('');
-          setTransactionType('-');
+          setTransactionType("-");
           resetForm();
         }}
       >
@@ -148,7 +148,7 @@ export default function ModalAddTransactions({ handleClose }) {
           <div className={s.checkboxWrap}>
             <span
               className={
-                transactionType === '+'
+                transactionType === "+"
                   ? classNames(s.incomes, s.incomesActive)
                   : s.incomes
               }
@@ -176,7 +176,7 @@ export default function ModalAddTransactions({ handleClose }) {
             </label>
             <span
               className={
-                transactionType === '-'
+                transactionType === "-"
                   ? clasNames(s.outcomes, s.outcomesActive)
                   : s.outcomes
               }
@@ -190,7 +190,7 @@ export default function ModalAddTransactions({ handleClose }) {
             placeholder="Название новой категории"
             disabled={category}
             className={s.newCategory}
-            onBlur={addCategory}
+            onChange={addCategory}
           />
           <ErrorMessage
             name="newCategory"

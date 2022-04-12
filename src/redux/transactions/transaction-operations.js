@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://dementrors-waller.herokuapp.com/api';
+
 const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
   async (_, { rejectWithValue }) => {
@@ -16,33 +18,37 @@ const fetchTransactions = createAsyncThunk(
 const addTransaction = createAsyncThunk(
   'transactions/addTransaction',
   async (transaction, { getState, rejectWithValue }) => {
-    console.log(transaction);
+    console.log(transaction, "transaction");
     const state = getState();
 
     const { isEnglishVersion } = state.global;
     const { newCategory, date, type, comment, amount } = transaction;
 
-    const newCategoryObj = {
-      value: newCategory,
-      isEnglishVersion,
-    };
-
     try {
       if (newCategory) {
-        const {
-          data: { value },
-        } = await axios.post('/categories', newCategoryObj);
 
-        const newTransaction = { date, type, category: value, comment, amount };
+        const newCategoryObj = {
+          value: newCategory,
+          isEnglishVersion,
+        };  
+        
+        const response = await axios.post('/categories', newCategoryObj);
+
+        const newTransaction = { date, type, category: response.data.newCategory.value, comment, amount };
 
         const { data } = await axios.post('/transactions', newTransaction);
+        console.log(data, "data with new category")
 
         return data;
       }
 
-      const { data } = await axios.post('/transactions', transaction);
+      console.log(transaction, "transaction after condition")
 
-      return data;
+      const response = await axios.post('/transactions', transaction);
+
+      console.log(response, "data with static category")
+
+      return response;
     } catch (error) {
       return rejectWithValue(error);
     }
