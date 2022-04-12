@@ -5,6 +5,9 @@
   z-index: 1;
   /* background-color: var(--secondary-background-color); */
 
+  background: rgba(228, 218, 218, 0.4);
+  /* backdrop-filter: blur(50px); */
+  overflow-x: hidden;
   /* backdrop-filter: blur(50px); */
 }
 .addTransactionBtn {
@@ -23,12 +26,15 @@
 
 @media screen and (min-width: 768px) {
   .main {
-    padding: 45px 0 45px 10px;
+    min-height: calc(100vh - 80px);
+    padding: 0 40px 0 40px;
+     padding: 45px 0 45px 10px;
     display: block;
   }
   .addTransactionBtn {
     bottom: 40px;
   }
+
   .main::before {
     content: '';
     position: absolute;
@@ -71,6 +77,7 @@
 @media screen and (min-width: 1280px) {
   .main {
     display: flex;
+    padding: 40px 85px;
     /* padding: 40px 20px; */
     justify-content: unset;
     /* padding-left: 85px;
@@ -98,6 +105,8 @@
   }
 
   .box {
-    width: 64px;
+    width: 100%;
+    margin-left: 30px;
+
   }
 }
