@@ -189,6 +189,9 @@
   margin-bottom: 40px;
   padding: 0 10px;
 }
+.newCategory[placeholder] {
+  text-align: left;
+}
 .newCategoryBtn {
   position: absolute;
   width: 24px;

@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import Container from 'components/сontainer';
 import { ReactComponent as LogoIcon } from 'assets/images/icons/logo.svg';
 import s from './Header.module.css';
+import authSelectors from '../../redux/auth/auth-selectors';
 import { ModalLogOutBtn } from 'components/modalLogOut';
-
+import { useSelector } from 'react-redux';
 const Header = () => {
+  const userName = useSelector(authSelectors.getUsername);
   return (
     <header className={s.header}>
       <Container>
@@ -14,7 +16,7 @@ const Header = () => {
           </Link>
 
           <div className={s.rightContainerWrap}>
-            <span className={s.userName}>Имя</span>
+            <span className={s.userName}>{userName}</span>
             <ModalLogOutBtn />
           </div>
         </div>
