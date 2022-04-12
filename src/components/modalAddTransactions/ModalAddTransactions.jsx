@@ -117,15 +117,15 @@ export default function ModalAddTransactions({ handleClose }) {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values, { resetForm }) => {
-          setTransactions({
+          const reset = {
             type: transactionType,
             amount: amountForSending(amount),
             date: date ? date : currentDate,
             comment: values.comment,
             category: category || newCategory,
-          });
+          };
 
-          dispatch(transactionsOperations.addTransaction(transactions));
+          dispatch(transactionsOperations.addTransaction(reset));
           setAmount('');
           setCategory('');
           setDate('');

@@ -55,7 +55,7 @@ export default function App() {
               <Route
                 path="/"
                 element={
-                  <PublicRoute redirectTo="/wallet">
+                  <PublicRoute restricted redirectTo="/wallet">
                     <LoginView />
                   </PublicRoute>
                 }
