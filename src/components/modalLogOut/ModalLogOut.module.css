@@ -1,5 +1,5 @@
 .logOutBtn {
-  width: 25px;
+  width: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,6 +42,6 @@
 }
 @media screen and (min-width: 768px) {
   .logOutBtn {
-    width: 75px;
+    margin-left: 10px;
   }
 }

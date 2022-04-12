@@ -108,15 +108,16 @@ export default function ModalAddTransactions({ handleClose }) {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values, { resetForm }) => {
-          setTransactions({
+          const result = {
             type: transactionType,
             amount: amountForSending(amount),
-            date: date,
+            date,
             comment: values.comment,
             category: category,
             // newCategory: values.newCategory,
-          });
-          dispatch(transactionsOperations.addTransaction(transactions));
+          };
+
+          dispatch(transactionsOperations.addTransaction(result));
           setAmount('');
           setCategory('');
           setDate('');
@@ -247,7 +248,6 @@ export default function ModalAddTransactions({ handleClose }) {
               type="submit"
               className={s.acceptBtn}
               onSubmit={() => {
-                dispatch(transactionsOperations.addTransaction(transactions));
                 handleClose();
                 dispatch(modalActions.modalAddTransactionClose());
               }}

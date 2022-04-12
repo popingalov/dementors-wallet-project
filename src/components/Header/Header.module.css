@@ -17,7 +17,7 @@
 }
 
 .rightContainerWrap {
-  width: 70px;
+  width: fit-content;
   display: flex;
   justify-content: space-between;
 }
@@ -49,13 +49,11 @@
 
 .userName {
   position: relative;
+  margin-right: 10px;
   composes: text;
 }
 
 @media screen and (min-width: 768px) {
-  .rightContainerWrap {
-    width: 135px;
-  }
   .logoIcon {
     width: 181px;
     height: 40px;
