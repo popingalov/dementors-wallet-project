@@ -2,6 +2,7 @@ import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import s from './statistics.module.css';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
@@ -32,8 +33,8 @@ export const data = {
 
 const Charts = () => {
   return (
-    <div className={s.containerr}>
-      <Doughnut data={data} style={{ width: 320, height: 320 }} />
+    <div className={s.container}>
+      <Doughnut data={data} style={{ width: 288, height: 288 }} />
     </div>
   );
 };

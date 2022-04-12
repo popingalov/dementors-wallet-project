@@ -2,7 +2,6 @@
 .box_statistics{
     display: flex;
     width: 715px;
-background: rgba(187, 77, 77, 0.4);
 backdrop-filter: blur(50px);
 margin: auto;
 }
@@ -10,7 +9,7 @@ margin: auto;
 .box_circle{
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
+    
 }
 .title_statistics{
 font-family: 'Poppins';
@@ -41,7 +40,7 @@ background-color: #50edbb;
     display: flex;
     justify-content: space-between;
         padding-right: 32px;
-        padding-top: 53px;
+        padding-top: 7px;
 }
 .months{
     width: 160px;
@@ -64,6 +63,7 @@ background-color: #50edbb;
 .box_category_summa{
     display: flex;
     justify-content: space-between;
+    padding-top: 15px;
     padding-left: 20px;
     padding-right: 20px;
     margin-right: 32px;
@@ -91,7 +91,7 @@ background-color: #50edbb;
 }
 .rectangle{
     position: relative;
-    top:16px;
+    
     width: 24px;
     height: 24px;
     background: #FED057;
@@ -99,13 +99,15 @@ background-color: #50edbb;
 }
 .list_statistics{
     marker: none;
+    padding-top: 16px;
     padding-right: 52px;
     padding-left: 17px;
-   
+    padding-bottom: 30px;
 }
 .list_statistics li{
 display: flex;
 justify-content: space-between;
+padding-bottom: 31px;
 }
 .info_statistics{
     margin-right: auto;
@@ -119,7 +121,7 @@ justify-content: space-between;
 }
 .produkt{
         position: relative;
-        top:16px;
+        
         width: 24px;
         height: 24px;
         border-radius: 2px;
@@ -127,7 +129,7 @@ justify-content: space-between;
 }
 .car{
         position: relative;
-        top:16px;
+        
         width: 24px;
         height: 24px;
         border-radius: 2px;
@@ -136,7 +138,7 @@ justify-content: space-between;
 }
 .taking{
     position: relative;
-    top:16px;
+    
     width: 24px;
     height: 24px;
     border-radius: 2px;
@@ -145,7 +147,7 @@ justify-content: space-between;
 }
 .child{
         position: relative;
-        top:16px;
+        
         width: 24px;
         height: 24px;
         border-radius: 2px;
@@ -153,7 +155,7 @@ justify-content: space-between;
 }
 .home{
 position: relative;
-top:16px;
+
 width: 24px;
 height: 24px;
 border-radius: 2px;
@@ -161,7 +163,7 @@ background: #4A56E2
 }
 .education{
     position: relative;
-    top:16px;
+    
     width: 24px;
     height: 24px;
     border-radius: 2px;
@@ -169,7 +171,7 @@ background: #4A56E2
 }
 .leisure{
         position: relative;
-        top:16px;
+        
         width: 24px;
         height: 24px;
         border-radius: 2px;
@@ -177,7 +179,7 @@ background: #4A56E2
 }
 .otherExpenses{
     position: relative;
-    top:16px;
+    
     width: 24px;
     height: 24px;
     border-radius: 2px;
@@ -208,7 +210,6 @@ background: #4A56E2
 @media screen and (max-width: 767px) {
     .box_statistics {
         width: 320px;
-        background: rgba(187, 77, 77, 0.4);
         backdrop-filter: blur(50px);
         margin: auto;
     }
@@ -277,6 +278,7 @@ background: #4A56E2
         margin: auto;
         display: flex;
         justify-content: space-between;
+        padding-top: 15px;
         padding-left: 20px;
         padding-right: 20px;
         margin-top: 20px;
@@ -306,7 +308,6 @@ background: #4A56E2
     
     .rectangle {
         position: relative;
-        top: 16px;
         width: 24px;
         height: 24px;
         background: #FED057;
@@ -317,13 +318,15 @@ background: #4A56E2
         marker: none;
         padding-right: 40px;
         padding-left: 40px;
+        padding-top: 16px;
     
     }
     
-    .list_statistics li {
-        display: flex;
-        justify-content: space-between;
-    }
+.list_statistics li {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 31px;
+}
     
     .info_statistics {
         margin-right: auto;
@@ -430,12 +433,21 @@ background: #4A56E2
         color: #000000;
     }
 }
-#container div  {
-    max-width: 1080px;
+.container{
+    width: 288px;
+    height: 288px;
     margin: 0 auto;
 }
 
 .section {
     max-width: 1080px !important;
     margin: 0 auto;
+}
+@media screen and (min-width: 1200px) {
+    .box_data {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 32px;
+        padding-top: 65px;
+    }
 }
