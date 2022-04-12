@@ -99,17 +99,6 @@ export default function ModalAddTransactions({ handleClose }) {
     } else return amount;
   };
 
-  const getTransaction = values => {
-    return setTransactions({
-      type: transactionType,
-      amount: amountForSending(amount),
-      date: date,
-      comment: values.comment,
-      category: category,
-      // newCategory: values.newCategory,
-    });
-  };
-  // setResult(transactions);
   console.log(transactions);
   return (
     <>
@@ -117,13 +106,13 @@ export default function ModalAddTransactions({ handleClose }) {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values, { resetForm }) => {
-          setTransactions({
+          setTransactions = {
             type: transactionType,
             amount: amountForSending(amount),
             date: date ? date : currentDate,
             comment: values.comment,
             category: category || newCategory,
-          });
+          };
 
           dispatch(transactionsOperations.addTransaction(transactions));
           setAmount('');
