@@ -41,10 +41,9 @@ let schema = yup.object().shape({
   comment: yup
     .string()
     .max(15, 'Максимально допустимая длинна комментария 15 символов'),
-  category: yup.string(),
-  //   newCategory: yup
-  //     .string()
-  //     .max(15, 'Максимально допустимая длинна названия 15 символов'),
+  category: yup
+    .string()
+    .max(15, 'Максимально допустимая длинна комментария 15 символов'),
 });
 
 const today = new Date();
@@ -59,7 +58,6 @@ const initialValues = {
   date: '',
   comment: '',
   category: '',
-  //   newCategory: '',
 };
 
 export default function ModalAddTransactions({ handleClose }) {
@@ -68,6 +66,7 @@ export default function ModalAddTransactions({ handleClose }) {
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [transactionType, setTransactionType] = useState('-');
+  const [newCategory, setNewCategory] = useState('');
   const dispatch = useDispatch();
 
   const handleCheckbox = e => {
@@ -89,7 +88,7 @@ export default function ModalAddTransactions({ handleClose }) {
     );
   };
   const addCategory = e => {
-    return e.target.value;
+    setNewCategory(e.target.value);
   };
   const amountChange = e => {
     return setAmount(e.target.value);
@@ -100,24 +99,33 @@ export default function ModalAddTransactions({ handleClose }) {
     } else return amount;
   };
 
+  const getTransaction = values => {
+    return setTransactions({
+      type: transactionType,
+      amount: amountForSending(amount),
+      date: date,
+      comment: values.comment,
+      category: category,
+      // newCategory: values.newCategory,
+    });
+  };
+  // setResult(transactions);
   console.log(transactions);
-
   return (
     <>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values, { resetForm }) => {
-          const result = {
+          setTransactions({
             type: transactionType,
             amount: amountForSending(amount),
-            date,
+            date: date ? date : currentDate,
             comment: values.comment,
-            category: category,
-            // newCategory: values.newCategory,
-          };
+            category: category || newCategory,
+          });
 
-          dispatch(transactionsOperations.addTransaction(result));
+          dispatch(transactionsOperations.addTransaction(transactions));
           setAmount('');
           setCategory('');
           setDate('');
@@ -180,6 +188,7 @@ export default function ModalAddTransactions({ handleClose }) {
             type="text"
             name="newCategory"
             placeholder="Название новой категории"
+            disabled={category}
             className={s.newCategory}
             onBlur={addCategory}
           />
@@ -189,15 +198,18 @@ export default function ModalAddTransactions({ handleClose }) {
               return toast(msg, { toastId: '' });
             }}
           />
-          <button
+          {/* <button
             type="button"
             name="newCategoryBtn"
             className={s.newCategoryBtn}
             onClick={() => {
               addCategory();
             }}
+          /> */}
+          <TransactionsCategoriesSelect
+            onChange={onChangeCategory}
+            newCategory={newCategory}
           />
-          <TransactionsCategoriesSelect onChange={onChangeCategory} />
           <div className={s.sumAndDateWrap}>
             <Field
               type="number"
@@ -205,6 +217,7 @@ export default function ModalAddTransactions({ handleClose }) {
               className={s.sumInput}
               placeholder="0.00"
               value={amount}
+              min="0"
               required
               onChange={amountChange}
             />
