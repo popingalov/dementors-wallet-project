@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { combineReducers } from 'redux';
-import categoriesOperations from '../categoties/categories-operations';
+import categoriesOperations from '../categories/categories-operations';
 import transactionsOperations from '../transactions/transaction-operations';
 import authOperations from '../auth/auth-operations';
 import modalActions from './global-actions';
@@ -31,7 +31,7 @@ const isModalAddTransactionOpen = createReducer(false, {
   [modalAddTransactionClose]: () => false,
 });
 
-const isEnglishVersion = createReducer( false, {
+const isEnglishVersion = createReducer(false, {
   [changeLanguage]: (_, { payload }) => payload,
 });
 
@@ -57,9 +57,12 @@ const isLoading = createReducer(false, {
 });
 
 const error = createReducer(null, {
-  [categoriesOperations.getCategories.rejected]: (_, { payload }) => toast.error(payload),
-  [transactionsOperations.fetchTransactions.rejected]: (_, { payload }) => toast.error(payload),
-  [transactionsOperations.addTransaction.rejected]: (_, { payload }) => toast.error(payload),
+  [categoriesOperations.getCategories.rejected]: (_, { payload }) =>
+    toast.error(payload),
+  [transactionsOperations.fetchTransactions.rejected]: (_, { payload }) =>
+    toast.error(payload),
+  [transactionsOperations.addTransaction.rejected]: (_, { payload }) =>
+    toast.error(payload),
 });
 
 export default combineReducers({

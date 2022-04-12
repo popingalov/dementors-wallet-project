@@ -1,6 +1,12 @@
 import Select, { components } from 'react-select';
 import IndicatorArrow from '../../assets/images/icons/categories.svg';
+import { useSelector } from 'react-redux';
+import categoriesSelectors from '../../redux/categories/categories-selectors';
 export default function TransactionsCategoriesSelect({ onChange }) {
+  const categories = useSelector(categoriesSelectors.getCategories);
+  const options = categories.categories.categoryList.ru.map(item => {
+    return { label: item.value, value: item.value };
+  });
   const DropdownIndicator = props => {
     return (
       <components.DropdownIndicator {...props}>
@@ -8,11 +14,7 @@ export default function TransactionsCategoriesSelect({ onChange }) {
       </components.DropdownIndicator>
     );
   };
-  const options = [
-    { label: 'Shopping', value: 'Shopping' },
-    { label: 'Car', value: 'Car' },
-    { label: 'Food', value: 'Food' },
-  ];
+
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,

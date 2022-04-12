@@ -243,7 +243,15 @@ export default function ModalAddTransactions({ handleClose }) {
             }}
           />
           <div className={s.btnWrap}>
-            <button type="submit" className={s.acceptBtn}>
+            <button
+              type="submit"
+              className={s.acceptBtn}
+              onSubmit={() => {
+                dispatch(transactionsOperations.addTransaction(transactions));
+                handleClose();
+                dispatch(modalActions.modalAddTransactionClose());
+              }}
+            >
               Добавить
             </button>
             <button

@@ -1,8 +1,6 @@
-
-
-const getCategoties = state => state.categories;
+const getCategories = state => state.categories;
 
 const categoriesSelectors = {
-  getCategoties,
+  getCategories,
 };
 export default categoriesSelectors;

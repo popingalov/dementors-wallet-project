@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import modalActions from 'redux/global/global-actions';
 import style from '../header/Header.module.css';
 import { ReactComponent as ExitIcon } from 'assets/images/icons/exit.svg';
-import classNames from 'classnames';
 export default function ModalLogOutBtn() {
   const dispatch = useDispatch();
   const handleOpen = () => {

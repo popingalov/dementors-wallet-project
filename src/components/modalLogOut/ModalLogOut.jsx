@@ -23,7 +23,6 @@ export default function ModalLogOut({ handleClose }) {
           type="button"
           className={s.acceptBtn}
           onClick={() => {
-            console.log('123');
             handleClose();
             dispatch(modalActions.modalLogOutClose());
             dispatch(logOut.logOut());
