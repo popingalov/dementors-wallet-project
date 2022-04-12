@@ -10,7 +10,6 @@ const getCategories = createAsyncThunk(
       console.log(data);
       return data;
     } catch (error) {
-      toast.error('Проверьте верность введите данных');
       return rejectWithValue(error);
     }
   },
