@@ -7,14 +7,16 @@ import { ModalLogOutBtn } from 'components/modalLogOut';
 const Header = () => {
   return (
     <header className={s.header}>
-      <Container additionalClasses={[s.headerContainer]}>
-        <Link className={s.logoLink} to="/">
-          <LogoIcon className={s.logoIcon} />
-        </Link>
+      <Container>
+        <div className={s.headerContainer}>
+          <Link className={s.logoLink} to="/">
+            <LogoIcon className={s.logoIcon} />
+          </Link>
 
-        <div className={s.rightContainerWrap}>
-          <span className={s.userName}>Имя</span>
-          <ModalLogOutBtn />
+          <div className={s.rightContainerWrap}>
+            <span className={s.userName}>Имя</span>
+            <ModalLogOutBtn />
+          </div>
         </div>
       </Container>
     </header>

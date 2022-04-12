@@ -1,6 +1,6 @@
 .modalWrap {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
@@ -22,18 +22,17 @@
 
 .exitModal {
   position: relative;
-  display: flex;
   justify-content: center;
   padding: 20px 40px;
   width: 100vw;
   background-color: var(--secondary-text-color);
-  margin-top: 120px;
+  margin-top: 80px;
   z-index: 3;
 }
 
 @media screen and (min-width: 480px) {
   .exitModal {
-    padding: 40px 70px;
+    padding: 20px 70px 30px 70px;
     margin: 0 20px;
     width: fit-content;
     border-radius: 20px;

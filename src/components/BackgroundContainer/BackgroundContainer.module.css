@@ -4,8 +4,10 @@
   margin-left: auto;
   margin-right: auto;
   min-height: 100vh;
-max-width: 1280px;
-  padding: 15px 20px 20px 20px; 
+  /* max-width: 1280px;
+ */
+  width: 100%;
+  padding: 40px 20px 0 40px;
 }
 
 @media (max-width: 767px) {
@@ -23,17 +25,15 @@ max-width: 1280px;
     padding-right: 40px;
     background-color: var(--first-bg-color);
     background-image: 
-    /**/
-     url('../../assets/images/Ellipse1_tabl.png'), url('../../assets/images/Ellipse2_tabl.png');
-    
+    /**/ url('../../assets/images/Ellipse1_tabl.png'),
+      url('../../assets/images/Ellipse2_tabl.png');
+
     background-repeat: no-repeat;
-    background-position: 
-    bottom 0 left 0,
-    top 0 right 0;
+    background-position: bottom 0 left 0, top 0 right 0;
   }
 }
 
-@media screen and (min-width:1280px) {
+@media screen and (min-width: 1280px) {
   .container {
     display: block;
     padding-top: 20px;
@@ -41,12 +41,10 @@ max-width: 1280px;
     padding-right: 85px;
     background-color: var(--first-bg-color);
     background-image:
-      /*url*/
-      url('../../assets/images/Ellipse1_desk.png'),
+      /*url*/ url('../../assets/images/Ellipse1_desk.png'),
       url('../../assets/images/Ellipse2_desk.png');
     background-repeat: no-repeat;
-    background-position: 
-    bottom 0 left 0,top 0 right 0;
+    background-position: bottom 0 left 0, top 0 right 0;
   }
 }
 /*

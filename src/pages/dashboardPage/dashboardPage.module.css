@@ -4,20 +4,35 @@
   position: relative;
   z-index: 1;
   /* background-color: var(--secondary-background-color); */
+
   background: rgba(228, 218, 218, 0.4);
   /* backdrop-filter: blur(50px); */
   overflow-x: hidden;
+  /* backdrop-filter: blur(50px); */
 }
-
+.addTransactionBtn {
+  position: sticky;
+  width: 44px;
+  height: 44px;
+  bottom: 20px;
+  margin-left: auto;
+}
 .main {
-  min-height: calc(100vh - 60px);
-  padding: 0 20px 0 20px;
+  height: 100vh;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
   .main {
     min-height: calc(100vh - 80px);
     padding: 0 40px 0 40px;
+     padding: 45px 0 45px 10px;
+    display: block;
+  }
+  .addTransactionBtn {
+    bottom: 40px;
   }
 
   .main::before {
@@ -63,6 +78,8 @@
   .main {
     display: flex;
     padding: 40px 85px;
+    /* padding: 40px 20px; */
+    justify-content: unset;
     /* padding-left: 85px;
   padding-right: 85px; */
   }
@@ -90,5 +107,6 @@
   .box {
     width: 100%;
     margin-left: 30px;
+
   }
 }
