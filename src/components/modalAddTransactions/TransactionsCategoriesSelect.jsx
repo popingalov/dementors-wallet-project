@@ -2,7 +2,6 @@ import Select, { components } from 'react-select';
 import IndicatorArrow from '../../assets/images/icons/categories.svg';
 import { useSelector } from 'react-redux';
 import categoriesSelectors from '../../redux/categories/categories-selectors';
-
 export default function TransactionsCategoriesSelect({
   onChange,
   newCategory,
