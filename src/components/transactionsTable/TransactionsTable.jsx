@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import Transaction from 'components/transaction';
 import s from './TransactionsTable.module.css';
+import authSelectors from '../../redux/auth/auth-selectors';
+import { useSelector } from 'react-redux';
 
 export default function TransactionsTable({ transactions, fetchTransactions }) {
+  const userName = useSelector(authSelectors.getUsername);
   useEffect(() => {
     fetchTransactions();
   }, [fetchTransactions]);
@@ -45,6 +48,24 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
       </tbody>
     </table>
   ) : (
-    'Дорогой пользователь, у тебя пока еще нет совершенных транзакций. Для добавления новой нажми на плюс внизу справа.'
+    <div className={s.greetings}>
+      <h2>Привет, {userName}!</h2>
+      <p>
+        Приложение Wallet поможет контролировать свои денежные операции удобно и
+        просто.
+      </p>
+      <p>
+        {userName}, у тебя пока еще нет совершенных транзакций. Для добавления
+        новой транзакции нажми на плюс в правом нижнем углу.
+      </p>
+      <p>
+        {' '}
+        И хотим обратить внимание на то, что первая транзакция должна быть с
+        указанным типом
+        <span className={s.greetingsSpan}>"Доход"</span>, для того, чтобы далее
+        было возможно отображать актуальный баланс средств и отслеживать
+        денежные операции.
+      </p>
+    </div>
   );
 }

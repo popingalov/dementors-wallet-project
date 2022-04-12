@@ -1,3 +1,10 @@
+.greetings p {
+  margin: 20px 0;
+}
+.greetingsSpan {
+  color: var(--green-color);
+  padding: 0 6px;
+}
 @media only screen and (max-width: 767.9px) {
   .table {
     border-collapse: separate;
