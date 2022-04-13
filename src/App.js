@@ -4,7 +4,6 @@ import { Navigate, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Media from 'react-media';
 
-
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import globalSelectors from 'redux/global/global-selectors';
@@ -19,8 +18,6 @@ import Loader from './components/loader/Loader';
 // import Money from "components/money/Money";
 
 import Header from './components/header';
-import trns from './helpers/trns-example.json';
-import DashBoard from 'components/dashboard';
 import Money from 'components/money';
 
 import Currency from './components/currency';
