@@ -31,6 +31,10 @@
   height: 36px;
   color: #000000;
 }
+.amount {
+  font-weight: 700;
+  padding-left: 8px;
+}
 @media screen and (min-width: 1280px) {
   .container {
     width: 348px;
