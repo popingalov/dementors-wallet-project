@@ -94,6 +94,14 @@ export default function App() {
                 }
               />
               <Route
+                path="/exchange-rate"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <DashboardPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
                 path="*"
                 element={
                   <PublicRoute restricted>
