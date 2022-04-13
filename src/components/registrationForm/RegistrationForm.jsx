@@ -24,9 +24,9 @@ const RegistrationSchema = Yup.object().shape({
     .min(6, 'минимум 6 символов!')
     .max(12, 'Не больше 12 символов!')
     .required('Обязательное поле'),
-  // confirmPassword: Yup.string()
-  //   .oneOf([Yup.ref('password')], 'Пароли не совпадают')
-  //   .required('Обязательное поле'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password')], 'Пароли не совпадают')
+    .required('Обязательное поле'),
   name: Yup.string()
     .typeError()
     .min(1, 'минимум 1 символа!')
@@ -96,11 +96,11 @@ export default function RegisterForm() {
                 value={values.password}
               />
             </div>
-            {/* <div className={s.input_wrap}>
+            <div className={s.input_wrap}>
               {touched.confirmPassword && errors.confirmPassword && (
                 <span className={s.error}>{errors.confirmPassword}</span>
-              )} */}
-            {/* <TextInput
+              )}
+              <TextInput
                 label={<LockIcon className={s.icon} />}
                 placeholder="Подтвердите пароль"
                 className={s.input}
@@ -110,8 +110,8 @@ export default function RegisterForm() {
                 onBlur={handleBlur}
                 value={values.confirmPassword}
                 style={{ marginBottom: '5px' }}
-              /> */}
-            {/* </div> */}
+              />
+            </div>
             <ProgressSwitch value={values.password.length} />
             <div className={s.input_wrap}>
               {touched.name && errors.name && (
