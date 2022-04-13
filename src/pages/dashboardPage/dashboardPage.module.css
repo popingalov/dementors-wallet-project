@@ -47,12 +47,12 @@
   .nav {
     width: 50%;
   }
-  /* .currency {
+  .currency {
     width: 50%;
     right: 0;
     position: absolute;
     top: 45px;
-  } */
+  }
 }
 
 @media screen and (min-width: 1280px) {

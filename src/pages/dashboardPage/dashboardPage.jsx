@@ -48,7 +48,6 @@ const DashboardPage = ({ children }) => {
                   return (
                     <Fragment>
                       {matches.mobile &&
-                        display &&
                         <>
                         <section className={s.nav}>
                             <Nav />
