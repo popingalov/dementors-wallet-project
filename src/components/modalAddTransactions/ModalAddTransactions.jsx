@@ -1,4 +1,4 @@
-import { classNames } from 'classnames';
+import classNames from 'classnames';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import Datetime from 'react-datetime';
