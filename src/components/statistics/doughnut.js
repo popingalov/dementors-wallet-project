@@ -1,36 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar, Doughnut } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
 import s from './statistics.module.css';
+import statisticsSelectors from 'redux/statistics/statistics-selectors';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
+
 
 export const data = {
   datasets: [
     {
       label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
+      data: [12, 15],
       backgroundColor: [
-        'rgba(255, 99, 132)',
-        'rgba(54, 162, 235)',
-        'rgba(255, 206, 86)',
-        'rgba(75, 192, 192)',
-        'rgba(153, 102, 255)',
-        'rgba(255, 159, 64)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
       ],
       borderWidth: 1,
     },
   ],
 };
+const {datasets}= data
 
 const Charts = () => {
+  const {minus} = useSelector(statisticsSelectors.statisticMinus)
+useEffect(()=>{
+  console.log('hello');
+  datasets.flatMap(({backgroundColor, data})=>{
+    return  minus.forEach(({color, minus})=>{
+        backgroundColor.push(color)
+        data.push(minus)
+      });
+    })
+}, )
+
   return (
     <div className={s.containerr}>
       <Doughnut data={data} style={{ width: 320, height: 320 }} />

@@ -5,9 +5,8 @@ import { toast } from 'react-toastify';
 const getStatistics = createAsyncThunk(
   'statistics/fetchStatistics',
   async (_, { rejectWithValue }) => {
-      console.log('hello')
     try {
-      const { data } = await axios.get('/statistics');
+      const  {data}  = await axios.get('/statistics');
       console.log(data);
       return data;
     } catch (error) {

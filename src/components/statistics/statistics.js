@@ -3,7 +3,6 @@ import s from 'components/statistics/statistics.module.css';
 import Donut from './doughnut';
 import { useSelector, useDispatch } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
-import categoriesSelectors from 'redux/categories/categories-selectors';
 import statisticsSelectors from 'redux/statistics/statistics-selectors';
 import statisticsOperations from 'redux/statistics/statistics-operations';
 
@@ -40,16 +39,16 @@ let enMonth = [
   'December',
 ];
 export default function Statistics() {
-  const elem = useSelector(categoriesSelectors.getCategories);
-  const statis = useSelector(statisticsSelectors.getStatistics)
-  console.log(statis);
-  const category = elem.categories.categoryList.en;
   const lang = useSelector(globalSelectors.lang);
   const dispatch = useDispatch()
   useEffect(()=>{
+    console.log('first')
     dispatch(statisticsOperations.getStatistics())
-  }, [dispatch])
-
+  }, [dispatch]);
+  
+  const {minus} = useSelector(statisticsSelectors.statisticMinus)
+  console.log(minus)
+  
   return(
     <div className={s.box_statistics}>
       <div className={s.box_circle}>
@@ -74,15 +73,15 @@ export default function Statistics() {
         </div>
 
         <ul className={s.list_statistics}>
-          {category.map(({ value, color, _id }) => {
+          {minus?.map(({ category, color, minus }) => {
             return (
-              <li key={_id}>
+              <li key={color}>
                 <div
                   style={{ background: color }}
                   className={s.rectangle}
                 ></div>
-                <p className={s.info_statistics}>{value}</p>
-                <p>0</p>
+                <p className={s.info_statistics}>{category}</p>
+                <p>{minus}</p>
               </li>
             );
           })}
