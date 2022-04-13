@@ -23,14 +23,14 @@ const DashboardPage = ({ children }) => {
   const lang = useSelector(globalSelectors.lang);
   const isModalOpen = useSelector(globalSelectors.isModalOpen);
   useEffect(() => {
-    setDisplay(path === '/wallet' ? true : false);
+    setDisplay(path === '/exchange-rate' ? true : false);
     dispatch(categoriesOperations.getCategories());
   }, [path]);
 
   //   useEffect(() => {
   //     dispatch(operations.fetchCurrentUser());
   //   }, [dispatch]);
-
+console.log();
   return (
     <>
       <Header lang={lang} />
@@ -52,10 +52,19 @@ const DashboardPage = ({ children }) => {
                         <section className={s.nav}>
                             <Nav />
                         </section>
-                        < Balance />
-                        <article className={s.box}>
-                            <Outlet /> {children}
-                        </article>
+                        {display
+                          ?
+                          <section className={s.currency}>
+                            <Currency />
+                          </section>
+                          :
+                          <>
+                            < Balance />
+                            <article className={s.box}>
+                              <Outlet /> {children}
+                            </article>
+                          </>
+                        }
                         </>
                         
                         }
