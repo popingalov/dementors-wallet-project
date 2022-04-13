@@ -5,27 +5,36 @@
   z-index: 1;
 }
 .addTransactionBtn {
-  position: sticky;
+  position: absolute;
   width: 44px;
   height: 44px;
-  bottom: 20px;
+  bottom: 10px;
+  right: 10px;
   margin-left: auto;
 }
+
 .main {
-  height: 100vh;
   padding-top: 15px;
   display: flex;
   justify-content: center;
 }
 
+@media screen and (max-width: 767.9px) {
+  .main {
+    flex-direction: column;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .main {
+    height: 100vh;
     min-height: calc(100vh - 80px);
     padding: 0 40px 0 40px;
     padding: 45px 0 45px 10px;
     display: block;
   }
   .addTransactionBtn {
+    position: sticky;
     bottom: 40px;
   }
 }
@@ -38,12 +47,12 @@
   .nav {
     width: 50%;
   }
-  .currency {
+  /* .currency {
     width: 50%;
     right: 0;
     position: absolute;
     top: 45px;
-  }
+  } */
 }
 
 @media screen and (min-width: 1280px) {

@@ -35,10 +35,8 @@ const DashboardPage = ({ children }) => {
       <Container>
         <div className={s.wrapper}>
           <main className={s.main}>
-            <aside className={s.aside}>
-              <section className={s.nav}>
-                <Nav />
-                {/* <Media
+            
+                {<Media
                 queries={{
                   mobile: { maxWidth: 767 },
                   other: { minWidth: 768 },
@@ -49,26 +47,41 @@ const DashboardPage = ({ children }) => {
                     <Fragment>
                       {matches.mobile &&
                         display &&
+                        <>
+                        <section className={s.nav}>
+                            <Nav />
+                        </section>
+                        < Balance />
+                        <article className={s.box}>
+                            <Outlet /> {children}
+                        </article>
+                        </>
                         
-                          < Balance />
                         }
                       {matches.other &&
+                        <>
                         
-                          <Balance />
+                        <aside className={s.aside}>
+              <section className={s.nav}>
+                <Nav />
+                          </section>
+                        < Balance />
+                        <section className={s.currency}>
+                         <Currency />
+                        </section>
+                            
+              
+                        </aside>
+                        <article className={s.box}>
+              <Outlet /> {children}
+                        </article>
+                        </>
                         }
                     </Fragment>
                   );
                 }}
-              </Media> */}
-              </section>
-              <Balance />
-              <section className={s.currency}>
-                <Currency />
-              </section>
-            </aside>
-            <article className={s.box}>
-              <Outlet /> {children}
-            </article>
+              </Media>}
+              
           </main>
           <div className={s.addTransactionBtn}>
             <ModalAddTransactionsBtn />
