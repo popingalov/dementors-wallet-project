@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Container from 'components/сontainer';
 import { ReactComponent as LogoIcon } from 'assets/images/icons/logo.svg';
 import s from './Header.module.css';
 import authSelectors from '../../redux/auth/auth-selectors';
 import { ModalLogOutBtn } from 'components/modalLogOut';
 import { useSelector } from 'react-redux';
-const Header = () => {
+import LangCheckbox from './LangCheckbox';
+const Header = ({ lang }) => {
   const userName = useSelector(authSelectors.getUsername);
+
   return (
     <header className={s.header}>
       <Container>
@@ -14,10 +17,10 @@ const Header = () => {
           <Link className={s.logoLink} to="/">
             <LogoIcon className={s.logoIcon} />
           </Link>
-
+          <LangCheckbox lang={lang} />
           <div className={s.rightContainerWrap}>
             <span className={s.userName}>{userName}</span>
-            <ModalLogOutBtn />
+            <ModalLogOutBtn lang={lang} />
           </div>
         </div>
       </Container>
@@ -26,3 +29,6 @@ const Header = () => {
 };
 
 export default Header;
+Header.propTypes = {
+  lang: PropTypes.bool.isRequired,
+};

@@ -3,7 +3,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
-  top: 0;
+  top: 60px;
   left: 0;
   display: flex;
   align-items: center;
@@ -39,5 +39,8 @@
     height: auto;
     border-color: transparent;
     font-size: 20px;
+  }
+  .modalWrap {
+    top: 0;
   }
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { useLocation, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Media from 'react-media';
@@ -7,35 +8,37 @@ import Header from '../../components/header';
 import Nav from '../../components/nav';
 import Balance from '../../components/balance';
 import Currency from '../../components/money';
+import categoriesOperations from '../../redux/categories/categories-operations';
 import operations from '../../redux/auth/auth-operations';
 import { ModalAddTransactionsBtn } from '../../components/modalAddTransactions';
 import globalSelectors from 'redux/global/global-selectors';
 import Modal from '../../components/modal';
 import Container from 'components/сontainer/Container';
+
 const DashboardPage = ({ children }) => {
   const location = useLocation();
   const path = location.pathname;
   const [display, setDisplay] = useState();
   const dispatch = useDispatch();
+  const lang = useSelector(globalSelectors.lang);
   const isModalOpen = useSelector(globalSelectors.isModalOpen);
   useEffect(() => {
-    setDisplay(path === '/wallet' ? true : false);
+    setDisplay(path === '/exchange-rate' ? true : false);
+    dispatch(categoriesOperations.getCategories());
   }, [path]);
 
   //   useEffect(() => {
   //     dispatch(operations.fetchCurrentUser());
   //   }, [dispatch]);
-
+console.log();
   return (
     <>
-      <Header />
+      <Header lang={lang} />
       <Container>
         <div className={s.wrapper}>
           <main className={s.main}>
-            <aside className={s.aside}>
-              <section className={s.nav}>
-                <Nav />
-                {/* <Media
+            
+                {<Media
                 queries={{
                   mobile: { maxWidth: 767 },
                   other: { minWidth: 768 },
@@ -45,33 +48,56 @@ const DashboardPage = ({ children }) => {
                   return (
                     <Fragment>
                       {matches.mobile &&
-                        display &&
+                        <>
+                        <section className={s.nav}>
+                            <Nav />
+                        </section>
+                        {display
+                          ?
+                          <section className={s.currency}>
+                            <Currency />
+                          </section>
+                          :
+                          <>
+                            < Balance />
+                            <article className={s.box}>
+                              <Outlet /> {children}
+                            </article>
+                          </>
+                        }
+                        </>
                         
-                          < Balance />
                         }
                       {matches.other &&
+                        <>
                         
-                          <Balance />
+                        <aside className={s.aside}>
+              <section className={s.nav}>
+                <Nav />
+                          </section>
+                        < Balance />
+                        <section className={s.currency}>
+                         <Currency />
+                        </section>
+                            
+              
+                        </aside>
+                        <article className={s.box}>
+              <Outlet /> {children}
+                        </article>
+                        </>
                         }
                     </Fragment>
                   );
                 }}
-              </Media> */}
-              </section>
-              <Balance />
-              <section className={s.currency}>
-                <Currency />
-              </section>
-            </aside>
-            <article className={s.box}>
-              <Outlet /> {children}
-            </article>
+              </Media>}
+              
           </main>
           <div className={s.addTransactionBtn}>
             <ModalAddTransactionsBtn />
           </div>
         </div>
-        {isModalOpen && <Modal />}
+        {isModalOpen && <Modal lang={lang} />}
       </Container>
     </>
   );

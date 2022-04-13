@@ -28,6 +28,7 @@
 }
 
 .btn {
+  margin-top: 20px;
   font-family: var(--primary-font);
   border-radius: 20px;
   padding: 13px 20px;

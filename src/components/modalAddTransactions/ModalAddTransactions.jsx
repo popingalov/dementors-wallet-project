@@ -1,19 +1,22 @@
-import s from './ModalAddTransactions.module.css';
-import React from 'react';
-import './ModalAddTransactions.module.css';
+import classNames from 'classnames';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React, { useState } from 'react';
+import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { useDispatch } from 'react-redux';
-import Datetime from 'react-datetime';
-import closeBtnIcon from '../../assets/images/icons/close.svg';
-import classNames from 'classnames';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import TransactionsCategoriesSelect from './TransactionsCategoriesSelect';
-import modalActions from '../../redux/global/global-actions';
-import * as yup from 'yup';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
-import clasNames from 'classnames';
+import * as yup from 'yup';
+import closeBtnIcon from '../../assets/images/icons/close.svg';
+import modalActions from '../../redux/global/global-actions';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+import 'moment/locale/ru';
+import 'moment/locale/en-au';
 import transactionsOperations from '../../redux/transactions/transaction-operations';
+import './ModalAddTransactions.module.css';
+import s from './ModalAddTransactions.module.css';
+import TransactionsCategoriesSelect from './TransactionsCategoriesSelect';
+
 let schema = yup.object().shape({
   type: yup
     .string()
@@ -60,9 +63,9 @@ const initialValues = {
   category: '',
 };
 
-export default function ModalAddTransactions({ handleClose }) {
-  const [transactions, setTransactions] = useState(initialValues);
+export default function ModalAddTransactions({ handleClose, lang }) {
   const [date, setDate] = useState(currentDate);
+  const [dateFiltr, setDateFiltr] = useState(new Date(today).getTime());
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [transactionType, setTransactionType] = useState('-');
@@ -80,13 +83,17 @@ export default function ModalAddTransactions({ handleClose }) {
   };
 
   const getDate = e => {
-    return setDate(
-      `${String(e.date()).padStart(2, '0')}.${String(e.month() + 1).padStart(
-        2,
-        '0',
-      )}.${e.year()}`,
+    return (
+      setDate(
+        `${String(e.date()).padStart(2, '0')}.${String(e.month() + 1).padStart(
+          2,
+          '0',
+        )}.${e.year()}`,
+      ),
+      setDateFiltr(new Date(e).getTime())
     );
   };
+
   const addCategory = e => {
     setNewCategory(e.target.value);
   };
@@ -99,18 +106,6 @@ export default function ModalAddTransactions({ handleClose }) {
     } else return amount;
   };
 
-  const getTransaction = values => {
-    return setTransactions({
-      type: transactionType,
-      amount: amountForSending(amount),
-      date: date,
-      comment: values.comment,
-      category: category,
-      // newCategory: values.newCategory,
-    });
-  };
-  // setResult(transactions);
-  console.log(transactions);
   return (
     <>
       <Formik
@@ -121,11 +116,21 @@ export default function ModalAddTransactions({ handleClose }) {
             type: transactionType,
             amount: amountForSending(amount),
             date: date ? date : currentDate,
-            comment: values.comment,
-            category: category || newCategory,
+            dataFiltr: dateFiltr,
+            comment: values.comment || 'Нет комментария',
+            category,
+            newCategory,
           };
-
-          dispatch(transactionsOperations.addTransaction(reset));
+          const reset2 = {
+            type: transactionType,
+            amount: amountForSending(amount),
+            date: date ? date : currentDate,
+            dataFiltr: dateFiltr,
+            comment: values.comment || 'Нет комментария',
+            category,
+          };
+          const result = newCategory ? reset : reset2;
+          dispatch(transactionsOperations.addTransaction(result));
           setAmount('');
           setCategory('');
           setDate('');
@@ -153,10 +158,10 @@ export default function ModalAddTransactions({ handleClose }) {
                   : s.incomes
               }
             >
-              Доход
+              {lang ? 'Incomes' : 'Доход'}
             </span>
             <label htmlFor="transactionType">
-              <div className={classNames(s.button, s.r)} id={s['button-2']}>
+              <div className={classNames(s.button, s.r)} id={'button-2'}>
                 <Field
                   type="checkbox"
                   className={s.checkbox}
@@ -170,27 +175,29 @@ export default function ModalAddTransactions({ handleClose }) {
                     return toast(msg, { toastId: '' });
                   }}
                 />
-                <div className={s.knobs}></div>
+                <div className={classNames(s.knobs, s.knobsTransactions)}></div>
                 <div className={s.layer}></div>
               </div>
             </label>
             <span
               className={
                 transactionType === '-'
-                  ? clasNames(s.outcomes, s.outcomesActive)
+                  ? classNames(s.outcomes, s.outcomesActive)
                   : s.outcomes
               }
             >
-              Расход
+              {lang ? 'Outcomes' : 'Расход'}
             </span>
           </div>
           <Field
             type="text"
             name="newCategory"
-            placeholder="Название новой категории"
+            placeholder={
+              lang ? 'Name of the new category' : 'Название новой категории'
+            }
             disabled={category}
             className={s.newCategory}
-            onBlur={addCategory}
+            onChange={addCategory}
           />
           <ErrorMessage
             name="newCategory"
@@ -198,16 +205,9 @@ export default function ModalAddTransactions({ handleClose }) {
               return toast(msg, { toastId: '' });
             }}
           />
-          {/* <button
-            type="button"
-            name="newCategoryBtn"
-            className={s.newCategoryBtn}
-            onClick={() => {
-              addCategory();
-            }}
-          /> */}
           <TransactionsCategoriesSelect
             onChange={onChangeCategory}
+            lang={lang}
             newCategory={newCategory}
           />
           <div className={s.sumAndDateWrap}>
@@ -234,6 +234,7 @@ export default function ModalAddTransactions({ handleClose }) {
               initialValue={currentDate}
               closeOnSelect={true}
               name="date"
+              locale={lang ? 'en' : 'ru'}
               onChange={getDate}
             />
             <ErrorMessage
@@ -246,7 +247,7 @@ export default function ModalAddTransactions({ handleClose }) {
           <Field
             type="text"
             name="comment"
-            placeholder="Комментарий"
+            placeholder={lang ? 'Comment' : 'Комментарий'}
             className={s.commentInput}
           />
 
@@ -265,7 +266,7 @@ export default function ModalAddTransactions({ handleClose }) {
                 dispatch(modalActions.modalAddTransactionClose());
               }}
             >
-              Добавить
+              {lang ? 'Add' : 'Добавить'}
             </button>
             <button
               type="button"
@@ -275,7 +276,7 @@ export default function ModalAddTransactions({ handleClose }) {
                 dispatch(modalActions.modalAddTransactionClose());
               }}
             >
-              Отмена
+              {lang ? 'Cancel' : 'Отмена'}
             </button>
           </div>
         </Form>
@@ -283,3 +284,7 @@ export default function ModalAddTransactions({ handleClose }) {
     </>
   );
 }
+ModalAddTransactions.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+  lang: PropTypes.bool.isRequired,
+};

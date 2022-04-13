@@ -1,13 +1,19 @@
 import Select, { components } from 'react-select';
 import IndicatorArrow from '../../assets/images/icons/categories.svg';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import categoriesSelectors from '../../redux/categories/categories-selectors';
 export default function TransactionsCategoriesSelect({
   onChange,
   newCategory,
+  lang,
 }) {
   const categories = useSelector(categoriesSelectors.getCategories);
-  const options = categories.categories.categoryList.ru.map(item => {
+  const options = (
+    lang
+      ? categories.categories.categoryList.en
+      : categories.categories.categoryList.ru
+  ).map(item => {
     return { label: item.value, value: item.value };
   });
   const DropdownIndicator = props => {
@@ -92,10 +98,15 @@ export default function TransactionsCategoriesSelect({
       options={options}
       styles={customStyles}
       isDisabled={newCategory}
-      placeholder={'Выберите категорию'}
+      placeholder={lang ? 'Choose a category' : 'Выберите категорию'}
       onChange={e => {
         onChange(e);
       }}
     />
   );
 }
+TransactionsCategoriesSelect.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  newCategory: PropTypes.string.isRequired,
+  lang: PropTypes.bool.isRequired,
+};
