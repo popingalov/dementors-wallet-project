@@ -12,7 +12,10 @@ import modalActions from '../../redux/global/global-actions';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-import clasNames from 'classnames';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+import 'moment/locale/ru';
+import 'moment/locale/en-au';
 import transactionsOperations from '../../redux/transactions/transaction-operations';
 let schema = yup.object().shape({
   type: yup
@@ -60,8 +63,7 @@ const initialValues = {
   category: '',
 };
 
-export default function ModalAddTransactions({ handleClose }) {
-  const [transactions, setTransactions] = useState(initialValues);
+export default function ModalAddTransactions({ handleClose, lang }) {
   const [date, setDate] = useState(currentDate);
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
@@ -99,18 +101,6 @@ export default function ModalAddTransactions({ handleClose }) {
     } else return amount;
   };
 
-  const getTransaction = values => {
-    return setTransactions({
-      type: transactionType,
-      amount: amountForSending(amount),
-      date: date,
-      comment: values.comment,
-      category: category,
-      // newCategory: values.newCategory,
-    });
-  };
-  // setResult(transactions);
-  console.log(transactions);
   return (
     <>
       <Formik
@@ -153,7 +143,7 @@ export default function ModalAddTransactions({ handleClose }) {
                   : s.incomes
               }
             >
-              Доход
+              {lang ? 'Incomes' : 'Доход'}
             </span>
             <label htmlFor="transactionType">
               <div className={classNames(s.button, s.r)} id={s['button-2']}>
@@ -170,24 +160,26 @@ export default function ModalAddTransactions({ handleClose }) {
                     return toast(msg, { toastId: '' });
                   }}
                 />
-                <div className={s.knobs}></div>
+                <div className={classNames(s.knobs, s.knobsTransactions)}></div>
                 <div className={s.layer}></div>
               </div>
             </label>
             <span
               className={
                 transactionType === '-'
-                  ? clasNames(s.outcomes, s.outcomesActive)
+                  ? classNames(s.outcomes, s.outcomesActive)
                   : s.outcomes
               }
             >
-              Расход
+              {lang ? 'Outcomes' : 'Расход'}
             </span>
           </div>
           <Field
             type="text"
             name="newCategory"
-            placeholder="Название новой категории"
+            placeholder={
+              lang ? 'Name of the new category' : 'Название новой категории'
+            }
             disabled={category}
             className={s.newCategory}
             onBlur={addCategory}
@@ -198,16 +190,9 @@ export default function ModalAddTransactions({ handleClose }) {
               return toast(msg, { toastId: '' });
             }}
           />
-          {/* <button
-            type="button"
-            name="newCategoryBtn"
-            className={s.newCategoryBtn}
-            onClick={() => {
-              addCategory();
-            }}
-          /> */}
           <TransactionsCategoriesSelect
             onChange={onChangeCategory}
+            lang={lang}
             newCategory={newCategory}
           />
           <div className={s.sumAndDateWrap}>
@@ -234,6 +219,7 @@ export default function ModalAddTransactions({ handleClose }) {
               initialValue={currentDate}
               closeOnSelect={true}
               name="date"
+              locale={lang ? 'en' : 'ru'}
               onChange={getDate}
             />
             <ErrorMessage
@@ -246,7 +232,7 @@ export default function ModalAddTransactions({ handleClose }) {
           <Field
             type="text"
             name="comment"
-            placeholder="Комментарий"
+            placeholder={lang ? 'Comment' : 'Комментарий'}
             className={s.commentInput}
           />
 
@@ -265,7 +251,7 @@ export default function ModalAddTransactions({ handleClose }) {
                 dispatch(modalActions.modalAddTransactionClose());
               }}
             >
-              Добавить
+              {lang ? 'Add' : 'Добавить'}
             </button>
             <button
               type="button"
@@ -275,7 +261,7 @@ export default function ModalAddTransactions({ handleClose }) {
                 dispatch(modalActions.modalAddTransactionClose());
               }}
             >
-              Отмена
+              {lang ? 'Cancel' : 'Отмена'}
             </button>
           </div>
         </Form>
@@ -283,3 +269,7 @@ export default function ModalAddTransactions({ handleClose }) {
     </>
   );
 }
+ModalAddTransactions.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+  lang: PropTypes.bool.isRequired,
+};

@@ -47,7 +47,6 @@ export default function App() {
 
   return (
     <>
-    
       {isFetchingCurrentUser ? (
         <Loader />
       ) : (
@@ -110,7 +109,6 @@ export default function App() {
           </Suspense>
         </>
       )}
-
       <ToastContainer autoClose={3000} />
       {isLoadingSpinner && <Loader />}
     </>

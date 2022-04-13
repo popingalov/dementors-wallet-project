@@ -123,7 +123,6 @@
   top: -4px;
   left: 42px;
   background-color: var(--red-color);
-  background-image: url('../../assets/images/icons/outcomes.svg');
   box-shadow: 0px 6px 15px rgba(255, 101, 150, 0.5);
   color: #fff;
   background-repeat: no-repeat;
@@ -136,15 +135,18 @@
   padding: 9px 4px;
   transition: 0.5s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
-
+#button-2 .knobsTransactions:before {
+  background-image: url('../../assets/images/icons/outcomes.svg');
+}
 #button-2 .checkbox:checked + .knobs:before {
   content: '';
   left: -4px;
   background-color: var(--green-color);
-  background-image: url('../../assets/images/icons/+.svg');
   box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
 }
-
+#button-2 .checkbox:checked + .knobsTransactions:before {
+  background-image: url('../../assets/images/icons/+.svg');
+}
 #button-2 .knobs,
 #button-2.knobs:before,
 #button-2 .layer {
