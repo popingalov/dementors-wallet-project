@@ -52,6 +52,11 @@
   margin-right: 10px;
   composes: text;
 }
+.checkboxWrap {
+  margin: 0;
+  width: 260px;
+  justify-content: space-between;
+}
 
 @media screen and (min-width: 768px) {
   .logoIcon {
