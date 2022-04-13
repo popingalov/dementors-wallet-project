@@ -64,14 +64,14 @@ export default function ModalAddTransactions({ handleClose }) {
   const [date, setDate] = useState(currentDate);
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
-  const [transactionType, setTransactionType] = useState("-");
+  const [transactionType, setTransactionType] = useState('-');
   const [newCategory, setNewCategory] = useState('');
   const dispatch = useDispatch();
 
   const handleCheckbox = e => {
     e.target.checked === true
-      ? setTransactionType("+")
-      : setTransactionType("-");
+      ? setTransactionType('+')
+      : setTransactionType('-');
   };
 
   const onChangeCategory = e => {
@@ -120,16 +120,23 @@ export default function ModalAddTransactions({ handleClose }) {
             type: transactionType,
             amount: amountForSending(amount),
             date: date ? date : currentDate,
-            comment: values.comment || "Нет комментария" ,
+            comment: values.comment || 'Нет комментария',
             category,
             newCategory,
           };
-
-          dispatch(transactionsOperations.addTransaction(reset));
+          const reset2 = {
+            type: transactionType,
+            amount: amountForSending(amount),
+            date: date ? date : currentDate,
+            comment: values.comment || 'Нет комментария',
+            category,
+          };
+          const result = newCategory ? reset : reset2;
+          dispatch(transactionsOperations.addTransaction(result));
           setAmount('');
           setCategory('');
           setDate('');
-          setTransactionType("-");
+          setTransactionType('-');
           resetForm();
         }}
       >
@@ -148,7 +155,7 @@ export default function ModalAddTransactions({ handleClose }) {
           <div className={s.checkboxWrap}>
             <span
               className={
-                transactionType === "+"
+                transactionType === '+'
                   ? classNames(s.incomes, s.incomesActive)
                   : s.incomes
               }
@@ -176,7 +183,7 @@ export default function ModalAddTransactions({ handleClose }) {
             </label>
             <span
               className={
-                transactionType === "-"
+                transactionType === '-'
                   ? clasNames(s.outcomes, s.outcomesActive)
                   : s.outcomes
               }

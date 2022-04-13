@@ -18,7 +18,7 @@ const fetchTransactions = createAsyncThunk(
 const addTransaction = createAsyncThunk(
   'transactions/addTransaction',
   async (transaction, { getState, rejectWithValue }) => {
-    console.log(transaction, "transaction");
+    console.log(transaction, 'transaction');
     const state = getState();
 
     const { isEnglishVersion } = state.global;
@@ -26,29 +26,33 @@ const addTransaction = createAsyncThunk(
 
     try {
       if (newCategory) {
-
         const newCategoryObj = {
           value: newCategory,
           isEnglishVersion,
-        };  
-        
+        };
+
         const response = await axios.post('/categories', newCategoryObj);
 
-        const newTransaction = { date, type, category: response.data.newCategory.value, comment, amount };
+        const newTransaction = {
+          date,
+          type,
+          category: response.data.newCategory.value,
+          comment,
+          amount,
+        };
 
-        const { data } = await axios.post('/transactions', newTransaction);
-        console.log(data, "data with new category")
+        const data = await axios.post('/transactions', newTransaction);
 
-        return data;
+        return data.data;
       }
 
-      console.log(transaction, "transaction after condition")
+      console.log(transaction, 'transaction after condition');
 
       const response = await axios.post('/transactions', transaction);
 
-      console.log(response, "data with static category")
+      console.log(response, 'data with static category');
 
-      return response;
+      return response.data;
     } catch (error) {
       return rejectWithValue(error);
     }
