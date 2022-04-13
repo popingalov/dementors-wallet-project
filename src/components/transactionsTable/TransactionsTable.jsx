@@ -50,7 +50,7 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
     </table>
   ) : (
     <div className={s.greetings}>
-      <h2>{lang ? `Hello, ${userName}!` : `Привет, ${userName}!`}!</h2>
+      <h2>{lang ? `Hello, ${userName}!` : `Привет, ${userName}!`}</h2>
       <p>
         {lang
           ? 'The Wallet app will help you control your money transactions conveniently and easily.'

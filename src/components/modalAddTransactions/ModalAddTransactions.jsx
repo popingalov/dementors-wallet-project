@@ -161,7 +161,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
               {lang ? 'Incomes' : 'Доход'}
             </span>
             <label htmlFor="transactionType">
-              <div className={classNames(s.button, s.r)} id={s['button-2']}>
+              <div className={classNames(s.button, s.r)} id={'button-2'}>
                 <Field
                   type="checkbox"
                   className={s.checkbox}
