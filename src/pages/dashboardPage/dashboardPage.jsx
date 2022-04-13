@@ -83,6 +83,3 @@ const DashboardPage = ({ children }) => {
 };
 
 export default DashboardPage;
-DashboardPage.propTypes = {
-  lang: PropTypes.bool.isRequired,
-};
