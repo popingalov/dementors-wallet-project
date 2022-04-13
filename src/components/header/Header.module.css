@@ -52,13 +52,64 @@
   margin-right: 10px;
   composes: text;
 }
-.checkboxWrap {
+.headerContainer .outcomes,
+.headerContainer .incomes {
+  display: none;
+}
+.headerContainer .checkboxWrap {
   margin: 0;
-  width: 260px;
+  width: fit-content;
   justify-content: space-between;
 }
-
+.headerContainer .knobs {
+  top: 5px;
+}
+.headerContainer .button {
+  width: 24px;
+  height: 24px;
+  border: none;
+}
+.headerContainer .knobs:before {
+  content: 'ru';
+  width: 20px;
+  height: 20px;
+  display: flex;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+}
+.headerContainer .checkbox:checked + .knobs:before {
+  content: 'en';
+  left: 0;
+}
 @media screen and (min-width: 768px) {
+  .headerContainer .outcomes,
+  .headerContainer .incomes {
+    display: block;
+  }
+  .headerContainer .checkboxWrap {
+    width: 220px;
+  }
+
+  .headerContainer .button {
+    width: 80px;
+    height: 40px;
+    border: 1px solid var(--placeholder-icon-color);
+  }
+  .headerContainer .knobs:before {
+    content: '';
+    width: 44px;
+    height: 44px;
+    top: -4px;
+    left: 42px;
+  }
+  .headerContainer .knobs {
+    top: 0px;
+  }
+  .headerContainer .checkbox:checked + .knobs:before {
+    content: '';
+    left: -4px;
+  }
   .logoIcon {
     width: 181px;
     height: 40px;

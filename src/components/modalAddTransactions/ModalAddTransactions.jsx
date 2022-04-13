@@ -65,6 +65,7 @@ const initialValues = {
 
 export default function ModalAddTransactions({ handleClose, lang }) {
   const [date, setDate] = useState(currentDate);
+  const [dateFiltr, setDateFiltr] = useState(new Date(today).getTime());
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [transactionType, setTransactionType] = useState('-');
@@ -82,13 +83,17 @@ export default function ModalAddTransactions({ handleClose, lang }) {
   };
 
   const getDate = e => {
-    return setDate(
-      `${String(e.date()).padStart(2, '0')}.${String(e.month() + 1).padStart(
-        2,
-        '0',
-      )}.${e.year()}`,
+    return (
+      setDate(
+        `${String(e.date()).padStart(2, '0')}.${String(e.month() + 1).padStart(
+          2,
+          '0',
+        )}.${e.year()}`,
+      ),
+      setDateFiltr(new Date(e).getTime())
     );
   };
+
   const addCategory = e => {
     setNewCategory(e.target.value);
   };
@@ -111,6 +116,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
             type: transactionType,
             amount: amountForSending(amount),
             date: date ? date : currentDate,
+            dataFiltr: dateFiltr,
             comment: values.comment || 'Нет комментария',
             category,
             newCategory,
@@ -119,6 +125,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
             type: transactionType,
             amount: amountForSending(amount),
             date: date ? date : currentDate,
+            dataFiltr: dateFiltr,
             comment: values.comment || 'Нет комментария',
             category,
           };
@@ -154,7 +161,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
               {lang ? 'Incomes' : 'Доход'}
             </span>
             <label htmlFor="transactionType">
-              <div className={classNames(s.button, s.r)} id={s['button-2']}>
+              <div className={classNames(s.button, s.r)} id={'button-2'}>
                 <Field
                   type="checkbox"
                   className={s.checkbox}

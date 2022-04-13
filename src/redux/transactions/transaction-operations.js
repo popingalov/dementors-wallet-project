@@ -22,7 +22,7 @@ const addTransaction = createAsyncThunk(
     const state = getState();
 
     const { isEnglishVersion } = state.global;
-    const { newCategory, date, type, comment, amount } = transaction;
+    const { newCategory, date, dataFiltr, type, comment, amount } = transaction;
 
     try {
       if (newCategory) {
@@ -35,6 +35,7 @@ const addTransaction = createAsyncThunk(
 
         const newTransaction = {
           date,
+          dataFiltr,
           type,
           category: response.data.newCategory.value,
           comment,

@@ -104,6 +104,3 @@ console.log();
 };
 
 export default DashboardPage;
-DashboardPage.propTypes = {
-  lang: PropTypes.bool.isRequired,
-};
