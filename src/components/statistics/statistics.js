@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from 'components/statistics/statistics.module.css';
 import Donut from './doughnut';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
+import categoriesSelectors from 'redux/categories/categories-selectors';
+import statisticsSelectors from 'redux/statistics/statistics-selectors';
+import statisticsOperations from 'redux/statistics/statistics-operations';
 
 let Data = new Date();
 const Year = Data.getFullYear();
@@ -37,8 +40,17 @@ let enMonth = [
   'December',
 ];
 export default function Statistics() {
+  const elem = useSelector(categoriesSelectors.getCategories);
+  const statis = useSelector(statisticsSelectors.getStatistics)
+  console.log(statis);
+  const category = elem.categories.categoryList.en;
   const lang = useSelector(globalSelectors.lang);
-  return (
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(statisticsOperations.getStatistics())
+  }, [dispatch])
+
+  return(
     <div className={s.box_statistics}>
       <div className={s.box_circle}>
         <p className={s.title_statistics}>
@@ -62,73 +74,18 @@ export default function Statistics() {
         </div>
 
         <ul className={s.list_statistics}>
-          <li>
-            <div className={s.rectangle}></div>
-            <p className={s.info_statistics}>
-              {lang ? 'Basic expences' : 'Основные расходы'}
-            </p>
-            <p>0</p>
-          </li>
-
-          <li>
-            <div className={s.produkt}></div>
-            <p className={s.info_statistics}>
-              {lang ? 'Products' : 'Продукты'}
-            </p>
-            <p>0</p>
-          </li>
-
-          <li>
-            <div className={s.car}></div>
-            <p className={s.info_statistics}> {lang ? 'Car' : 'Машина'}</p>
-            <p>0</p>
-          </li>
-
-          <li>
-            <div className={s.taking}></div>
-            <p className={s.info_statistics}>
-              {lang ? 'Self care' : 'Забота о себе'}
-            </p>
-            <p>0</p>
-          </li>
-
-          <li>
-            <div className={s.child}></div>
-            <p className={s.info_statistics}>
-              {lang ? 'Child care' : 'Забота о детях'}
-            </p>
-            <p>0</p>
-          </li>
-
-          <li>
-            <div className={s.home}></div>
-            <p className={s.info_statistics}>
-              {lang ? 'Household products' : 'Товары для дома'}
-            </p>
-            <p>0</p>
-          </li>
-
-          <li>
-            <div className={s.education}></div>
-            <p className={s.info_statistics}>
-              {lang ? 'Education' : 'Образование'}
-            </p>
-            <p>0</p>
-          </li>
-
-          <li>
-            <div className={s.rectangle}></div>
-            <p className={s.info_statistics}>{lang ? 'Leisure' : 'Досуг'}</p>
-            <p>0</p>
-          </li>
-
-          <li>
-            <div className={s.otherExpenses}></div>
-            <p className={s.info_statistics}>
-              {lang ? 'Other expences' : 'Другие расходы'}
-            </p>
-            <p className={s.statistics_summa}>0</p>
-          </li>
+          {category.map(({ value, color, _id }) => {
+            return (
+              <li key={_id}>
+                <div
+                  style={{ background: color }}
+                  className={s.rectangle}
+                ></div>
+                <p className={s.info_statistics}>{value}</p>
+                <p>0</p>
+              </li>
+            );
+          })}
 
           <li>
             <p className={s.info_statistics_expenses}>

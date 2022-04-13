@@ -6,6 +6,7 @@ import categoryReducer from './categories/categories-slice';
 import authReducer from './auth/auth-slice';
 import transactionsReducer from './transactions/transaction-reducer';
 import loadingReducer from './global/global-reducer';
+import statisticsReducer from './statistics/statistics-slice'
 
 const authPersistConfig = {
   key: 'auth',
@@ -19,6 +20,7 @@ export const store = configureStore({
     categories: categoryReducer,
     transactions: transactionsReducer,
     global: loadingReducer,
+    statistics: statisticsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({ serializableCheck: false }),
