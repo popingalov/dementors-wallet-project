@@ -1,4 +1,4 @@
-import { classNames } from 'classnames';
+import classNames from 'classnames';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import Datetime from 'react-datetime';
@@ -8,9 +8,6 @@ import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import closeBtnIcon from '../../assets/images/icons/close.svg';
 import modalActions from '../../redux/global/global-actions';
-import * as yup from 'yup';
-import { toast } from 'react-toastify';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/ru';
