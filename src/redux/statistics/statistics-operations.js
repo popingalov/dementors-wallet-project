@@ -6,8 +6,7 @@ const getStatistics = createAsyncThunk(
   'statistics/fetchStatistics',
   async (_, { rejectWithValue }) => {
     try {
-      const  {data}  = await axios.get('/statistics');
-      console.log(data);
+      const { data } = await axios.get('/statistics');
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -16,7 +15,7 @@ const getStatistics = createAsyncThunk(
 );
 
 const statisticsOperations = {
-  getStatistics
+  getStatistics,
 };
 
 export default statisticsOperations;

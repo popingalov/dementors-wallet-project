@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import s from 'components/statistics/statistics.module.css';
 import Donut from './doughnut';
 import { useSelector, useDispatch } from 'react-redux';
@@ -40,16 +40,14 @@ let enMonth = [
 ];
 export default function Statistics() {
   const lang = useSelector(globalSelectors.lang);
-  const dispatch = useDispatch()
-  useEffect(()=>{
-    console.log('first')
-    dispatch(statisticsOperations.getStatistics())
-  }, [dispatch]);
-  
-  const {minus} = useSelector(statisticsSelectors.statisticMinus)
-  console.log(minus)
-  
-  return(
+  const dispatch = useDispatch();
+  //   useEffect(() => {
+  //     dispatch(statisticsOperations.getStatistics());
+  //   });
+
+  const statistics = useSelector(statisticsSelectors.statisticMinus);
+
+  return (
     <div className={s.box_statistics}>
       <div className={s.box_circle}>
         <p className={s.title_statistics}>
@@ -73,7 +71,7 @@ export default function Statistics() {
         </div>
 
         <ul className={s.list_statistics}>
-          {minus?.map(({ category, color, minus }) => {
+          {statistics.map(({ category, color, minus }) => {
             return (
               <li key={color}>
                 <div

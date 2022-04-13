@@ -6,7 +6,7 @@ import categoryReducer from './categories/categories-slice';
 import authReducer from './auth/auth-slice';
 import transactionsReducer from './transactions/transaction-reducer';
 import loadingReducer from './global/global-reducer';
-import statisticsReducer from './statistics/statistics-slice'
+import statisticsReducer from './statistics/statistics-reducer';
 
 const authPersistConfig = {
   key: 'auth',

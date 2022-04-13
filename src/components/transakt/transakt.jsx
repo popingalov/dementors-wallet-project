@@ -83,12 +83,10 @@ export default function ModalAddTransactions({ handleClose }) {
     return e.target.value;
   };
   const sumChange = e => {
-    console.log(e.target.value);
-    console.log(Number.isInteger(e.target.value));
     return setSum(e.target.value);
   };
 
-  console.log(transactions);
+  
 
   return (
     <>

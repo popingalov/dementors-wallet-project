@@ -4,13 +4,12 @@ import { Navigate, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Media from 'react-media';
 
-
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import globalSelectors from 'redux/global/global-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
-
+import statisticsOperations from 'redux/statistics/statistics-operations';
 import TransactionsTable from './components/transactionsTable';
 import Nav from './components/nav';
 
@@ -42,6 +41,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
+    dispatch(statisticsOperations.getStatistics());
   }, [dispatch]);
 
   return (
