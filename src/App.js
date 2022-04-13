@@ -4,7 +4,7 @@ import { Navigate, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Media from 'react-media';
 
-import categoriesOperations from './redux/categories/categories-operations';
+
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import globalSelectors from 'redux/global/global-selectors';
@@ -42,7 +42,6 @@ export default function App() {
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-    dispatch(categoriesOperations.getCategories());
   }, [dispatch]);
 
   return (
