@@ -7,11 +7,13 @@ import Header from '../../components/header';
 import Nav from '../../components/nav';
 import Balance from '../../components/balance';
 import Currency from '../../components/money';
+import categoriesOperations from '../../redux/categories/categories-operations';
 import operations from '../../redux/auth/auth-operations';
 import { ModalAddTransactionsBtn } from '../../components/modalAddTransactions';
 import globalSelectors from 'redux/global/global-selectors';
 import Modal from '../../components/modal';
 import Container from 'components/сontainer/Container';
+
 const DashboardPage = ({ children }) => {
   const location = useLocation();
   const path = location.pathname;
@@ -20,6 +22,7 @@ const DashboardPage = ({ children }) => {
   const isModalOpen = useSelector(globalSelectors.isModalOpen);
   useEffect(() => {
     setDisplay(path === '/wallet' ? true : false);
+    dispatch(categoriesOperations.getCategories());
   }, [path]);
 
   //   useEffect(() => {

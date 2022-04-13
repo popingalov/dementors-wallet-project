@@ -7,7 +7,6 @@ const getCategories = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get('/categories');
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error);
