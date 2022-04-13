@@ -23,24 +23,22 @@ const DashboardPage = ({ children }) => {
   const lang = useSelector(globalSelectors.lang);
   const isModalOpen = useSelector(globalSelectors.isModalOpen);
   useEffect(() => {
-    setDisplay(path === '/wallet' ? true : false);
+    setDisplay(path === '/exchange-rate' ? true : false);
     dispatch(categoriesOperations.getCategories());
   }, [path]);
 
   //   useEffect(() => {
   //     dispatch(operations.fetchCurrentUser());
   //   }, [dispatch]);
-
+console.log();
   return (
     <>
       <Header lang={lang} />
       <Container>
         <div className={s.wrapper}>
           <main className={s.main}>
-            <aside className={s.aside}>
-              <section className={s.nav}>
-                <Nav lang={lang} />
-                {/* <Media
+            
+                {<Media
                 queries={{
                   mobile: { maxWidth: 767 },
                   other: { minWidth: 768 },
@@ -50,27 +48,50 @@ const DashboardPage = ({ children }) => {
                   return (
                     <Fragment>
                       {matches.mobile &&
-                        display &&
+                        <>
+                        <section className={s.nav}>
+                            <Nav />
+                        </section>
+                        {display
+                          ?
+                          <section className={s.currency}>
+                            <Currency />
+                          </section>
+                          :
+                          <>
+                            < Balance />
+                            <article className={s.box}>
+                              <Outlet /> {children}
+                            </article>
+                          </>
+                        }
+                        </>
                         
-                          < Balance />
                         }
                       {matches.other &&
+                        <>
                         
-                          <Balance />
+                        <aside className={s.aside}>
+              <section className={s.nav}>
+                <Nav />
+                          </section>
+                        < Balance />
+                        <section className={s.currency}>
+                         <Currency />
+                        </section>
+                            
+              
+                        </aside>
+                        <article className={s.box}>
+              <Outlet /> {children}
+                        </article>
+                        </>
                         }
                     </Fragment>
                   );
                 }}
-              </Media> */}
-              </section>
-              <Balance lang={lang} />
-              <section className={s.currency}>
-                <Currency lang={lang} />
-              </section>
-            </aside>
-            <article className={s.box}>
-              <Outlet /> {children}
-            </article>
+              </Media>}
+              
           </main>
           <div className={s.addTransactionBtn}>
             <ModalAddTransactionsBtn />
