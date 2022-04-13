@@ -14,11 +14,16 @@ const {
   modalAddTransactionClose,
   modalLogOutClose,
   modalLogOutOpen,
+  loginVerificationModal,
 } = modalActions;
 
 const isModalOpen = createReducer(false, {
   [openModal]: () => true,
   [closeModal]: () => false,
+});
+
+const isLoginVerificationModalOpen = createReducer(false, {
+  [loginVerificationModal]: (_, { payload }) => payload,
 });
 
 const isModalLogOutOpen = createReducer(false, {
@@ -71,5 +76,6 @@ export default combineReducers({
   isModalAddTransactionOpen,
   isEnglishVersion,
   isModalLogOutOpen,
+  isLoginVerificationModalOpen,
   error,
 });
