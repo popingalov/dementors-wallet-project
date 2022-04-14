@@ -55,7 +55,7 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
         </tbody>
       </table>
       <button className={s.addButton} onClick={() => setPage(page + 1)}>
-        Click me
+        {lang ? 'Load more' : 'Загрузить еще'}
       </button>
     </>
   ) : (
