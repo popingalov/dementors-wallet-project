@@ -10,6 +10,8 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
   const [page, setPage] = useState(1);
   useEffect(() => {
     fetchTransactions(page);
+
+    console.log('не нужно столько');
     // setPage(page + 1);
   }, [fetchTransactions, page]);
 

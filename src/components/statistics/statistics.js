@@ -47,7 +47,7 @@ export default function Statistics() {
 
   const statistics = useSelector(statisticsSelectors.statisticMinus);
   const balance = useSelector(statisticsSelectors.statisticTotal);
-  console.log(balance);
+
   return (
     <div className={s.box_statistics}>
       <div className={s.box_circle}>
@@ -89,14 +89,14 @@ export default function Statistics() {
             <p className={s.info_statistics_expenses}>
               {lang ? 'Outcomes' : 'Расходы'}:
             </p>
-            <p>{balance[0]}</p>
+            <p>{balance[1]}</p>
           </li>
 
           <li>
             <p className={s.info_statistics_income}>
               {lang ? 'Incomes' : 'Доходы'}:
             </p>
-            <p>{balance[1]}</p>
+            <p>{balance[0]}</p>
           </li>
         </ul>
       </div>

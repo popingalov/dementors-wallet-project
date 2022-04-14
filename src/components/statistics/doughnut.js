@@ -44,7 +44,6 @@ const Charts = () => {
       newData.datasets[0].data.push(minus);
       newData.datasets[0].label.push(category);
     });
-    console.log(newData);
     setData(newData);
   }, [statistics]);
 

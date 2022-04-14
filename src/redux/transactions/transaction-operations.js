@@ -8,6 +8,9 @@ const fetchTransactions = createAsyncThunk(
   async (page = 1, { rejectWithValue, getState }) => {
     try {
       const state = getState().transactions.items;
+      if (state.length && page === 1) {
+        return state;
+      }
       const { data } = await axios.get(`/transactions?page=${page}`);
       const result = state ? [...data, ...state] : data;
       return result;
