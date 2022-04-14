@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+axios.defaults.baseURL = 'https://dementrors-waller.herokuapp.com/api';
 
 const token = {
   set(token) {
@@ -15,9 +15,9 @@ const token = {
 
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const { data } = await axios.post('/users/signup', credentials);
+    const { data } = await axios.post('/users/auth', credentials);
     token.set(data.token);
-    console.log(data);
+    
     return data;
   } catch (error) {
     toast.error('Проверьте верность введите данных');
@@ -38,7 +38,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-    await axios.post('/users/logout');
+    await axios.get('/users/logout');
     token.unset();
   } catch (error) {
     toast.error(error.message);
@@ -65,10 +65,10 @@ const fetchCurrentUser = createAsyncThunk(
   },
 );
 
-const operations = {
+const authOperations = {
   register,
   logOut,
   logIn,
   fetchCurrentUser,
 };
-export default operations;
+export default authOperations;

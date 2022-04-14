@@ -5,9 +5,13 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from 'redux/store';
 import App from 'App';
-import 'index.css';
-import 'react-toastify/dist/ReactToastify.css';
+
 import 'modern-normalize';
+import './assets/css/fonts.css';
+import './assets/css/variables.css';
+import './assets/css/index.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 const root = document.querySelector('#root');
 
 ReactDOM.render(

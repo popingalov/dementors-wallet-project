@@ -1,39 +1,60 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import Media from 'react-media';
+
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
+import globalSelectors from 'redux/global/global-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
-//
-//
-const HomeView = lazy(() => import('./pages/HomeView'));
-const RegisterView = lazy(() => import('./pages/RegisterView'));
-const LoginView = lazy(() => import('./pages/LoginView'));
-const WalletView = lazy(() => import('./pages/WalletView'));
+import statisticsOperations from 'redux/statistics/statistics-operations';
+import TransactionsTable from './components/transactionsTable';
+import Nav from './components/nav';
+
+import Loader from './components/loader/Loader';
+
+// import Money from "components/money/Money";
+
+import Header from './components/header';
+import Money from 'components/money';
+
+import Currency from './components/currency';
+import HomeTab from './components/homeTab';
+import Statistics from 'components/statistics/statistics';
+
+const NotFoundPage = lazy(() => import('./pages/notFoundPage'));
+
+//import HomeText from './components/homeText';
+
+const RegisterView = lazy(() => import('./pages/registrationPage'));
+const LoginView = lazy(() => import('./pages/loginPage'));
+const DashboardPage = lazy(() => import('./pages/dashboardPage'));
 
 export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getFetchingCurrent);
+  const isLoadingSpinner = useSelector(globalSelectors.isLoadingSpinner);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
+    dispatch(statisticsOperations.getStatistics());
   }, [dispatch]);
 
   return (
     <>
       {isFetchingCurrentUser ? (
-        <h1>Hi world</h1>
+        <Loader />
       ) : (
         <>
-          <Suspense fallback={<h1>Крутим спинер</h1>}>
+          <Suspense fallback={<Loader size={200} />}>
             <Routes>
               <Route
                 path="/"
                 element={
-                  <PublicRoute>
-                    <h2>Старт?</h2>
+                  <PublicRoute restricted redirectTo="/wallet">
+                    <LoginView />
                   </PublicRoute>
                 }
               />
@@ -41,15 +62,15 @@ export default function App() {
                 path="/register"
                 element={
                   <PublicRoute restricted>
-                    <h2>Registr</h2>
+                    <RegisterView />
                   </PublicRoute>
                 }
               />
               <Route
                 path="/login"
                 element={
-                  <PublicRoute redirectTo="/contacts" restricted>
-                    <h2>login</h2>
+                  <PublicRoute redirectTo="/wallet" restricted>
+                    <LoginView />
                   </PublicRoute>
                 }
               />
@@ -57,16 +78,44 @@ export default function App() {
                 path="/wallet"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <h2>wallet?</h2>
+                    <DashboardPage>
+                      <TransactionsTable />
+                    </DashboardPage>
                   </PrivateRoute>
+                }
+              />
+              <Route
+                path="/wallet/stat"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <DashboardPage>
+                      <Statistics />
+                    </DashboardPage>
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/exchange-rate"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <DashboardPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <PublicRoute restricted>
+                    <NotFoundPage />
+                  </PublicRoute>
                 }
               />
             </Routes>
           </Suspense>
         </>
       )}
-
       <ToastContainer autoClose={3000} />
+      {isLoadingSpinner && <Loader />}
     </>
   );
 }
