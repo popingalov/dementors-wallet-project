@@ -9,7 +9,7 @@ export async function fetchCreator(url = '', option = {}) {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
+     
       return data.filter(item => item.ccy !== 'BTC');
     } else {
       toast('Something wrong');
