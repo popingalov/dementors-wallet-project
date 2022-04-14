@@ -5,10 +5,12 @@ axios.defaults.baseURL = 'https://dementrors-waller.herokuapp.com/api';
 
 const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
-  async (_, { rejectWithValue }) => {
+  async (page = 1, { rejectWithValue, getState }) => {
     try {
-      const { data } = await axios.get('/transactions');
-      return data;
+      const state = getState().transactions.items;
+      const { data } = await axios.get(`/transactions?page=${page}`);
+      const result = state ? [...data, ...state] : data;
+      return result;
     } catch (error) {
       return rejectWithValue(error);
     }

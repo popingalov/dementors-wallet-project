@@ -3,7 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import transactionsOperations from './transaction-operations';
 
 const items = createReducer([], {
-  [transactionsOperations.fetchTransactions.fulfilled]: (_, { payload }) =>
+  [transactionsOperations.fetchTransactions.fulfilled]: (state, { payload }) =>
     payload,
   [transactionsOperations.addTransaction.fulfilled]: (state, { payload }) => {
     void state.unshift(payload);

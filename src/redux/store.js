@@ -13,13 +13,18 @@ const authPersistConfig = {
   storage,
   whitelist: ['token'],
 };
+const globalPersistConfig = {
+  key: 'global',
+  storage,
+  whitelist: ['isEnglishVersion'],
+};
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     categories: categoryReducer,
     transactions: transactionsReducer,
-    global: loadingReducer,
+    global: persistReducer(globalPersistConfig, loadingReducer),
     statistics: statisticsReducer,
   },
   middleware: getDefaultMiddleware =>
