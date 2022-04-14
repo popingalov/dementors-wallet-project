@@ -61,6 +61,15 @@ export default function Statistics() {
       <div className={s.container_statistics}>
         <div className={s.box_data}>
           <div className={s.months}>
+            {/* <form>
+              <select>
+                <option>Январь</option>
+                <option>February</option>
+                <option>Розовый</option>
+                <option>Чёрный</option>
+                <option>Белый</option>
+              </select>
+            </form> */}
             {lang ? enMonth[Month] : fMonth[Month]}
           </div>
           <div className={s.years}> {Year}</div>
@@ -99,6 +108,17 @@ export default function Statistics() {
             <p>{balance[0]}</p>
           </li>
         </ul>
+      </div>
+      <div class="box">
+        <form>
+          <select>
+            <option>Красный</option>
+            <option>Синий</option>
+            <option>Розовый</option>
+            <option>Чёрный</option>
+            <option>Белый</option>
+          </select>
+        </form>
       </div>
     </div>
   );

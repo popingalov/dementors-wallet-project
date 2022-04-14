@@ -435,3 +435,18 @@ background: #4A56E2
     max-width: 1080px !important;
     margin: 0 auto;
 }
+.balance{
+        position: relative;
+        top: 137px;
+        text-align: center;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 1.5;
+        height: 0;
+        color: #000000;
+}
+.amount{
+    padding-left: 8px;
+}
