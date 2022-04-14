@@ -17,4 +17,5 @@ const getCategories = createAsyncThunk(
 const categoriesOperations = {
   getCategories,
 };
+
 export default categoriesOperations;

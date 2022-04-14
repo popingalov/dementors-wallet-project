@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchTransactions: () => dispatch(transactionsOperations.fetchTransactions()),
+  fetchTransactions: page =>
+    dispatch(transactionsOperations.fetchTransactions(page)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionsTable);

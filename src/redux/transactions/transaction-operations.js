@@ -5,10 +5,15 @@ axios.defaults.baseURL = 'https://dementrors-waller.herokuapp.com/api';
 
 const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
-  async (_, { rejectWithValue }) => {
+  async (page = 1, { rejectWithValue, getState }) => {
     try {
-      const { data } = await axios.get('/transactions');
-      return data;
+      const state = getState().transactions.items;
+      if (state.length && page === 1) {
+        return state;
+      }
+      const { data } = await axios.get(`/transactions?page=${page}`);
+      const result = state ? [...data, ...state] : data;
+      return result;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -18,11 +23,10 @@ const fetchTransactions = createAsyncThunk(
 const addTransaction = createAsyncThunk(
   'transactions/addTransaction',
   async (transaction, { getState, rejectWithValue }) => {
-    console.log(transaction, 'transaction');
     const state = getState();
-
     const { isEnglishVersion } = state.global;
-    const { newCategory, date, dataFiltr, type, comment, amount } = transaction;
+    const { newCategory, date, dataFiltr, type, comment, amount, triger } =
+      transaction;
 
     try {
       if (newCategory) {
@@ -40,6 +44,7 @@ const addTransaction = createAsyncThunk(
           category: response.data.newCategory.value,
           comment,
           amount,
+          triger,
         };
 
         const data = await axios.post('/transactions', newTransaction);
@@ -47,11 +52,7 @@ const addTransaction = createAsyncThunk(
         return data.data;
       }
 
-      console.log(transaction, 'transaction after condition');
-
       const response = await axios.post('/transactions', transaction);
-
-      console.log(response, 'data with static category');
 
       return response.data;
     } catch (error) {

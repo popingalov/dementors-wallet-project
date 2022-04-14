@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Transaction from 'components/transaction';
 import s from './TransactionsTable.module.css';
 import authSelectors from '../../redux/auth/auth-selectors';
@@ -7,47 +7,57 @@ import globalSelectors from '../../redux/global/global-selectors';
 export default function TransactionsTable({ transactions, fetchTransactions }) {
   const userName = useSelector(authSelectors.getUsername);
   const lang = useSelector(globalSelectors.lang);
+  const [page, setPage] = useState(1);
   useEffect(() => {
-    fetchTransactions();
-  }, [fetchTransactions]);
+    fetchTransactions(page);
+
+    console.log('не нужно столько');
+    // setPage(page + 1);
+  }, [fetchTransactions, page]);
 
   return transactions.length ? (
-    <table className={s.table}>
-      <thead className={s.table_header}>
-        <tr className={s.table_header_row}>
-          <th className={s.ths}>{lang ? 'Date' : 'Дата'}</th>
-          <th className={s.ths}>{lang ? 'Type' : 'Тип'}</th>
-          <th className={s.ths}>{lang ? 'Category' : 'Категория'}</th>
-          <th className={s.ths}>{lang ? 'Comment' : 'Комментарий'}</th>
-          <th className={s.ths}>{lang ? 'Amount' : 'Сумма'}</th>
-          <th className={s.ths}>{lang ? 'Balance' : 'Баланс'}</th>
-        </tr>
-      </thead>
-      <tbody className={s.table_body}>
-        {transactions.map(
-          ({ id, date, type, category, comment, amount, balance }) => {
-            const isPositive = type === '+';
-            return (
-              <tr
-                key={id}
-                className={`${s.table_row} + ${
-                  isPositive ? s.table_row_green : s.table_row_red
-                }`}
-              >
-                <Transaction
-                  date={date}
-                  type={type}
-                  category={category}
-                  comment={comment}
-                  amount={amount}
-                  balance={balance}
-                />
-              </tr>
-            );
-          },
-        )}
-      </tbody>
-    </table>
+    <>
+      <table className={s.table}>
+        <thead className={s.table_header}>
+          <tr key="asd" className={s.table_header_row}>
+            <th className={s.ths}>{lang ? 'Date' : 'Дата'}</th>
+            <th className={s.ths}>{lang ? 'Type' : 'Тип'}</th>
+            <th className={s.ths}>{lang ? 'Category' : 'Категория'}</th>
+            <th className={s.ths}>{lang ? 'Comment' : 'Комментарий'}</th>
+            <th className={s.ths}>{lang ? 'Amount' : 'Сумма'}</th>
+            <th className={s.ths}>{lang ? 'Balance' : 'Баланс'}</th>
+          </tr>
+        </thead>
+        <tbody className={s.table_body}>
+          {transactions.map(
+            ({ _id, date, type, category, comment, amount, balance }) => {
+              const isPositive = type === '+';
+              return (
+                <tr
+                  key={_id}
+                  className={`${s.table_row} + ${
+                    isPositive ? s.table_row_green : s.table_row_red
+                  }`}
+                >
+                  <Transaction
+                    //   key={id}
+                    date={date}
+                    type={type}
+                    category={category}
+                    comment={comment}
+                    amount={amount}
+                    balance={balance}
+                  />
+                </tr>
+              );
+            },
+          )}
+        </tbody>
+      </table>
+      <button className={s.addButton} onClick={() => setPage(page + 1)}>
+        {lang ? 'Load more' : 'Загрузить еще'}
+      </button>
+    </>
   ) : (
     <div className={s.greetings}>
       <h2>{lang ? `Hello, ${userName}!` : `Привет, ${userName}!`}</h2>

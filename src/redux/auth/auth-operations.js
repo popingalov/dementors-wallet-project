@@ -17,7 +17,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const { data } = await axios.post('/users/auth', credentials);
     token.set(data.token);
-    console.log(data);
+    
     return data;
   } catch (error) {
     toast.error('Проверьте верность введите данных');

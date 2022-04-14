@@ -6,11 +6,17 @@ import categoryReducer from './categories/categories-slice';
 import authReducer from './auth/auth-slice';
 import transactionsReducer from './transactions/transaction-reducer';
 import loadingReducer from './global/global-reducer';
+import statisticsReducer from './statistics/statistics-reducer';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
+};
+const globalPersistConfig = {
+  key: 'global',
+  storage,
+  whitelist: ['isEnglishVersion'],
 };
 
 export const store = configureStore({
@@ -18,7 +24,8 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     categories: categoryReducer,
     transactions: transactionsReducer,
-    global: loadingReducer,
+    global: persistReducer(globalPersistConfig, loadingReducer),
+    statistics: statisticsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({ serializableCheck: false }),

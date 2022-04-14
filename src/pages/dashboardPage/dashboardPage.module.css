@@ -58,6 +58,10 @@
     position: absolute;
     top: 128px;
   }
+  .box {
+    height: 415px;
+    overflow: hidden;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -89,6 +93,9 @@
 
   .box {
     width: 100%;
+    height: 415px;
+    overflow: hidden;
+    padding-left: 40px;
   }
   .currency {
     position: relative;

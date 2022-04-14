@@ -30,15 +30,15 @@ const DashboardPage = ({ children }) => {
   //   useEffect(() => {
   //     dispatch(operations.fetchCurrentUser());
   //   }, [dispatch]);
-console.log();
+  console.log();
   return (
     <>
       <Header lang={lang} />
       <Container>
         <div className={s.wrapper}>
           <main className={s.main}>
-            
-                {<Media
+            {
+              <Media
                 queries={{
                   mobile: { maxWidth: 767 },
                   other: { minWidth: 768 },
@@ -47,51 +47,46 @@ console.log();
                 {matches => {
                   return (
                     <Fragment>
-                      {matches.mobile &&
+                      {matches.mobile && (
                         <>
-                        <section className={s.nav}>
-                            <Nav />
-                        </section>
-                        {display
-                          ?
-                          <section className={s.currency}>
-                            <Currency />
+                          <section className={s.nav}>
+                            <Nav lang={lang} />
                           </section>
-                          :
-                          <>
-                            < Balance />
-                            <article className={s.box}>
-                              <Outlet /> {children}
-                            </article>
-                          </>
-                        }
+                          {display ? (
+                            <section className={s.currency}>
+                              <Currency />
+                            </section>
+                          ) : (
+                            <>
+                              <Balance lang={lang} />
+                              <article className={s.box}>
+                                <Outlet /> {children}
+                              </article>
+                            </>
+                          )}
                         </>
-                        
-                        }
-                      {matches.other &&
+                      )}
+                      {matches.other && (
                         <>
-                        
-                        <aside className={s.aside}>
-              <section className={s.nav}>
-                <Nav />
-                          </section>
-                        < Balance />
-                        <section className={s.currency}>
-                         <Currency />
-                        </section>
-                            
-              
-                        </aside>
-                        <article className={s.box}>
-              <Outlet /> {children}
-                        </article>
+                          <aside className={s.aside}>
+                            <section className={s.nav}>
+                              <Nav lang={lang} />
+                            </section>
+                            <Balance lang={lang} />
+                            <section className={s.currency}>
+                              <Currency />
+                            </section>
+                          </aside>
+                          <article className={s.box}>
+                            <Outlet /> {children}
+                          </article>
                         </>
-                        }
+                      )}
                     </Fragment>
                   );
                 }}
-              </Media>}
-              
+              </Media>
+            }
           </main>
           <div className={s.addTransactionBtn}>
             <ModalAddTransactionsBtn />
