@@ -50,6 +50,7 @@ let schema = yup.object().shape({
 });
 
 const today = new Date();
+console.log(today);
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0');
 var yyyy = today.getFullYear();
@@ -105,6 +106,15 @@ export default function ModalAddTransactions({ handleClose, lang }) {
       return amount + '.00';
     } else return amount;
   };
+  const errorMsg = () => {
+    dateFiltr < new Date(today).getTime() &&
+      toast.warn(
+        lang
+          ? 'The process of adding a transaction can take a little more time because of you add an old transaction.'
+          : 'Операция добавления может занять немного больше времени из-за того, что это транзакция добавлена задним числом.',
+        { autoClose: 5000, pauseOnHover: true },
+      );
+  };
 
   return (
     <>
@@ -120,6 +130,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
             comment: values.comment || 'Нет комментария',
             category,
             newCategory,
+            triger: dateFiltr < new Date(today).getTime(),
           };
           const reset2 = {
             type: transactionType,
@@ -128,14 +139,17 @@ export default function ModalAddTransactions({ handleClose, lang }) {
             dataFiltr: dateFiltr,
             comment: values.comment || 'Нет комментария',
             category,
+            triger: dateFiltr < new Date(today).getTime(),
           };
           const result = newCategory ? reset : reset2;
+          errorMsg();
           dispatch(transactionsOperations.addTransaction(result));
           setAmount('');
           setCategory('');
           setDate('');
           setTransactionType('-');
           resetForm();
+          handleClose();
         }}
       >
         <Form autoComplete="off">

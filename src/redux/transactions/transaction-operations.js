@@ -25,7 +25,8 @@ const addTransaction = createAsyncThunk(
   async (transaction, { getState, rejectWithValue }) => {
     const state = getState();
     const { isEnglishVersion } = state.global;
-    const { newCategory, date, dataFiltr, type, comment, amount } = transaction;
+    const { newCategory, date, dataFiltr, type, comment, amount, triger } =
+      transaction;
 
     try {
       if (newCategory) {
@@ -43,6 +44,7 @@ const addTransaction = createAsyncThunk(
           category: response.data.newCategory.value,
           comment,
           amount,
+          triger,
         };
 
         const data = await axios.post('/transactions', newTransaction);

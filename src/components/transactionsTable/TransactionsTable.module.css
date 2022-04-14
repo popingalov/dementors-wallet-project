@@ -5,6 +5,18 @@
   color: var(--green-color);
   padding: 0 6px;
 }
+.addButton {
+  display: none;
+  width: fit-content;
+  position: absolute;
+  background-color: var(--green-color);
+  color: var(--secondary-text-color);
+  padding: 10px 20px 10px 20px;
+  border: transparent;
+  border-radius: 20px;
+  margin-left: 10px;
+}
+
 @media only screen and (max-width: 767.9px) {
   .table {
     border-collapse: separate;
@@ -25,7 +37,6 @@
     width: 100%;
     border-radius: 10px;
     overflow: hidden;
-
     background-color: #fff;
   }
 
@@ -71,9 +82,13 @@
     border-bottom: 1px solid #dcdcdf;
     box-shadow: 0 3px 2px -2px rgba(255, 255, 255, 0.6);
   }
-}
-.addButton{
+  .addButton {
     display: block;
-    width: 100px;
-    height: 40px;
+    top: 780px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .addButton {
+    top: 550px;
+  }
 }
