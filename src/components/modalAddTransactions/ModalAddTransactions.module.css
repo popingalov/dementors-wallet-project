@@ -11,7 +11,7 @@
   z-index: 5;
 }
 .title {
-  font-size: 30px;
+  font-size: 24px;
   line-height: 45px;
 }
 .closeBtn {
@@ -23,12 +23,12 @@
   height: 16px;
 }
 .btnWrap {
-  width: 300px;
+  width: 100%;
   margin: 0 auto;
 }
 .cancelBtn,
 .acceptBtn {
-  width: 300px;
+  width: 100%;
   height: 50px;
   font-family: var(--primary-font);
   border-radius: 20px;
@@ -115,7 +115,7 @@
   transition: 0.3s ease all;
   z-index: 1;
 }
-#button-2 .knobs:before {
+.knobs:before {
   content: '';
   position: absolute;
   width: 44px;
@@ -135,21 +135,21 @@
   padding: 9px 4px;
   transition: 0.5s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
-#button-2 .knobsTransactions:before {
+.knobsTransactions:before {
   background-image: url('../../assets/images/icons/outcomes.svg');
 }
-#button-2 .checkbox:checked + .knobs:before {
+.checkbox:checked + .knobs:before {
   content: '';
   left: -4px;
   background-color: var(--green-color);
   box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
 }
-#button-2 .checkbox:checked + .knobsTransactions:before {
+.checkbox:checked + .knobsTransactions:before {
   background-image: url('../../assets/images/icons/+.svg');
 }
-#button-2 .knobs,
-#button-2.knobs:before,
-#button-2 .layer {
+.knobs,
+.knobs:before,
+.layer {
   transition: 0.5s ease all;
 }
 
@@ -208,15 +208,13 @@
   background-size: 50%;
   box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
 }
-@media screen and (min-width: 320px) {
-  /* .btn {
-    bottom: 40px;
-    right: 40px;
-  } */
-}
+
 @media screen and (min-width: 480px) {
   .closeBtn {
     display: flex;
+  }
+  .title {
+    font-size: 30px;
   }
   .sumAndDateWrap {
     width: 380px;
@@ -229,5 +227,8 @@
   }
   .sumInput[placeholder] {
     margin-bottom: 0;
+  }
+  .btnWrap {
+    width: 300px;
   }
 }

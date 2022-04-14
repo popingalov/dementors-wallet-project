@@ -18,8 +18,6 @@ import Loader from './components/loader/Loader';
 // import Money from "components/money/Money";
 
 import Header from './components/header';
-import trns from './helpers/trns-example.json';
-import DashBoard from 'components/dashboard';
 import Money from 'components/money';
 
 import Currency from './components/currency';
@@ -93,6 +91,14 @@ export default function App() {
                     <DashboardPage>
                       <Statistics />
                     </DashboardPage>
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/exchange-rate"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <DashboardPage />
                   </PrivateRoute>
                 }
               />

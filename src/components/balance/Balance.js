@@ -9,7 +9,9 @@ export default function Balance({ lang }) {
     <>
       <div className={s.container}>
         <span className={s.text}>{lang ? 'YOUR BALANCE' : 'ВАШ БАЛАНС'}</span>
-        <p className={s.balance}>₴{balance}</p>
+        <p className={s.balance}>
+          ₴<span className={s.amount}>{balance || '0.00'}</span>{' '}
+        </p>
       </div>
     </>
   );
