@@ -1,5 +1,5 @@
 import { Formik, Form } from 'formik';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import authOperations from '../../redux/auth/auth-operations';
@@ -34,6 +34,7 @@ const RegistrationSchema = Yup.object().shape({
     .required('Обязательное поле'),
 });
 export default function RegisterForm() {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const handleSubmit = ({ name, email, password }) => {
     dispatch(authOperations.register({ name, email, password }));
@@ -51,6 +52,7 @@ export default function RegisterForm() {
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
           resetForm();
+          navigate('/login')
         }}
         validationSchema={RegistrationSchema}
       >
