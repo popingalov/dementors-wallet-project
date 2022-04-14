@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import statisticsSelectors from 'redux/statistics/statistics-selectors';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const data = {
+export const startV = {
   datasets: [
     {
       label: '# of Votes',
@@ -17,19 +17,36 @@ export const data = {
     },
   ],
 };
-const { datasets } = data;
+const { datasets } = startV;
 
 const Charts = () => {
   const statistics = useSelector(statisticsSelectors.statisticMinus);
-  ппппппппппппппппппппппп;
+  const [data, setData] = useState(startV);
   useEffect(() => {
-    datasets.flatMap(({ backgroundColor, data }) => {
-      return statistics.forEach(({ color, minus }) => {
-        backgroundColor.push(color);
-        data.push(minus);
-      }, []);
+    // datasets.flatMap(({ backgroundColor, data }) => {
+    //   return statistics.forEach(({ color, minus }) => {
+    //     backgroundColor.push(color);
+    //     data.push(minus);
+    //   }, []);
+    // });
+    const newData = {
+      datasets: [
+        {
+          label: [],
+          data: [],
+          backgroundColor: [],
+          borderWidth: 1,
+        },
+      ],
+    };
+    statistics.forEach(({ color, minus, category }) => {
+      newData.datasets[0].backgroundColor.push(color);
+      newData.datasets[0].data.push(minus);
+      newData.datasets[0].label.push(category);
     });
-  }, []);
+    console.log(newData);
+    setData(newData);
+  }, [statistics]);
 
   return (
     <div className={s.containerr}>

@@ -46,7 +46,8 @@ export default function Statistics() {
   //   });
 
   const statistics = useSelector(statisticsSelectors.statisticMinus);
-
+  const balance = useSelector(statisticsSelectors.statisticTotal);
+  console.log(balance);
   return (
     <div className={s.box_statistics}>
       <div className={s.box_circle}>
@@ -71,7 +72,7 @@ export default function Statistics() {
         </div>
 
         <ul className={s.list_statistics}>
-          {statistics.map(({ category, color, minus }) => {
+          {statistics?.map(({ category, color, minus }) => {
             return (
               <li key={color}>
                 <div
@@ -88,14 +89,14 @@ export default function Statistics() {
             <p className={s.info_statistics_expenses}>
               {lang ? 'Outcomes' : 'Расходы'}:
             </p>
-            <p>000</p>
+            <p>{balance[0]}</p>
           </li>
 
           <li>
             <p className={s.info_statistics_income}>
               {lang ? 'Incomes' : 'Доходы'}:
             </p>
-            <p>0000</p>
+            <p>{balance[1]}</p>
           </li>
         </ul>
       </div>
