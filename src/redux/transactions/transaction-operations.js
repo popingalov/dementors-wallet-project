@@ -8,13 +8,11 @@ const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
   async (page, { rejectWithValue }) => {
     try {
-        
       const { data } = await axios.get(`/transactions?page=${page}`);
 
       console.log(data);
 
-      return {...data, page};
-      
+      return { ...data, page };
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -33,6 +31,7 @@ const addTransaction = createAsyncThunk(
         const newCategoryObj = {
           value: newCategory,
           isEnglishVersion,
+          type,
         };
 
         const response = await axios.post('/categories', newCategoryObj);
@@ -45,8 +44,8 @@ const addTransaction = createAsyncThunk(
           amount,
         };
 
-        const {data} = await axios.post('/transactions', newTransaction);
-        console.log(data, "data from addTransaction");
+        const { data } = await axios.post('/transactions', newTransaction);
+        console.log(data, 'data from addTransaction');
         return data;
       }
 
@@ -56,7 +55,9 @@ const addTransaction = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      toast.error("Недостаточный баланс !!! Сначала внесите транзакцию в доходы")
+      toast.error(
+        'Недостаточный баланс !!! Сначала внесите транзакцию в доходы',
+      );
       return rejectWithValue(error);
     }
   },

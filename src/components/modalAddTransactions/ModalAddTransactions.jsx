@@ -188,6 +188,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
             onChange={onChangeCategory}
             lang={lang}
             newCategory={newCategory}
+            type={transactionType}
           />
           <div className={s.sumAndDateWrap}>
             <Field

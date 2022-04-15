@@ -8,15 +8,21 @@ export default function TransactionsCategoriesSelect({
   onChange,
   newCategory,
   lang,
+  type,
 }) {
   const categories = useSelector(categoriesSelectors.getCategories);
-  const options = (
-    lang
+  const options = () => {
+    const takeLange = lang
       ? categories.categories.categoryList.en
-      : categories.categories.categoryList.ru
-  ).map(item => {
-    return { label: item.value, value: item.value };
-  });
+      : categories.categories.categoryList.ru;
+    console.log(type);
+    const resultFormap = takeLange.filter(item => item.type === type);
+    const result = resultFormap.map(item => {
+      return { label: item.value, value: item.value };
+    });
+    return result;
+  };
+
   const DropdownIndicator = props => {
     return (
       <components.DropdownIndicator {...props}>
@@ -124,7 +130,7 @@ export default function TransactionsCategoriesSelect({
   return (
     <Select
       components={{ DropdownIndicator, ClearIndicator, IndicatorSeparator }}
-      options={options}
+      options={options()}
       styles={customStyles}
       isDisabled={newCategory}
       isClearable={true}
