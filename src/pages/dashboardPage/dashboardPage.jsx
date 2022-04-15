@@ -28,7 +28,6 @@ const DashboardPage = ({ children }) => {
   //   useEffect(() => {
   //     dispatch(operations.fetchCurrentUser());
   //   }, [dispatch]);
-  console.log();
   return (
     <>
       <Header lang={lang} />

@@ -19,7 +19,7 @@ export const startV = {
   ],
 };
 
-const Charts =  () => {
+const Charts = () => {
   const statistics = useSelector(statisticsSelectors.statisticMinus);
   const balance = useSelector(getBalance);
 
@@ -33,11 +33,10 @@ const Charts =  () => {
           backgroundColor: [],
           borderWidth: 1,
         },
-        {}
+        {},
       ],
-    }
-    console.log(statistics);
-    statistics.forEach(({ color, minus, category }) => {
+    };
+    statistics?.forEach(({ color, minus, category }) => {
       newData.datasets[0].backgroundColor.push(color);
       newData.datasets[0].data.push(minus);
       newData.datasets[0].label.push(category);
@@ -47,7 +46,7 @@ const Charts =  () => {
 
   return (
     <div className={s.container}>
-      <Doughnut data={data} style={{ width: 320, height: 320,  }} />
+      <Doughnut data={data} style={{ width: 320, height: 320 }} />
       <p className={s.text}> ₴ {balance}.00</p>
     </div>
   );

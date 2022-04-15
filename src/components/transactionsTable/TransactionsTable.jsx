@@ -9,7 +9,6 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
   const lang = useSelector(globalSelectors.lang);
   const [page, setPage] = useState(1);
   useEffect(() => {
-    console.log(page);
     fetchTransactions(page);
     // transactions;
     // setPage(page + 1);
