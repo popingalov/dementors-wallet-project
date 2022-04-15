@@ -23,6 +23,7 @@ export default function TransactionsTable() {
   const setNextPage = () => setPage(page + 1);
   const setPreviousPage = () => setPage(page - 1);
 
+
   return transactions.length ? (
     <>
       <table className={s.table}>
