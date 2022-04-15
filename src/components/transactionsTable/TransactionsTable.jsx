@@ -1,18 +1,28 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Transaction from 'components/transaction';
 import s from './TransactionsTable.module.css';
 import authSelectors from '../../redux/auth/auth-selectors';
+import transactionsOperations from '../../redux/transactions/transaction-operations'
 import { useSelector } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
-export default function TransactionsTable({ transactions, fetchTransactions }) {
+import {getTransactions} from '../../redux/transactions/transaction-selectors'
+
+export default function TransactionsTable() {
   const userName = useSelector(authSelectors.getUsername);
   const lang = useSelector(globalSelectors.lang);
+  const transactions = useSelector(getTransactions)
+  console.log(transactions, "transactions from TransactionsTable")
+  const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+
   useEffect(() => {
-    fetchTransactions(page);
-    // transactions;
-    // setPage(page + 1);
-  }, [fetchTransactions, page]);
+    dispatch(transactionsOperations.fetchTransactions(page));
+  }, [dispatch, page]);
+
+  const setNextPage = () => setPage(page + 1);
+  const setPreviousPage = () => setPage(page - 1);
+
 
   return transactions.length ? (
     <>
@@ -58,15 +68,14 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
           className={s.loadLessButton}
           type="button"
           name="loadLess"
-          disabled={transactions.length < 6}
-          onClick={() => setPage(page - 1)}
+          disabled = {page === 1}
+          onClick={setPreviousPage}
         ></button>
         <button
           className={s.loadMoreButton}
           type="button"
           name="loadMore"
-          disabled={transactions.length < 6}
-          onClick={() => setPage(page + 1)}
+          onClick={setNextPage}
         ></button>
       </div>
     </>

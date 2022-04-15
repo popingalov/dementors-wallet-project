@@ -30,6 +30,7 @@
   background-color: var(--secondary-text-color);
 }
 .loadLessButton {
+  margin-bottom: 20px;
   transform: rotate(180deg);
 }
 .loadMoreButton {

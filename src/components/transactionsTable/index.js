@@ -1,1 +1,2 @@
-export { default } from './TransactionsTable.container';
+export { default } from './TransactionsTable';
+
