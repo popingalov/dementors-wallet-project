@@ -12,10 +12,11 @@ import LoginVerificationModal from 'components/loginVerificationModal/LoginVerif
 
 const modalRoot = document.getElementById('modal-root');
 
-export default function Modal({ lang }) {
+export default function Modal({ lang, categoriesTest }) {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(globalSelectors.isModalOpen);
   const isModalLogOutOpen = useSelector(globalSelectors.isModalLogOutOpen);
+
   const isAddTransactionModalOpen = useSelector(
     globalSelectors.isModalAddTransactionOpen,
   );
@@ -70,7 +71,11 @@ export default function Modal({ lang }) {
             <ModalLogOut lang={lang} handleClose={handleClose} />
           )}
           {isAddTransactionModalOpen && (
-            <ModalAddTransactions lang={lang} handleClose={handleClose} />
+            <ModalAddTransactions
+              lang={lang}
+              handleClose={handleClose}
+              testCategory={categoriesTest}
+            />
           )}
           {isLoginVerificationModalOpen && (
             <LoginVerificationModal lang={lang} handleClose={handleClose} />

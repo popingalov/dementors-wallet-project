@@ -15,13 +15,11 @@ export default function TransactionsTable({ page }) {
   const userName = useSelector(authSelectors.getUsername);
   const lang = useSelector(globalSelectors.lang);
   const transactions = useSelector(getTransactions);
-  //   const pagesQuantity = useSelector(getPagesQuantity);
+
   const currentPage = useSelector(getCurrentPage);
-  //   console.log(pagesQuantity, 'pagesQuantity');
-  //   console.log(transactions, 'transactions from TransactionsTable');
+
   const dispatch = useDispatch();
-  // const [page, setPage] = useState(1);
-  // console.log(page, "page");
+ 
 
   useEffect(() => {
     dispatch(transactionsOperations.fetchTransactions(currentPage));

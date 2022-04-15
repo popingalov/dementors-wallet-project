@@ -12,6 +12,8 @@ import { ModalAddTransactionsBtn } from '../../components/modalAddTransactions';
 import globalSelectors from 'redux/global/global-selectors';
 import Modal from '../../components/modal';
 import Container from 'components/сontainer/Container';
+import categoriesSelectors from 'redux/categories/categories-selectors';
+// import categoriesSelectors from '../../redux/categories/categories-selectors';
 
 const DashboardPage = ({ children }) => {
   const location = useLocation();
@@ -20,6 +22,7 @@ const DashboardPage = ({ children }) => {
   const dispatch = useDispatch();
   const lang = useSelector(globalSelectors.lang);
   const isModalOpen = useSelector(globalSelectors.isModalOpen);
+  const test = useSelector(categoriesSelectors.getCategories);
   useEffect(() => {
     setDisplay(path === '/exchange-rate' ? true : false);
     dispatch(categoriesOperations.getCategories());
@@ -89,7 +92,7 @@ const DashboardPage = ({ children }) => {
             <ModalAddTransactionsBtn />
           </div>
         </div>
-        {isModalOpen && <Modal lang={lang} />}
+        {isModalOpen && <Modal lang={lang} categoriesTest={test} />}
       </Container>
     </>
   );

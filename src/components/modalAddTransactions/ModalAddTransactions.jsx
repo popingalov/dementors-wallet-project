@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import closeBtnIcon from '../../assets/images/icons/close.svg';
 import modalActions from '../../redux/global/global-actions';
@@ -16,8 +16,9 @@ import './ModalAddTransactions.module.css';
 import s from './ModalAddTransactions.module.css';
 import TransactionsCategoriesSelect from './TransactionsCategoriesSelect';
 // import {setPage} from '../../redux/transactions/transaction-actions';
-
+import categoriesSelectors from '../../redux/categories/categories-selectors';
 import schema from './Schema';
+import categoriesOperations from '../../redux/categories/categories-operations';
 const today = new Date();
 
 var dd = String(today.getDate()).padStart(2, '0');
@@ -33,7 +34,11 @@ const initialValues = {
   category: '',
 };
 
-export default function ModalAddTransactions({ handleClose, lang }) {
+export default function ModalAddTransactions({
+  handleClose,
+  lang,
+  testCategory,
+}) {
   const [date, setDate] = useState(currentDate);
   const [dateFiltr, setDateFiltr] = useState(new Date(today).getTime());
   const [amount, setAmount] = useState('');
@@ -41,6 +46,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
   const [transactionType, setTransactionType] = useState('-');
   const [newCategory, setNewCategory] = useState('');
   const dispatch = useDispatch();
+  const categories = useSelector(categoriesSelectors.getCategories);
 
   const handleCheckbox = e => {
     e.target.checked === true
@@ -108,6 +114,8 @@ export default function ModalAddTransactions({ handleClose, lang }) {
           const result = newCategory ? reset : reset2;
           errorMsg();
           dispatch(transactionsOperations.addTransaction(result));
+
+          dispatch(categoriesOperations.getCategories());
           // dispatch(setPage(1))
           setAmount('');
           setCategory('');
@@ -189,6 +197,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
             lang={lang}
             newCategory={newCategory}
             type={transactionType}
+            categories={testCategory}
           />
           <div className={s.sumAndDateWrap}>
             <Field

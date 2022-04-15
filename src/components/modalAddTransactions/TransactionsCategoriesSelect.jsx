@@ -1,21 +1,20 @@
 import Select, { components } from 'react-select';
 import IndicatorArrow from '../../assets/images/icons/categories.svg';
 import ClearIcon from '../../assets/images/icons/close.svg';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import categoriesSelectors from '../../redux/categories/categories-selectors';
+// import categoriesSelectors from '../../redux/categories/categories-selectors';
 export default function TransactionsCategoriesSelect({
   onChange,
   newCategory,
   lang,
   type,
+  categories,
 }) {
-  const categories = useSelector(categoriesSelectors.getCategories);
   const options = () => {
     const takeLange = lang
       ? categories.categories.categoryList.en
       : categories.categories.categoryList.ru;
-    console.log(type);
     const resultFormap = takeLange.filter(item => item.type === type);
     const result = resultFormap.map(item => {
       return { label: item.value, value: item.value };
