@@ -47,7 +47,7 @@ const Charts = () => {
   return (
     <div className={s.container}>
       <Doughnut data={data} style={{ width: 320, height: 320 }} />
-      <p className={s.text}> ₴ {balance}.00</p>
+      {balance&&<p className={s.text}> ₴ {balance}.00</p>}
     </div>
   );
 };
