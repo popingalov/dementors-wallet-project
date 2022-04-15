@@ -1,27 +1,31 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import Transaction from 'components/transaction';
-import s from './TransactionsTable.module.css';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
-import transactionsOperations from '../../redux/transactions/transaction-operations'
-import { useSelector } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
-import {getTransactions} from '../../redux/transactions/transaction-selectors'
+import transactionsOperations from '../../redux/transactions/transaction-operations';
+import { getPagesQuantity, getTransactions, getCurrentPage} from '../../redux/transactions/transaction-selectors';
+import s from './TransactionsTable.module.css';
+import {setPage} from '../../redux/transactions/transaction-actions'
 
 export default function TransactionsTable() {
   const userName = useSelector(authSelectors.getUsername);
   const lang = useSelector(globalSelectors.lang);
-  const transactions = useSelector(getTransactions)
+  const transactions = useSelector(getTransactions);
+  const pagesQuantity = useSelector(getPagesQuantity);
+  const currentPage = useSelector(getCurrentPage);
+  console.log(pagesQuantity, "pagesQuantity");
   console.log(transactions, "transactions from TransactionsTable")
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
+  // console.log(page, "page");
 
   useEffect(() => {
-    dispatch(transactionsOperations.fetchTransactions(page));
-  }, [dispatch, page]);
+    dispatch(transactionsOperations.fetchTransactions(currentPage));
+  }, [dispatch, currentPage]);
 
-  const setNextPage = () => setPage(page + 1);
-  const setPreviousPage = () => setPage(page - 1);
+  const setNextPage = () => dispatch(setPage(currentPage + 1));
+  const setPreviousPage = () => dispatch(setPage(currentPage - 1));
 
 
   return transactions.length ? (
@@ -68,13 +72,14 @@ export default function TransactionsTable() {
           className={s.loadLessButton}
           type="button"
           name="loadLess"
-          disabled = {page === 1}
+          disabled = {currentPage === 1}
           onClick={setPreviousPage}
         ></button>
         <button
           className={s.loadMoreButton}
           type="button"
           name="loadMore"
+          disabled = {currentPage === pagesQuantity}
           onClick={setNextPage}
         ></button>
       </div>

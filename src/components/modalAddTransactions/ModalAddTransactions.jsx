@@ -15,6 +15,8 @@ import transactionsOperations from '../../redux/transactions/transaction-operati
 import './ModalAddTransactions.module.css';
 import s from './ModalAddTransactions.module.css';
 import TransactionsCategoriesSelect from './TransactionsCategoriesSelect';
+// import {setPage} from '../../redux/transactions/transaction-actions';
+
 import schema from './Schema';
 const today = new Date();
 
@@ -106,6 +108,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
           const result = newCategory ? reset : reset2;
           errorMsg();
           dispatch(transactionsOperations.addTransaction(result));
+          // dispatch(setPage(1))
           setAmount('');
           setCategory('');
           setDate('');
