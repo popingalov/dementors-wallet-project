@@ -1,5 +1,5 @@
-.nav{
-    margin-bottom: 30px;
+.nav {
+  margin-bottom: 30px;
 }
 
 .list {
@@ -37,8 +37,6 @@
 
   .linkText {
     display: inline-block;
-
-    font-family: 'Poppins';
     font-weight: 400;
     font-size: 18px;
     line-height: 1.5;

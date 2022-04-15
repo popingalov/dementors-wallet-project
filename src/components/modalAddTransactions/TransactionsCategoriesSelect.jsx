@@ -1,5 +1,6 @@
 import Select, { components } from 'react-select';
 import IndicatorArrow from '../../assets/images/icons/categories.svg';
+import ClearIcon from '../../assets/images/icons/close.svg';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import categoriesSelectors from '../../redux/categories/categories-selectors';
@@ -23,7 +24,20 @@ export default function TransactionsCategoriesSelect({
       </components.DropdownIndicator>
     );
   };
-
+  const ClearIndicator = props => {
+    return (
+      <components.ClearIndicator {...props}>
+        <img src={ClearIcon} alt="" width="20px" height="20px" />
+      </components.ClearIndicator>
+    );
+  };
+  const IndicatorSeparator = props => {
+    return (
+      <components.IndicatorSeparator {...props}>
+        <span></span>
+      </components.IndicatorSeparator>
+    );
+  };
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
@@ -33,7 +47,12 @@ export default function TransactionsCategoriesSelect({
     }),
 
     indicatorSeparator: () => ({
-      display: 'none',
+      marginTop: '4px',
+      width: '1px',
+      height: '18px',
+      left: '-9px',
+      position: 'absolute',
+      backgroundColor: 'var(--placeholder-text-color)',
     }),
 
     indicatorsContainer: () => ({
@@ -43,12 +62,22 @@ export default function TransactionsCategoriesSelect({
       right: '8px',
       marginTop: '-26px',
     }),
+
+    clearIndicator: () => ({
+      width: '12px',
+      height: '12px',
+      position: 'absolute',
+      padding: '0px',
+      left: ' -30px',
+      top: '7px',
+    }),
     dropdownIndicator: () => ({
       width: '20px',
       height: '20px',
       padding: 0,
       paddingTop: '8px',
     }),
+
     control: () => ({
       width: '100%',
       borderBottom: '1px solid var(--placeholder-text-color)',
@@ -94,10 +123,11 @@ export default function TransactionsCategoriesSelect({
 
   return (
     <Select
-      components={{ DropdownIndicator }}
+      components={{ DropdownIndicator, ClearIndicator, IndicatorSeparator }}
       options={options}
       styles={customStyles}
       isDisabled={newCategory}
+      isClearable={true}
       placeholder={lang ? 'Choose a category' : 'Выберите категорию'}
       onChange={e => {
         onChange(e);
