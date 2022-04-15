@@ -4,7 +4,6 @@ import s from './TransactionsTable.module.css';
 import authSelectors from '../../redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
-
 export default function TransactionsTable({ transactions, fetchTransactions }) {
   const userName = useSelector(authSelectors.getUsername);
   const lang = useSelector(globalSelectors.lang);
@@ -55,9 +54,22 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
           )}
         </tbody>
       </table>
-      <button className={s.addButton} onClick={() => setPage(page + 1)}>
-        {lang ? 'Load more' : 'Загрузить еще'}
-      </button>
+      <div className={s.arrowsBtnWrap}>
+        <button
+          className={s.loadLessButton}
+          type="button"
+          name="loadLess"
+          disabled={transactions.length < 6}
+          onClick={() => setPage(page - 1)}
+        ></button>
+        <button
+          className={s.loadMoreButton}
+          type="button"
+          name="loadMore"
+          disabled={transactions.length < 6}
+          onClick={() => setPage(page + 1)}
+        ></button>
+      </div>
     </>
   ) : (
     <div className={s.greetings}>
