@@ -44,7 +44,7 @@ const Charts = () => {
   }, [statistics]);
 
   return (
-    data.datasets.length>=2 && (
+    balance && (
       <div className={s.container}>
         <Doughnut data={data} style={{ width: 320, height: 320 }} />
         <p className={s.text}> ₴ {balance}.00</p>
