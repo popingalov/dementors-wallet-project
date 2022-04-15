@@ -5,7 +5,6 @@ import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import * as yup from 'yup';
 import closeBtnIcon from '../../assets/images/icons/close.svg';
 import modalActions from '../../redux/global/global-actions';
 import PropTypes from 'prop-types';
@@ -16,39 +15,7 @@ import transactionsOperations from '../../redux/transactions/transaction-operati
 import './ModalAddTransactions.module.css';
 import s from './ModalAddTransactions.module.css';
 import TransactionsCategoriesSelect from './TransactionsCategoriesSelect';
-
-let schema = yup.object().shape({
-  type: yup
-    .string()
-    .default('-')
-    .required(
-      "Выберите тип транзакции 'Доход' или  'Расходы'. Это обязательное поле ",
-    ),
-  amount: yup
-    .string()
-    .max(10)
-    .default('0.00')
-    .required('Введите сумму. Это обязательное поле'),
-
-  date: yup
-    .string()
-    .default(function () {
-      const today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0');
-      var yyyy = today.getFullYear();
-      let currentDate = dd + '.' + mm + '.' + yyyy;
-      return currentDate;
-    })
-    .required(),
-  comment: yup
-    .string()
-    .max(15, 'Максимально допустимая длинна комментария 15 символов'),
-  category: yup
-    .string()
-    .max(15, 'Максимально допустимая длинна комментария 15 символов'),
-});
-
+import schema from './Schema';
 const today = new Date();
 console.log(today);
 var dd = String(today.getDate()).padStart(2, '0');
@@ -80,7 +47,7 @@ export default function ModalAddTransactions({ handleClose, lang }) {
   };
 
   const onChangeCategory = e => {
-    return setCategory(e.value);
+    return e === null ? setCategory('') : setCategory(e.value);
   };
 
   const getDate = e => {
@@ -115,7 +82,6 @@ export default function ModalAddTransactions({ handleClose, lang }) {
         { autoClose: 5000, pauseOnHover: true },
       );
   };
-
   return (
     <>
       <Formik

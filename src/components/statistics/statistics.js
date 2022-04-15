@@ -40,10 +40,6 @@ let enMonth = [
 ];
 export default function Statistics() {
   const lang = useSelector(globalSelectors.lang);
-  //   const dispatch = useDispatch();
-  //   useEffect(() => {
-  //     dispatch(statisticsOperations.getStatistics());
-  //   });
 
   const statistics = useSelector(statisticsSelectors.statisticMinus);
   const balance = useSelector(statisticsSelectors.statisticTotal);

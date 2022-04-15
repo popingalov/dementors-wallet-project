@@ -21,7 +21,7 @@ export default function TransactionsTable() {
   }, [dispatch, page]);
 
   const setNextPage = () => setPage(page + 1);
-  // const setPreviousPage = () => setPage(page - 1);
+  const setPreviousPage = () => setPage(page - 1);
 
   return transactions.length ? (
     <>
@@ -62,9 +62,22 @@ export default function TransactionsTable() {
           )}
         </tbody>
       </table>
-      <button className={s.addButton} onClick={setNextPage}>
-        {lang ? 'Load more' : 'Загрузить еще'}
-      </button>
+      <div className={s.arrowsBtnWrap}>
+        <button
+          className={s.loadLessButton}
+          type="button"
+          name="loadLess"
+          disabled={transactions.length < 6}
+          onClick={setPreviousPage}
+        ></button>
+        <button
+          className={s.loadMoreButton}
+          type="button"
+          name="loadMore"
+          disabled={transactions.length < 6}
+          onClick={setNextPage}
+        ></button>
+      </div>
     </>
   ) : (
     <div className={s.greetings}>
