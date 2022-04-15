@@ -19,10 +19,9 @@ export const startV = {
   ],
 };
 
-const Charts =  () => {
+const Charts = () => {
   const statistics = useSelector(statisticsSelectors.statisticMinus);
   const balance = useSelector(getBalance);
-
   const [data, setData] = useState(startV);
   useEffect(() => {
     const newData = {
@@ -31,13 +30,12 @@ const Charts =  () => {
           label: [],
           data: [],
           backgroundColor: [],
-          borderWidth: 1,
+          borderWidth: 0,
         },
-        {}
+        {},
       ],
-    }
-    console.log(statistics);
-    statistics.forEach(({ color, minus, category }) => {
+    };
+    statistics?.forEach(({ color, minus, category }) => {
       newData.datasets[0].backgroundColor.push(color);
       newData.datasets[0].data.push(minus);
       newData.datasets[0].label.push(category);
@@ -46,10 +44,12 @@ const Charts =  () => {
   }, [statistics]);
 
   return (
-    <div className={s.container}>
-      <Doughnut data={data} style={{ width: 320, height: 320,  }} />
-      <p className={s.text}> ₴ {balance}.00</p>
-    </div>
+    balance && (
+      <div className={s.container}>
+        <Doughnut data={data} style={{ width: 320, height: 320 }} />
+        <p className={s.text}> ₴ {balance}.00</p>
+      </div>
+    )
   );
 };
 export default Charts;

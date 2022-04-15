@@ -19,7 +19,7 @@ import TransactionsCategoriesSelect from './TransactionsCategoriesSelect';
 
 import schema from './Schema';
 const today = new Date();
-console.log(today);
+
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0');
 var yyyy = today.getFullYear();
@@ -107,7 +107,6 @@ export default function ModalAddTransactions({ handleClose, lang }) {
           };
           const result = newCategory ? reset : reset2;
           errorMsg();
-          console.log(result, 'компонент');
           dispatch(transactionsOperations.addTransaction(result));
           // dispatch(setPage(1))
           setAmount('');

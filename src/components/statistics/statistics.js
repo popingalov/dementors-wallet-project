@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import s from 'components/statistics/statistics.module.css';
 import Donut from './doughnut';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
 import statisticsSelectors from 'redux/statistics/statistics-selectors';
-// import statisticsOperations from 'redux/statistics/statistics-operations';
+import statisticsOperations from 'redux/statistics/statistics-operations';
 
 let Data = new Date();
 const Year = Data.getFullYear();
@@ -40,10 +40,12 @@ let enMonth = [
 ];
 export default function Statistics() {
   const lang = useSelector(globalSelectors.lang);
-
+  const dispatch = useDispatch();
   const statistics = useSelector(statisticsSelectors.statisticMinus);
   const balance = useSelector(statisticsSelectors.statisticTotal);
-
+  useEffect(() => {
+    dispatch(statisticsOperations.getStatistics());
+  }, [dispatch]);
   return (
     <div className={s.box_statistics}>
       <div className={s.box_circle}>

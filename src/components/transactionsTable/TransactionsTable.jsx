@@ -27,6 +27,7 @@ export default function TransactionsTable() {
   const setNextPage = () => dispatch(setPage(currentPage + 1));
   const setPreviousPage = () => dispatch(setPage(currentPage - 1));
 
+
   return transactions.length ? (
     <>
       <table className={s.table}>
