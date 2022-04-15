@@ -67,14 +67,13 @@ export default function TransactionsTable() {
           className={s.loadLessButton}
           type="button"
           name="loadLess"
-          disabled={transactions.length < 6}
+          disabled = {page === 1}
           onClick={setPreviousPage}
         ></button>
         <button
           className={s.loadMoreButton}
           type="button"
           name="loadMore"
-          disabled={transactions.length < 6}
           onClick={setNextPage}
         ></button>
       </div>
