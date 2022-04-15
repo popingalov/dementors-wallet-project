@@ -4,6 +4,7 @@
     width: 715px;
     backdrop-filter: blur(50px);
     margin: auto;
+    position: absolute;
   }
 
   .box_circle {
@@ -428,7 +429,6 @@
 .container {
   position: relative;
 }
-
 .text {
   position: absolute;
   top: 50%;
@@ -439,3 +439,4 @@
   line-height: 1.5;
   color: #000000;
 }
+

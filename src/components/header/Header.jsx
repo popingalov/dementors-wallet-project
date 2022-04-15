@@ -17,8 +17,8 @@ const Header = ({ lang }) => {
           <Link className={s.logoLink} to="/">
             <LogoIcon className={s.logoIcon} />
           </Link>
-          <LangCheckbox lang={lang} />
           <div className={s.rightContainerWrap}>
+            <LangCheckbox lang={lang} />
             <span className={s.userName}>{userName}</span>
             <ModalLogOutBtn lang={lang} />
           </div>
