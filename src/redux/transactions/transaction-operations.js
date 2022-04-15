@@ -12,6 +12,7 @@ const fetchTransactions = createAsyncThunk(
         return state;
       }
       const { data } = await axios.get(`/transactions?page=${page}`);
+      //   const result = state ? [...state, ...data] : data;
       const result = state ? [...data, ...state] : data;
       return result;
     } catch (error) {
@@ -25,8 +26,7 @@ const addTransaction = createAsyncThunk(
   async (transaction, { getState, rejectWithValue }) => {
     const state = getState();
     const { isEnglishVersion } = state.global;
-    const { newCategory, date, dataFiltr, type, comment, amount, triger } =
-      transaction;
+    const { newCategory, date, type, comment, amount } = transaction;
 
     try {
       if (newCategory) {
@@ -39,12 +39,10 @@ const addTransaction = createAsyncThunk(
 
         const newTransaction = {
           date,
-          dataFiltr,
           type,
           category: response.data.newCategory.value,
           comment,
           amount,
-          triger,
         };
 
         const data = await axios.post('/transactions', newTransaction);

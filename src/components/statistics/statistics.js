@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import s from 'components/statistics/statistics.module.css';
 import Donut from './doughnut';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
 import statisticsSelectors from 'redux/statistics/statistics-selectors';
-import statisticsOperations from 'redux/statistics/statistics-operations';
+// import statisticsOperations from 'redux/statistics/statistics-operations';
 
 let Data = new Date();
 const Year = Data.getFullYear();
@@ -40,7 +40,7 @@ let enMonth = [
 ];
 export default function Statistics() {
   const lang = useSelector(globalSelectors.lang);
-  const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
   //   useEffect(() => {
   //     dispatch(statisticsOperations.getStatistics());
   //   });

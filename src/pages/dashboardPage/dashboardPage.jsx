@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { useLocation, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Media from 'react-media';
@@ -9,7 +8,6 @@ import Nav from '../../components/nav';
 import Balance from '../../components/balance';
 import Currency from '../../components/money';
 import categoriesOperations from '../../redux/categories/categories-operations';
-import operations from '../../redux/auth/auth-operations';
 import { ModalAddTransactionsBtn } from '../../components/modalAddTransactions';
 import globalSelectors from 'redux/global/global-selectors';
 import Modal from '../../components/modal';
@@ -25,7 +23,7 @@ const DashboardPage = ({ children }) => {
   useEffect(() => {
     setDisplay(path === '/exchange-rate' ? true : false);
     dispatch(categoriesOperations.getCategories());
-  }, [path]);
+  }, [path, dispatch]);
 
   //   useEffect(() => {
   //     dispatch(operations.fetchCurrentUser());

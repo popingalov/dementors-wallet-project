@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import s from './statistics.module.css';
 import statisticsSelectors from 'redux/statistics/statistics-selectors';
@@ -17,18 +17,11 @@ export const startV = {
     },
   ],
 };
-const { datasets } = startV;
 
 const Charts = () => {
   const statistics = useSelector(statisticsSelectors.statisticMinus);
   const [data, setData] = useState(startV);
   useEffect(() => {
-    // datasets.flatMap(({ backgroundColor, data }) => {
-    //   return statistics.forEach(({ color, minus }) => {
-    //     backgroundColor.push(color);
-    //     data.push(minus);
-    //   }, []);
-    // });
     const newData = {
       datasets: [
         {
@@ -39,6 +32,7 @@ const Charts = () => {
         },
       ],
     };
+    console.log(statistics);
     statistics.forEach(({ color, minus, category }) => {
       newData.datasets[0].backgroundColor.push(color);
       newData.datasets[0].data.push(minus);

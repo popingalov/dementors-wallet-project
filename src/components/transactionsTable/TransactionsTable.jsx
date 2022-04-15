@@ -4,14 +4,15 @@ import s from './TransactionsTable.module.css';
 import authSelectors from '../../redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
+
 export default function TransactionsTable({ transactions, fetchTransactions }) {
   const userName = useSelector(authSelectors.getUsername);
   const lang = useSelector(globalSelectors.lang);
   const [page, setPage] = useState(1);
   useEffect(() => {
+    console.log(page);
     fetchTransactions(page);
-
-    console.log('не нужно столько');
+    // transactions;
     // setPage(page + 1);
   }, [fetchTransactions, page]);
 

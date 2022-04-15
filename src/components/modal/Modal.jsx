@@ -24,12 +24,12 @@ export default function Modal({ lang }) {
   );
 
   // отпимуємо єкшени для тоглінгу статусу модалки із редаксу
-  const { openModal, closeModal } = modalActions;
-
+  const { closeModal } = modalActions;
+  // openModal,
   // хендлер відкриття модалки
-  const handleOpen = () => {
-    dispatch(openModal());
-  };
+  //   const handleOpen = () => {
+  //     dispatch(openModal());
+  //   };
   const handleClose = () => {
     dispatch(closeModal());
   };

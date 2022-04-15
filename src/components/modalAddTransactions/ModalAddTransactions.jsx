@@ -126,23 +126,20 @@ export default function ModalAddTransactions({ handleClose, lang }) {
             type: transactionType,
             amount: amountForSending(amount),
             date: date ? date : currentDate,
-            dataFiltr: dateFiltr,
             comment: values.comment || 'Нет комментария',
             category,
             newCategory,
-            triger: dateFiltr < new Date(today).getTime(),
           };
           const reset2 = {
             type: transactionType,
             amount: amountForSending(amount),
             date: date ? date : currentDate,
-            dataFiltr: dateFiltr,
             comment: values.comment || 'Нет комментария',
             category,
-            triger: dateFiltr < new Date(today).getTime(),
           };
           const result = newCategory ? reset : reset2;
           errorMsg();
+          console.log(result, 'компонент');
           dispatch(transactionsOperations.addTransaction(result));
           setAmount('');
           setCategory('');

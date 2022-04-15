@@ -7,9 +7,3 @@ export default function PrivateRoute({ children, redirectTo = '/' }) {
 
   return isLoggedIn ? children : <Navigate to={redirectTo} />;
 }
-{
-  /* <Navigate to={redirectTo} /> */
-}
-{
-  /* <h1>Hi world {redirectTo}</h1> */
-}

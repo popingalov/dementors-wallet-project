@@ -1,9 +1,7 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Navigate, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import Media from 'react-media';
-
 import authOperations from './redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import globalSelectors from 'redux/global/global-selectors';
@@ -11,17 +9,11 @@ import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
 import statisticsOperations from 'redux/statistics/statistics-operations';
 import TransactionsTable from './components/transactionsTable';
-import Nav from './components/nav';
 
 import Loader from './components/loader/Loader';
 
 // import Money from "components/money/Money";
 
-import Header from './components/header';
-import Money from 'components/money';
-
-import Currency from './components/currency';
-import HomeTab from './components/homeTab';
 import Statistics from 'components/statistics/statistics';
 
 const NotFoundPage = lazy(() => import('./pages/notFoundPage'));
