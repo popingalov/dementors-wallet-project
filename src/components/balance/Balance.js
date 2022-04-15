@@ -4,6 +4,7 @@ import { getBalance } from 'redux/transactions/transaction-selectors';
 import s from './Balance.module.css';
 export default function Balance({ lang }) {
   const balance = useSelector(getBalance);
+  console.log(balance)
 
   return (
     <>

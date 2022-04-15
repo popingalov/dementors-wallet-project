@@ -1,20 +1,27 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Transaction from 'components/transaction';
 import s from './TransactionsTable.module.css';
 import authSelectors from '../../redux/auth/auth-selectors';
+import transactionsOperations from '../../redux/transactions/transaction-operations'
 import { useSelector } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
+import {getTransactions} from '../../redux/transactions/transaction-selectors'
 
-export default function TransactionsTable({ transactions, fetchTransactions }) {
+export default function TransactionsTable() {
   const userName = useSelector(authSelectors.getUsername);
   const lang = useSelector(globalSelectors.lang);
+  const transactions = useSelector(getTransactions)
+  console.log(transactions, "transactions from TransactionsTable")
+  const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+
   useEffect(() => {
-    console.log(page);
-    fetchTransactions(page);
-    // transactions;
-    // setPage(page + 1);
-  }, [fetchTransactions, page]);
+    dispatch(transactionsOperations.fetchTransactions(page));
+  }, [dispatch, page]);
+
+  const setNextPage = () => setPage(page + 1);
+  // const setPreviousPage = () => setPage(page - 1);
 
   return transactions.length ? (
     <>
@@ -55,7 +62,7 @@ export default function TransactionsTable({ transactions, fetchTransactions }) {
           )}
         </tbody>
       </table>
-      <button className={s.addButton} onClick={() => setPage(page + 1)}>
+      <button className={s.addButton} onClick={setNextPage}>
         {lang ? 'Load more' : 'Загрузить еще'}
       </button>
     </>

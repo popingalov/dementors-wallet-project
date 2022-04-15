@@ -1,20 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://dementrors-waller.herokuapp.com/api';
 
 const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
-  async (page = 1, { rejectWithValue, getState }) => {
+  async (page, { rejectWithValue }) => {
     try {
-      const state = getState().transactions.items;
-      if (state.length && page === 1) {
-        return state;
-      }
+        
       const { data } = await axios.get(`/transactions?page=${page}`);
-      //   const result = state ? [...state, ...data] : data;
-      const result = state ? [...data, ...state] : data;
-      return result;
+      console.log(data);
+      return data;
+      
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -46,14 +44,17 @@ const addTransaction = createAsyncThunk(
         };
 
         const data = await axios.post('/transactions', newTransaction);
-
+        console.log(data, "data from addTransaction");
         return data.data;
       }
 
       const response = await axios.post('/transactions', transaction);
 
+      console.log(response.data);
+
       return response.data;
     } catch (error) {
+      toast.error("Категория первой транзакции должна быть доходом !!!")
       return rejectWithValue(error);
     }
   },
