@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import closeBtnIcon from '../../assets/images/icons/close.svg';
 import modalActions from '../../redux/global/global-actions';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+// import moment from 'moment';
 import 'moment/locale/ru';
 import 'moment/locale/en-au';
 import transactionsOperations from '../../redux/transactions/transaction-operations';

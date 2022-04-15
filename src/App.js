@@ -8,7 +8,7 @@ import globalSelectors from 'redux/global/global-selectors';
 import PrivateRoute from './helpers/PrivateRoute';
 import PublicRoute from './helpers/PublicRoute';
 import TransactionsTable from './components/transactionsTable';
-
+import { getPagesQuantity } from './redux/transactions/transaction-selectors';
 import Loader from './components/loader/Loader';
 
 // import Money from "components/money/Money";
@@ -27,7 +27,7 @@ export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getFetchingCurrent);
   const isLoadingSpinner = useSelector(globalSelectors.isLoadingSpinner);
-
+  const takePage = useSelector(getPagesQuantity);
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
@@ -69,7 +69,7 @@ export default function App() {
                 element={
                   <PrivateRoute redirectTo="/login">
                     <DashboardPage>
-                      <TransactionsTable />
+                      <TransactionsTable page={takePage} />
                     </DashboardPage>
                   </PrivateRoute>
                 }

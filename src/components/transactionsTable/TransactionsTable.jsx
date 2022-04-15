@@ -1,21 +1,24 @@
 import Transaction from 'components/transaction';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
 import globalSelectors from '../../redux/global/global-selectors';
 import transactionsOperations from '../../redux/transactions/transaction-operations';
-import { getPagesQuantity, getTransactions, getCurrentPage} from '../../redux/transactions/transaction-selectors';
+import {
+  getTransactions,
+  getCurrentPage,
+} from '../../redux/transactions/transaction-selectors';
 import s from './TransactionsTable.module.css';
-import {setPage} from '../../redux/transactions/transaction-actions'
+import { setPage } from '../../redux/transactions/transaction-actions';
 
-export default function TransactionsTable() {
+export default function TransactionsTable({ page }) {
   const userName = useSelector(authSelectors.getUsername);
   const lang = useSelector(globalSelectors.lang);
   const transactions = useSelector(getTransactions);
-  const pagesQuantity = useSelector(getPagesQuantity);
+  //   const pagesQuantity = useSelector(getPagesQuantity);
   const currentPage = useSelector(getCurrentPage);
-  console.log(pagesQuantity, "pagesQuantity");
-  console.log(transactions, "transactions from TransactionsTable")
+  //   console.log(pagesQuantity, 'pagesQuantity');
+  //   console.log(transactions, 'transactions from TransactionsTable');
   const dispatch = useDispatch();
   // const [page, setPage] = useState(1);
   // console.log(page, "page");
@@ -26,7 +29,6 @@ export default function TransactionsTable() {
 
   const setNextPage = () => dispatch(setPage(currentPage + 1));
   const setPreviousPage = () => dispatch(setPage(currentPage - 1));
-
 
   return transactions.length ? (
     <>
@@ -72,14 +74,14 @@ export default function TransactionsTable() {
           className={s.loadLessButton}
           type="button"
           name="loadLess"
-          disabled = {currentPage === 1}
+          disabled={currentPage === 1}
           onClick={setPreviousPage}
         ></button>
         <button
           className={s.loadMoreButton}
           type="button"
           name="loadMore"
-          disabled = {currentPage === pagesQuantity}
+          disabled={currentPage === page}
           onClick={setNextPage}
         ></button>
       </div>

@@ -10,8 +10,6 @@ const fetchTransactions = createAsyncThunk(
     try {
       const { data } = await axios.get(`/transactions?page=${page}`);
 
-      console.log(data);
-
       return { ...data, page };
     } catch (error) {
       return rejectWithValue(error);
@@ -45,13 +43,11 @@ const addTransaction = createAsyncThunk(
         };
 
         const { data } = await axios.post('/transactions', newTransaction);
-        console.log(data, 'data from addTransaction');
+
         return data;
       }
 
       const response = await axios.post('/transactions', transaction);
-
-      console.log(response.data);
 
       return response.data;
     } catch (error) {
