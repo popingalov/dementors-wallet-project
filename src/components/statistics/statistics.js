@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
 import statisticsSelectors from 'redux/statistics/statistics-selectors';
 import statisticsOperations from 'redux/statistics/statistics-operations';
-
+import { useTranslation } from 'react-i18next';
 let Data = new Date();
 const Year = Data.getFullYear();
 const Month = Data.getMonth();
@@ -39,6 +39,7 @@ let enMonth = [
   'December',
 ];
 export default function Statistics() {
+  const { t, i18n } = useTranslation();
   const lang = useSelector(globalSelectors.lang);
   const dispatch = useDispatch();
   const statistics = useSelector(statisticsSelectors.statisticMinus);
@@ -49,9 +50,7 @@ export default function Statistics() {
   return (
     <div className={s.box_statistics}>
       <div className={s.box_circle}>
-        <p className={s.title_statistics}>
-          {lang ? 'Statistics' : 'Статистика'}
-        </p>
+        <p className={s.title_statistics}>{t('statisticsTitle')}</p>
         <div className={s.section} id={s.container}>
           <Donut />
         </div>
@@ -65,8 +64,8 @@ export default function Statistics() {
         </div>
 
         <div className={s.box_category_summa}>
-          <p className={s.category}>{lang ? 'Category' : 'Категория'}</p>
-          <p className={s.summa}>{lang ? 'Amount' : 'Cумма'}</p>
+          <p className={s.category}>{t('statisticsCategory')}</p>
+          <p className={s.summa}>{t('statisticsAmounts')}</p>
         </div>
 
         <ul className={s.list_statistics}>
@@ -85,15 +84,13 @@ export default function Statistics() {
 
           <li>
             <p className={s.info_statistics_expenses}>
-              {lang ? 'Outcomes' : 'Расходы'}:
+              {t('statisticsOutcomes')}
             </p>
             <p>{balance[1]}</p>
           </li>
 
           <li>
-            <p className={s.info_statistics_income}>
-              {lang ? 'Incomes' : 'Доходы'}:
-            </p>
+            <p className={s.info_statistics_income}>{t('statisticsIncomes')}</p>
             <p>{balance[0]}</p>
           </li>
         </ul>

@@ -9,9 +9,16 @@
   padding-bottom: 110px;
   background: #ffffff;
 }
+.formTitleWrap {
+  display: flex;
+  align-items: center;
+}
+.checkbox {
+  /* position: relative; */
+  margin-left: 10px;
+}
 @media screen and (min-width: 768px) {
   .formRegister {
-    
     /*margin-top: 50px;*/
     margin-bottom: 195px;
     width: 540px;
@@ -19,7 +26,6 @@
     padding-top: 40px;
     padding-bottom: 60px;
     border-radius: 20px;
-
   }
 }
 @media screen and (min-width: 1280px) {
@@ -29,8 +35,6 @@
     margin-top: 135px;
     margin-bottom: 115px;
     margin-left: 140px;
-
-
   }
 }
 .input {

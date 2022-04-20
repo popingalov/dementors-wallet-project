@@ -2,7 +2,7 @@ import Transaction from 'components/transaction';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
-import globalSelectors from '../../redux/global/global-selectors';
+import { useTranslation } from 'react-i18next';
 import transactionsOperations from '../../redux/transactions/transaction-operations';
 import {
   getTransactions,
@@ -13,13 +13,12 @@ import { setPage } from '../../redux/transactions/transaction-actions';
 
 export default function TransactionsTable({ page }) {
   const userName = useSelector(authSelectors.getUsername);
-  const lang = useSelector(globalSelectors.lang);
+  const { t, i18n } = useTranslation();
   const transactions = useSelector(getTransactions);
 
   const currentPage = useSelector(getCurrentPage);
 
   const dispatch = useDispatch();
- 
 
   useEffect(() => {
     dispatch(transactionsOperations.fetchTransactions(currentPage));
@@ -33,12 +32,12 @@ export default function TransactionsTable({ page }) {
       <table className={s.table}>
         <thead className={s.table_header}>
           <tr key="asd" className={s.table_header_row}>
-            <th className={s.ths}>{lang ? 'Date' : 'Дата'}</th>
-            <th className={s.ths}>{lang ? 'Type' : 'Тип'}</th>
-            <th className={s.ths}>{lang ? 'Category' : 'Категория'}</th>
-            <th className={s.ths}>{lang ? 'Comment' : 'Комментарий'}</th>
-            <th className={s.ths}>{lang ? 'Amount' : 'Сумма'}</th>
-            <th className={s.ths}>{lang ? 'Balance' : 'Баланс'}</th>
+            <th className={s.ths}>{t('transactionsTableDate')}</th>
+            <th className={s.ths}>{t('transactionsTableType')}</th>
+            <th className={s.ths}>{t('transactionsTableCategory')}</th>
+            <th className={s.ths}>{t('transactionsTableComment')}</th>
+            <th className={s.ths}>{t('transactionsTableAmount')}</th>
+            <th className={s.ths}>{t('transactionsTableBalance')}</th>
           </tr>
         </thead>
         <tbody className={s.table_body}>
@@ -86,34 +85,10 @@ export default function TransactionsTable({ page }) {
     </>
   ) : (
     <div className={s.greetings}>
-      <h2>{lang ? `Hello, ${userName}!` : `Привет, ${userName}!`}</h2>
-      <p>
-        {lang
-          ? 'The Wallet app will help you control your money transactions conveniently and easily.'
-          : ' Приложение Wallet поможет контролировать свои денежные операции удобно и просто.'}
-      </p>
-      <p>
-        {lang
-          ? `${userName}, you don't have any transactions yet. To add a new transaction, click on the plus in the lower right corner.`
-          : `${userName}, у тебя пока еще нет совершенных транзакций. Для добавления новой транзакции нажми на плюс в правом нижнем углу.`}
-      </p>
-      {lang ? (
-        <p>
-          And we want to draw your attention to the fact that the first
-          transaction must be with specified type
-          <span className={s.greetingsSpan}>"Incomes"</span>, in order to make
-          it possible to display the current balance of funds and track money
-          transactions.
-        </p>
-      ) : (
-        <p>
-          И хотим обратить внимание на то, что первая транзакция должна быть с
-          указанным типом
-          <span className={s.greetingsSpan}>"Доход"</span>, для того, чтобы
-          далее было возможно отображать актуальный баланс средств и отслеживать
-          денежные операции.
-        </p>
-      )}
+      <h2>{`${t('transactionsTableTitle')}, ${userName}!`}</h2>
+      <p>{t('transactionsTableFirstParagraph')}</p>
+      <p>{`${userName}, ${t('transactionsTableSecondParagraph')}`}</p>
+      <p>{t('transactionsTableThirdParagraph')}</p>
     </div>
   );
 }
