@@ -67,9 +67,7 @@ export default function Modal({ lang, categoriesTest }) {
             e.stopPropagation();
           }}
         >
-          {isModalLogOutOpen && (
-            <ModalLogOut lang={lang} handleClose={handleClose} />
-          )}
+          {isModalLogOutOpen && <ModalLogOut handleClose={handleClose} />}
           {isAddTransactionModalOpen && (
             <ModalAddTransactions
               lang={lang}
