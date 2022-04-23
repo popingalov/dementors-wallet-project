@@ -35,7 +35,7 @@ const RegistrationSchema = Yup.object().shape({
 });
 
 export default function RegisterForm() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = ({ name, email, password }) => {

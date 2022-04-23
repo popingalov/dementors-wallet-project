@@ -1,7 +1,7 @@
 import s from './Money.module.css';
 import { useTranslation } from 'react-i18next';
 const TableHeader = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <thead className={`${s.tableRow} ${s.tableRowHeader}`}>
       <tr className={s.tableCell}>

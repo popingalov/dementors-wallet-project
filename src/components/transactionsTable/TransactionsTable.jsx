@@ -13,7 +13,7 @@ import { setPage } from '../../redux/transactions/transaction-actions';
 
 export default function TransactionsTable({ page }) {
   const userName = useSelector(authSelectors.getUsername);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const transactions = useSelector(getTransactions);
 
   const currentPage = useSelector(getCurrentPage);

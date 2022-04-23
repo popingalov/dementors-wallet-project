@@ -6,7 +6,7 @@ import s from './Nav.module.css';
 import { useTranslation } from 'react-i18next';
 
 const Nav = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <nav className={s.nav}>
       <ul className={s.list}>

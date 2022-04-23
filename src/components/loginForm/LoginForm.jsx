@@ -24,7 +24,7 @@ const SignupSchema = Yup.object().shape({
     .required('Обязательное поле'),
 });
 export default function LoginForm() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const handleSubmit = user => {
     dispatch(authOperations.logIn(user));

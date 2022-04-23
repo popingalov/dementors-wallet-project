@@ -43,7 +43,7 @@ export default function ModalAddTransactions({
   const [category, setCategory] = useState('');
   const [transactionType, setTransactionType] = useState('-');
   const [newCategory, setNewCategory] = useState('');
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const handleCheckbox = e => {

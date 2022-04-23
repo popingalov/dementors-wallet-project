@@ -5,7 +5,7 @@ import logOut from '../../redux/auth/auth-operations';
 import modalActions from 'redux/global/global-actions';
 import { useTranslation } from 'react-i18next';
 export default function ModalLogOut({ handleClose }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   return (
     <>

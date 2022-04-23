@@ -39,11 +39,12 @@ let enMonth = [
   'December',
 ];
 export default function Statistics() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const lang = useSelector(globalSelectors.lang);
   const dispatch = useDispatch();
   const statistics = useSelector(statisticsSelectors.statisticMinus);
   const balance = useSelector(statisticsSelectors.statisticTotal);
+  //   console.log(Month);
   useEffect(() => {
     dispatch(statisticsOperations.getStatistics());
   }, [dispatch]);
@@ -57,10 +58,37 @@ export default function Statistics() {
       </div>
       <div className={s.container_statistics}>
         <div className={s.box_data}>
-          <div className={s.months}>
-            {lang ? enMonth[Month] : fMonth[Month]}
-          </div>
-          <div className={s.years}> {Year}</div>
+          <form
+            onChange={e => {
+              console.log(e.target.value);
+            }}
+            name="form1"
+          >
+            <p>
+              <select className={s.months} name="list1">
+                <option value={fMonth[0]}>
+                  {lang ? enMonth[Month] : fMonth[Month]}
+                </option>
+                <option value={fMonth[1]}>Option</option>
+                <option value={fMonth[2]}>Textarea</option>
+                <option value={fMonth[3]}>Label</option>
+                <option value={fMonth[4]}>Fieldset</option>
+                <option value={fMonth[5]}>Legend</option>
+              </select>
+            </p>
+          </form>
+          <form name="form2">
+            <p>
+              <select className={s.months} name="list2">
+                <option>{Year}</option>
+                <option>Option</option>
+                <option>Textarea</option>
+                <option>Label</option>
+                <option>Fieldset</option>
+                <option>Legend</option>
+              </select>
+            </p>
+          </form>
         </div>
 
         <div className={s.box_category_summa}>

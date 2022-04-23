@@ -47,9 +47,10 @@
     height: 50px;
     border: 1px solid #000000;
     box-sizing: border-box;
-    border-radius: 30px;
+      border-radius: 30px;
     text-align: center;
-    padding-top: 14px;
+    align-content: center;
+    /* padding-top: 14px; */
   }
   .years {
     width: 160px;
@@ -440,3 +441,12 @@
   color: #000000;
 }
 
+option {
+    font-family: 'Circe';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    border: none;
+}

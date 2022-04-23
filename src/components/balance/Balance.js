@@ -3,7 +3,7 @@ import { getBalance } from 'redux/transactions/transaction-selectors';
 import s from './Balance.module.css';
 import { useTranslation } from 'react-i18next';
 export default function Balance() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const balance = useSelector(getBalance);
 
   return (

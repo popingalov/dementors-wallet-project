@@ -5,7 +5,7 @@ import style from '../header/Header.module.css';
 import { ReactComponent as ExitIcon } from 'assets/images/icons/exit.svg';
 import { useTranslation } from 'react-i18next';
 export default function ModalLogOutBtn() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const handleOpen = () => {
     dispatch(modalActions.openModal());
