@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import globalSelectors from '../../redux/global/global-selectors';
 import statisticsSelectors from 'redux/statistics/statistics-selectors';
 import statisticsOperations from 'redux/statistics/statistics-operations';
+import { getData } from 'redux/transactions/transaction-selectors';
 import { useTranslation } from 'react-i18next';
 let Data = new Date();
 const Year = Data.getFullYear();
@@ -44,6 +45,7 @@ export default function Statistics() {
   const dispatch = useDispatch();
   const statistics = useSelector(statisticsSelectors.statisticMinus);
   const balance = useSelector(statisticsSelectors.statisticTotal);
+  const dataTransactions = useSelector(getData);
   //   console.log(Month);
   useEffect(() => {
     dispatch(statisticsOperations.getStatistics());
@@ -97,7 +99,7 @@ export default function Statistics() {
         </div>
 
         <ul className={s.list_statistics}>
-          {statistics?.map(({ category, color, minus }) => {
+          {statistics?.map(({ category, color, value }) => {
             return (
               <li key={color}>
                 <div
@@ -105,7 +107,7 @@ export default function Statistics() {
                   className={s.rectangle}
                 ></div>
                 <p className={s.info_statistics}>{category}</p>
-                <p>{minus}</p>
+                <p>{value}</p>
               </li>
             );
           })}

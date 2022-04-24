@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
+// import storage from 'redux-persist/lib/storage';
+import sessionStorage from 'redux-persist/lib/storage/session';
 import categoryReducer from './categories/categories-slice';
 import authReducer from './auth/auth-slice';
 import transactionsReducer from './transactions/transaction-reducer';
@@ -10,12 +10,12 @@ import statisticsReducer from './statistics/statistics-reducer';
 
 const authPersistConfig = {
   key: 'auth',
-  storage,
+  storage: sessionStorage,
   whitelist: ['token'],
 };
 const globalPersistConfig = {
   key: 'global',
-  storage,
+  storage: sessionStorage,
   whitelist: ['isEnglishVersion'],
 };
 

@@ -35,9 +35,9 @@ const Charts = () => {
         {},
       ],
     };
-    statistics?.forEach(({ color, minus, category }) => {
+    statistics?.forEach(({ color, value, category }) => {
       newData.datasets[0].backgroundColor.push(color);
-      newData.datasets[0].data.push(minus);
+      newData.datasets[0].data.push(value);
       newData.datasets[0].label.push(category);
     });
     setData(newData);
