@@ -48,6 +48,9 @@ export default function Statistics() {
   const dataTransactions = useSelector(getData);
   //   console.log(Month);
   useEffect(() => {
+    for (const elem of dataTransactions) {
+      console.log(elem);
+    }
     dispatch(statisticsOperations.getStatistics());
   }, [dispatch]);
   return (
