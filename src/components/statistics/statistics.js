@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from 'components/statistics/statistics.module.css';
 import Donut from './doughnut';
 import { useSelector, useDispatch } from 'react-redux';
@@ -44,15 +44,36 @@ export default function Statistics() {
   const lang = useSelector(globalSelectors.lang);
   const dispatch = useDispatch();
   const statistics = useSelector(statisticsSelectors.statisticMinus);
+  const statisticsPlus = useSelector(statisticsSelectors.statisticPlus);
   const balance = useSelector(statisticsSelectors.statisticTotal);
   const dataTransactions = useSelector(getData);
-  //   console.log(Month);
+  const [monthForForm, setmonthForForm] = useState([]);
+  const [years, setYears] = useState([]);
+  const [getStatistics, setgetStatistics] = useState(null);
+  const [triger, setTriger] = useState(true);
   useEffect(() => {
-    for (const elem of dataTransactions) {
-      console.log(elem);
-    }
     dispatch(statisticsOperations.getStatistics());
+    const yearsDis = Object.keys(dataTransactions).reverse();
+    setYears(yearsDis);
+    setmonthForForm(dataTransactions[yearsDis[0]]);
   }, [dispatch]);
+
+  const cklickYear = e => {
+    const year = e.target.value;
+    setgetStatistics(year);
+    setmonthForForm(dataTransactions[year]);
+  };
+  const clickMonth = e => {
+    const month = e.target.value;
+
+    dispatch(
+      statisticsOperations.getStatistics({
+        month,
+        year: getStatistics || '2022',
+      }),
+    );
+  };
+  const test = triger ? statistics : statisticsPlus;
   return (
     <div className={s.box_statistics}>
       <div className={s.box_circle}>
@@ -63,34 +84,27 @@ export default function Statistics() {
       </div>
       <div className={s.container_statistics}>
         <div className={s.box_data}>
-          <form
-            onChange={e => {
-              console.log(e.target.value);
-            }}
-            name="form1"
-          >
+          <form name="form1">
             <p>
-              <select className={s.months} name="list1">
-                <option value={fMonth[0]}>
-                  {lang ? enMonth[Month] : fMonth[Month]}
-                </option>
-                <option value={fMonth[1]}>Option</option>
-                <option value={fMonth[2]}>Textarea</option>
-                <option value={fMonth[3]}>Label</option>
-                <option value={fMonth[4]}>Fieldset</option>
-                <option value={fMonth[5]}>Legend</option>
+              <select onChange={clickMonth} className={s.months} name="list1">
+                {monthForForm?.map(item => {
+                  return (
+                    <option key={item} value={item}>
+                      {lang ? enMonth[item[1]] : fMonth[item[1]]}
+                    </option>
+                  );
+                })}
               </select>
             </p>
           </form>
           <form name="form2">
             <p>
-              <select className={s.months} name="list2">
-                <option>{Year}</option>
-                <option>Option</option>
-                <option>Textarea</option>
-                <option>Label</option>
-                <option>Fieldset</option>
-                <option>Legend</option>
+              <select onChange={cklickYear} className={s.months} name="list2">
+                {years.map((item, index) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </p>
           </form>
@@ -102,7 +116,7 @@ export default function Statistics() {
         </div>
 
         <ul className={s.list_statistics}>
-          {statistics?.map(({ category, color, value }) => {
+          {test?.map(({ category, color, value }) => {
             return (
               <li key={color}>
                 <div
@@ -116,14 +130,22 @@ export default function Statistics() {
           })}
 
           <li>
-            <p className={s.info_statistics_expenses}>
+            <button
+              onClick={() => setTriger(true)}
+              className={s.info_statistics_expenses}
+            >
               {t('statisticsOutcomes')}
-            </p>
+            </button>
             <p>{balance[1]}</p>
           </li>
 
           <li>
-            <p className={s.info_statistics_income}>{t('statisticsIncomes')}</p>
+            <button
+              onClick={() => setTriger(false)}
+              className={s.info_statistics_income}
+            >
+              {t('statisticsIncomes')}
+            </button>
             <p>{balance[0]}</p>
           </li>
         </ul>

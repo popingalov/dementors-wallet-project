@@ -1,4 +1,4 @@
-const statisticPlus = state => state.statistics?.plus;
+const statisticPlus = state => state.statistics?.statistics.plus;
 const statisticMinus = state => state.statistics.statistics?.minus;
 const statisticTotal = state => [
   state.statistics?.statistics.totalPlus,

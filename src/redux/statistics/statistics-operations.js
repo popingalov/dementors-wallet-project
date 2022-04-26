@@ -3,9 +3,12 @@ import axios from 'axios';
 
 const getStatistics = createAsyncThunk(
   'statistics/fetchStatistics',
-  async (_, { rejectWithValue }) => {
+  async (date, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/statistics');
+      console.log(date);
+      const { data } = await axios.get('/statistics', date);
+      console.log(data);
+
       return data;
     } catch (error) {
       return rejectWithValue(error);
