@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-import sessionStorage from 'redux-persist/lib/storage/session';
+import storage from 'redux-persist/lib/storage';
+import sessionStorage from 'redux-persist/lib/storage';
 import categoryReducer from './categories/categories-slice';
 import authReducer from './auth/auth-slice';
 import transactionsReducer from './transactions/transaction-reducer';

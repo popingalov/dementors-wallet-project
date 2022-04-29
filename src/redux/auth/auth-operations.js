@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://dementrors-waller.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:4000/api/';
 
 const token = {
   set(token) {
@@ -17,7 +17,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const { data } = await axios.post('/users/auth', credentials);
     token.set(data.token);
-    
+
     return data;
   } catch (error) {
     toast.error('Проверьте верность введите данных');

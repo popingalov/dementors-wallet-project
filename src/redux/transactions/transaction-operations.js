@@ -2,14 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://dementrors-waller.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:4000/api';
 
 const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
   async (page, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/transactions?page=${page}`);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error);

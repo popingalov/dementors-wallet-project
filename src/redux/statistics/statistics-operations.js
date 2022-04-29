@@ -5,9 +5,7 @@ const getStatistics = createAsyncThunk(
   'statistics/fetchStatistics',
   async (date, { rejectWithValue }) => {
     try {
-      console.log(date);
-      const { data } = await axios.get('/statistics', date);
-      console.log(data);
+      const { data } = await axios.post('/statistics', date);
 
       return data;
     } catch (error) {
