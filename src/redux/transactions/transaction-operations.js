@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'http://localhost:4000/api';
+axios.defaults.baseURL = 'https://dementrors-waller.herokuapp.com/api';
 
 const fetchTransactions = createAsyncThunk(
   'transactions/fetchTransactions',
